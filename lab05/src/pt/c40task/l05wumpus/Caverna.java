@@ -86,6 +86,13 @@ public class Caverna {
 		return inserirComponente(comp, novoX, novoY);
 	}
 	
+	/**
+	 * Torna a sala em (x, y) visivel.
+	 */
+	public void tornarVisivel(int x, int y) {
+		salas[x][y].setVisivel(true);
+	}
+	
 	
 	/**
 	 * retorna o char que representa a sala em (x, y)
