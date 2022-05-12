@@ -14,7 +14,7 @@ public class Sala {
 	}
 	
 	
-	public void removerComponente(char comp) {
+	public void removerComponente(String tipoComponente) {
 		// remove se o componente estiver, se nao nao faz nada
 	}
 	
