@@ -9,7 +9,7 @@ public class Sala {
 										{"ouro", "buraco"},
 										{"buraco", "wumpus"}};
 	
-	private static String[] ordemPrioridade = {"ouro", "buraco", "wumpus", "heroi", "fedor", "brisa"}
+	private static String[] ordemPrioridade = {"ouro", "buraco", "wumpus", "heroi", "fedor", "brisa"};
 	
 	
 	private static String maiorPrioridade(String[] tipoComponentes) {
@@ -113,14 +113,15 @@ public class Sala {
 	}
 	
 	
-	public char getRepresentacao() {
-		char representacao;
-		if (!visivel)
-			representacao = '-';
-		else if (componentes.size() == 0)
-			representacao = '#';
-		
-		
-		return representacao;
+	public boolean estaVazia() {
+		return componentes.size() == 0;
+	}
+	
+	
+	public String getMaiorPrioridade() {
+		String maior = "vazia";
+		if (!estaVazia())
+			maior = maiorPrioridade(getTipoComponentes());
+		return maior;
 	}
 }
