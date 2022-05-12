@@ -1,15 +1,40 @@
 package pt.c40task.l05wumpus;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Sala {
+	// guarda as combinacoes invalidas de componentes na sala
+	private static String[][] combinacoesInvalidas = {{"ouro", "wumpus"}, 
+										{"ouro", "buraco"},
+										{"buraco", "wumpus"}};
+	
+	private static String[] ordemPrioridade = {"ouro", "buraco", "wumpus", "heroi", "fedor", "brisa"}
+	
+	
+	private static String maiorPrioridade(String[] tipoComponentes) {
+		String maiorPrioridade = "vazio";
+		HashSet<String> tipos = new HashSet<String>(tipoComponentes.length);
+		
+		for (int i = 0; i < tipoComponentes.length; i++) 
+			tipos.add(tipoComponentes[i]);
+		
+		for (int j = 0; j < ordemPrioridade.length; j++) {
+			if (tipos.contains(ordemPrioridade[j])) {
+				maiorPrioridade = ordemPrioridade[j];
+				break;
+			}
+		}
+		
+		return maiorPrioridade;
+	}
+
+	
 	private ArrayList<Componente> componentes;
-	private int numComponentes;
 	private boolean visivel;
 	
 	public Sala() {
 		componentes = new ArrayList<Componente>(2);
-		numComponentes = 0;
 		visivel = false;
 	}
 	
@@ -19,30 +44,31 @@ public class Sala {
 	 * o insere e retorna true. se não for retorna false.
 	 */
 	public boolean inserirComponente(Componente comp) {
-		String tipoNovo = comp.getTipoComponente();
+		String tipoNovo = comp.getTipoComponente(), tipoComp;
 		boolean insercaoValida = true;
+		
+	
 
-		for (int i = 0; i < numComponentes; i++) {
-			if (componentes.get(i).getTipoComponente() == tipoNovo) {
+		for (int i = 0; i < componentes.size(); i++) {
+			tipoComp = componentes.get(i).getTipoComponente();
+			if (tipoComp == tipoNovo) {
 				insercaoValida = false;
 				break;
 			}
 
-			if (tipoNovo == "wumpus" && componentes.get(i).getTipoComponente() == "ouro")  {
-				insercaoValida = false;
-				break;
-			}
-
-			if (tipoNovo == "ouro" && componentes.get(i).getTipoComponente() == "wumpus")  {
-				insercaoValida = false;
-				break;
+			for (int j = 0; j < combinacoesInvalidas.length; j++) {
+				if ((tipoNovo == combinacoesInvalidas[j][0] 
+					&& tipoComp == combinacoesInvalidas[j][1])
+					|| (tipoComp == combinacoesInvalidas[j][0] 
+					&& tipoNovo == combinacoesInvalidas[j][1])) {
+						insercaoValida = false;
+						break;
+				}
 			}
 		}
 		
-		if (insercaoValida) {
+		if (insercaoValida)
 			componentes.add(comp);
-			numComponentes++;
-		}
 		
 		return insercaoValida;
 	}
@@ -66,13 +92,15 @@ public class Sala {
 	 * os componentes da sala.
 	 */
 	public String[] getTipoComponentes() {
-		String[] tipoComponentes = new String[numComponentes];
+		String[] tipoComponentes = new String[componentes.size()];
 
-		for (int i = 0; i < numComponentes; i++)
+		for (int i = 0; i < componentes.size(); i++)
 			tipoComponentes[i] = componentes.get(i).getTipoComponente();
 		
 		return tipoComponentes;
 	}
+	
+	
 	
 	
 	public boolean getVisivel() {
@@ -82,5 +110,17 @@ public class Sala {
 	
 	public void setVisivel(boolean visivel) {
 		this.visivel = visivel;
+	}
+	
+	
+	public char getRepresentacao() {
+		char representacao;
+		if (!visivel)
+			representacao = '-';
+		else if (componentes.size() == 0)
+			representacao = '#';
+		
+		
+		return representacao;
 	}
 }
