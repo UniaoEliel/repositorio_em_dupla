@@ -7,6 +7,7 @@ public class Heroi extends Componente {
 	
 	public Heroi(int x, int y, Caverna caverna) {
 		super(x,y,caverna,"Heroi");
+		//setar os atributos
 	}
 	
 	public void mover(char direcao) {
