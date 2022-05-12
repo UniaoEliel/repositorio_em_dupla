@@ -10,7 +10,7 @@ public class Montador {
 	}
 	
 	
-	public Componente instanciarComponente(int x, int y, char tipoComponente) {
+	public static Componente instanciarComponente(int x, int y, char tipoComponente) {
 		// chama o construtor correto
 	}
 }

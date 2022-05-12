@@ -4,6 +4,10 @@ public class Sala {
 	private Componente componentes[];
 	private boolean visivel;
 	
+	public Sala() {
+		
+	}
+	
 	
 	public boolean inserirComponente(Componente comp) {
 		// verifica se a insercao é valida, se for retorna true
@@ -17,5 +21,10 @@ public class Sala {
 	
 	public String getComponentes() {
 		// retorna a string dos componentes da sala na ordem q o roteiro pede
+	}
+	
+	
+	public void tornarVisivel() {
+		
 	}
 }

@@ -5,7 +5,7 @@ public abstract class Componente {
 	protected Caverna caverna;
 	protected int x, y;
 	
-	public Componente() {
+	public Componente(int x, int y, Caverna caverna, String tipoComponente) {
 		// instancia os atributos gerais
 	}
 	

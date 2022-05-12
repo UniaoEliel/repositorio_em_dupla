@@ -4,6 +4,11 @@ public class Caverna {
 	private Sala salas[][];
 	private int tamX, tamY;
 	
+	
+	public Caverna(int tamX, int tamY) {
+		
+	}
+	
 	public boolean checarValidadePosicao(int x, int y) {
 		// retorna se a posicao e valida
 	}
