@@ -14,6 +14,10 @@ public class Sala {
 	}
 	
 	
+	/**
+	 * Verifica se a insercao de um componente na sala é valida, caso for
+	 * o insere e retorna true. se não for retorna false.
+	 */
 	public boolean inserirComponente(Componente comp) {
 		String tipoNovo = comp.getTipoComponente();
 		boolean insercaoValida = true;
@@ -44,6 +48,10 @@ public class Sala {
 	}
 	
 	
+	/**
+	 * Se o componente estiver na sala, o remove, se não estiver
+	 * não faz nada
+	 */
 	public void removerComponente(String tipoComponente) {
 		String[] tipoComponentes = getTipoComponentes();
 		
@@ -53,6 +61,10 @@ public class Sala {
 	}
 	
 	
+	/**
+	 * Retorna um vetor de string contendo os tipos de todos
+	 * os componentes da sala.
+	 */
 	public String[] getTipoComponentes() {
 		String[] tipoComponentes = new String[numComponentes];
 

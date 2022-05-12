@@ -8,10 +8,11 @@ public class Caverna {
 	public Caverna(int tamX, int tamY) {
 		this.tamX = tamX;
 		this.tamY = tamY;
+		this.salas = new Sala[tamX][tamY];
 		
 		for (int i = 0; i < tamX; i++)
 			for (int j = 0; j < tamY; j++)
-				salas[i][j] = new Sala();
+				this.salas[i][j] = new Sala();
 	}
 	
 	
