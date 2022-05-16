@@ -5,4 +5,6 @@ public class Buraco extends Componente {
 	public Buraco(int x, int y, Caverna caverna) {
 		
 	}
+	
+	
 }
