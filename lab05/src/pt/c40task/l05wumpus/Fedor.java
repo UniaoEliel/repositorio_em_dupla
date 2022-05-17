@@ -9,4 +9,9 @@ public class Fedor extends Componente {
 	public void insereCaverna() {
 		super.insereCaverna();
 	}
+	
+	
+	public void removeCaverna() {
+		super.removeCaverna();
+	}
 }

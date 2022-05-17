@@ -13,6 +13,11 @@ public class Buraco extends Componente {
 	}
 	
 	
+	public void removeCaverna() {
+		super.removeCaverna();
+	}
+	
+	
 	public void insereBrisa() {
 		Componente brisaBuraco = new Brisa(x - 1, y, caverna);
 		brisaBuraco.insereCaverna();

@@ -87,6 +87,14 @@ public class Sala {
 	}
 	
 	
+	public void remover(String tipoComponente) {
+		String[] tipoComponentes = getTipoComponentes();
+		
+		for (int i = 0; i < componentes.size(); i++)
+			if (tipoComponentes[i] == tipoComponente)
+				componentes.get(i).removeCaverna();
+	}
+	
 	/**
 	 * Retorna um vetor de string contendo os tipos de todos
 	 * os componentes da sala.

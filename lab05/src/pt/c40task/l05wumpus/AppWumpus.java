@@ -35,7 +35,7 @@ public class AppWumpus {
 		hero = montadorCaverna.getHeroi();
 		controleJogo = new Controle(hero, caverna);
 		
-		if (arquivoCaverna == null)
+		if (arquivoMovimentos == null)
 			executaInterativo(tk, caverna, controleJogo);
 		else
 			executaOutro(tk, caverna, controleJogo);
@@ -47,19 +47,27 @@ public class AppWumpus {
 	   char[][] cave;
 		while (true) {
 			cave = controleJogo.getEstadoCaverna();
-			tk.writeBoard(cave, controleJogo.getPontuacao(), 'P');
+			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			System.out.println("=====");
 			imprimeMatriz(cave);
+			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
-			System.out.println("Status: " + controleJogo.getStatus());
-			
-			
+
+			if (controleJogo.getStatus() == 'W') {
+				System.out.println("Voce ganhou =D !!!");
+				break;
+			}
+			if (controleJogo.getStatus() == 'L') {
+				System.out.println("Voce perdeu =(...");
+				break;
+			}
+
 			char comando = entrada.next().charAt(0);
 			
-			if (comando == 'q')
+			if (comando == 'q') {
+				System.out.println("Volte sempre !");
 				break;
-				
+			}
 			controleJogo.realizarComando(comando);
 		}
 
@@ -72,12 +80,20 @@ public class AppWumpus {
 	   String movements = tk.retrieveMovements();
 		for (int i = 0; i < movements.length(); i++) {
 			cave = controleJogo.getEstadoCaverna();
-			tk.writeBoard(cave, controleJogo.getPontuacao(), 'P');
+			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			System.out.println("=====");
 			imprimeMatriz(cave);
+			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
-			System.out.println("Status: " + controleJogo.getStatus());
+
+			if (controleJogo.getStatus() == 'W') {
+				System.out.println("Voce ganhou =D !!!");
+				break;
+			}
+			if (controleJogo.getStatus() == 'L') {
+				System.out.println("Voce perdeu =(...");
+				break;
+			}
 				
 			controleJogo.realizarComando(movements.charAt(i));
 		}

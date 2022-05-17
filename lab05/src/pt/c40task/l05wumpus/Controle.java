@@ -7,12 +7,13 @@ public class Controle {
 	private HashSet<Character> movimentosValidos;
 	private Heroi hero;
 	private Caverna cave;
-	private char status = 'W';
+	private char status;
 	
 	
 	public Controle(Heroi hero, Caverna cave) {
 		this.hero = hero;
 		this.cave = cave;
+		this.status = 'P';
 		
 		movimentosValidos = new HashSet<Character>();
 		for (int i = 0; i < movValidos.length; i++)
@@ -28,6 +29,12 @@ public class Controle {
 				hero.pegarOuro();
 			else {
 				this.hero.mover(comando);
+				/*
+				if (!hero.isVivo())
+					status = 'L';
+				if (hero.ganhou())
+					status = 'W';
+					*/
 			}
 		}
 	}
@@ -40,18 +47,6 @@ public class Controle {
 	
 	public int getPontuacao() {
 		return hero.getPontuacao();
-	}
-	
-	
-	public void realizarComandosEntrada(char movimentos[]) {
-		for (int i = 0; i < movimentos.length; i++) {
-			if (movimentos[i] == 'q')
-				break;
-			else {
-				realizarComando(movimentos[i]);
-				cave.imprimeCaverna();
-			}
-		}
 	}
 
 

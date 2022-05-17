@@ -77,6 +77,17 @@ public class Caverna {
 	}
 	
 	
+	/*
+	 * Chama a funcao de remover do respectivo componente na
+	 * sala (x, y).
+	 */
+	public void remover(String tipoComponente, int x, int y) {
+		if (checarValidadePosicao(x, y))
+			salas[x][y].remover(tipoComponente);
+	}
+	
+	
+	
 	/**
 	 * retorna o componente que tem tipoComponente na sala (x, y)
 	 * se não houver retorna null
@@ -112,7 +123,7 @@ public class Caverna {
 		movimentoValido = inserirComponente(comp, novoX, novoY);
 		
 		if (movimentoValido) {
-			removerComponente(comp.getTipoComponente(), comp.getX(), comp.getY());
+			remover(comp.getTipoComponente(), comp.getX(), comp.getY());
 			comp.setX(novoX);
 			comp.setY(novoY);
 		}

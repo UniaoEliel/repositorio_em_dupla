@@ -18,6 +18,11 @@ public abstract class Componente {
 		caverna.inserirComponente(this, x, y);
 	}
 	
+	
+	public void removeCaverna() {
+		caverna.removerComponente(tipoComponente, x, y);
+	}
+	
 
 	public int getX() {
 		return x;
