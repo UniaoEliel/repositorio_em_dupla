@@ -124,4 +124,15 @@ public class Sala {
 			maior = maiorPrioridade(getTipoComponentes());
 		return maior;
 	}
+
+
+	public Componente getComponente(String tipoComponente) {
+		Componente comp = null;
+		String[] tipos = getTipoComponentes();
+		for (int i = 0; i < tipos.length; i++)
+			if (tipos[i].equals(tipoComponente))
+				comp = componentes.get(i);
+		
+		return comp;
+	}
 }

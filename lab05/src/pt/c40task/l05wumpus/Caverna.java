@@ -78,6 +78,19 @@ public class Caverna {
 	
 	
 	/**
+	 * retorna o componente que tem tipoComponente na sala (x, y)
+	 * se não houver retorna null
+	 */
+	public Componente getComponente(String tipoComponente, int x, int y) {
+		Componente comp = null;
+		if (checarValidadePosicao(x, y))
+			comp = salas[x][y].getComponente(tipoComponente);
+		
+		return comp;
+	}
+	
+	
+	/**
 	 * move comp para a sala em novoX, novoY.
 	 * retorna true se o movimento for valido.
 	 */
