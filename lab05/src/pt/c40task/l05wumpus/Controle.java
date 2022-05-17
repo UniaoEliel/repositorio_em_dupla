@@ -26,8 +26,9 @@ public class Controle {
 				hero.equiparFlecha();
 			else if (comando == 'c')
 				hero.pegarOuro();
-			else
+			else {
 				this.hero.mover(comando);
+			}
 		}
 	}
 	

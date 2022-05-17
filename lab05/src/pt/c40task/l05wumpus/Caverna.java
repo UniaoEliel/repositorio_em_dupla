@@ -91,6 +91,18 @@ public class Caverna {
 	
 	
 	/**
+	 * Retorna um vetor de strings contendo os nomes dos componentes da sala
+	 */
+	public String[] getComponentesSala(int x, int y) {
+		String[] componentes = null;
+		if (checarValidadePosicao(x, y))
+			componentes = salas[x][y].getTipoComponentes();
+		
+		return componentes;
+	}
+	
+	
+	/**
 	 * move comp para a sala em novoX, novoY.
 	 * retorna true se o movimento for valido.
 	 */

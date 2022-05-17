@@ -70,7 +70,6 @@ public class AppWumpus {
    public static void executaOutro(Toolkit tk, Caverna caverna, Controle controleJogo) {
 	   char[][] cave;
 	   String movements = tk.retrieveMovements();
-	   char comando;
 		for (int i = 0; i < movements.length(); i++) {
 			cave = controleJogo.getEstadoCaverna();
 			tk.writeBoard(cave, controleJogo.getPontuacao(), 'P');
