@@ -98,6 +98,8 @@ public class Montador {
 			}
 		}
 		
+		cave.tornarVisivel(0, 0);
+		
 		return cave;
 	}
 	

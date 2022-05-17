@@ -83,10 +83,11 @@ public class Caverna {
 	 */
 	public boolean mover(Componente comp, int novoX, int novoY) {
 		boolean movimentoValido;
-		removerComponente(comp.getTipoComponente(), comp.getX(), comp.getY());
+		
 		movimentoValido = inserirComponente(comp, novoX, novoY);
 		
 		if (movimentoValido) {
+			removerComponente(comp.getTipoComponente(), comp.getX(), comp.getY());
 			comp.setX(novoX);
 			comp.setY(novoY);
 		}

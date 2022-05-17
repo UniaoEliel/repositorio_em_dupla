@@ -19,21 +19,21 @@ public class Heroi extends Componente {
 	public void mover(char direcao) {
 		boolean moveu = false;
 		if (direcao == 'w')
-			
-			moveu = this.caverna.mover(this, this.x, this.y + 1);
-		
-		else if(direcao == 's')
-			moveu = this.caverna.mover(this, this.x, this.y - 1);
-		
-		else if(direcao == 'a')
 			moveu = this.caverna.mover(this, this.x - 1, this.y);
 		
-		else if(direcao == 'd')
+		else if(direcao == 's')
 			moveu = this.caverna.mover(this, this.x + 1, this.y);
+		
+		else if(direcao == 'a')
+			moveu = this.caverna.mover(this, this.x, this.y - 1);
+		
+		else if(direcao == 'd')
+			moveu = this.caverna.mover(this, this.x, this.y + 1);
 		
 		if (moveu == true) {
 			if (this.flecha == 1)
 				this.flecha = 2;
+			caverna.tornarVisivel(x, y);
 		}
 		// solicita a caverna o movimento
 	}
