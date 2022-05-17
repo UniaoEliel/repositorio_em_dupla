@@ -6,6 +6,10 @@ public abstract class Componente {
 	protected int x, y;
 	
 	public Componente(int x, int y, Caverna caverna, String tipoComponente) {
+		this.x = x;
+		this.y = y;
+		this.caverna = caverna;
+		this.tipoComponente = tipoComponente;
 		// instancia os atributos gerais
 	}
 	
@@ -17,7 +21,7 @@ public abstract class Componente {
 	
 	
 	public void setX(int x) {
-		
+		this.x = x;
 	}
 	
 	
@@ -27,7 +31,7 @@ public abstract class Componente {
 	
 	
 	public void setY(int y) {
-		
+		this.y = y;
 	}
 	
 	
