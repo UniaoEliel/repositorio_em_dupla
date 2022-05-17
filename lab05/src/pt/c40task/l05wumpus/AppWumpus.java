@@ -2,7 +2,7 @@ package pt.c40task.l05wumpus;
 
 public class AppWumpus {
 
-   public static void main(String[] args) {
+   public static void Amain(String[] args) {
       AppWumpus.executaJogo(
             (args.length > 0) ? args[0] : null,
             (args.length > 1) ? args[1] : null,

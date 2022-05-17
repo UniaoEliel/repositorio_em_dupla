@@ -82,8 +82,16 @@ public class Caverna {
 	 * retorna true se o movimento for valido.
 	 */
 	public boolean mover(Componente comp, int novoX, int novoY) {
+		boolean movimentoValido;
 		removerComponente(comp.getTipoComponente(), comp.getX(), comp.getY());
-		return inserirComponente(comp, novoX, novoY);
+		movimentoValido = inserirComponente(comp, novoX, novoY);
+		
+		if (movimentoValido) {
+			comp.setX(novoX);
+			comp.setY(novoY);
+		}
+		
+		return movimentoValido;
 	}
 	
 	/**

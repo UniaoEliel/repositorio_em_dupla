@@ -11,11 +11,20 @@ public class Wumpus extends Componente {
 	
 	public void insereCaverna() {
 		caverna.inserirComponente(this,this.x,this.y);
-		
+		insereFedor();
 	}
 	
 	public void insereFedor() {
-		Fedor fedorWumpus = new Fedor(x,y,caverna);
+		Componente fedorWumpus = new Fedor(x - 1, y, caverna);
+		fedorWumpus.insereCaverna();
+
+		fedorWumpus = new Fedor(x + 1, y, caverna);
+		fedorWumpus.insereCaverna();
+
+		fedorWumpus = new Fedor(x, y - 1, caverna);
+		fedorWumpus.insereCaverna();
+
+		fedorWumpus = new Fedor(x, y + 1, caverna);
 		fedorWumpus.insereCaverna();
 	}
 }

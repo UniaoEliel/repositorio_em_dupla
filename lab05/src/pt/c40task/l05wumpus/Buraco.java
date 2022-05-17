@@ -8,13 +8,22 @@ public class Buraco extends Componente {
 	
 	
 	public void insereCaverna() {
-		caverna.inserirComponente(this,this.x,this.y);
-		
+		super.insereCaverna();
+		insereBrisa();
 	}
 	
 	
 	public void insereBrisa() {
-		Brisa brisaBuraco = new Brisa(x,y,caverna);
+		Componente brisaBuraco = new Brisa(x - 1, y, caverna);
+		brisaBuraco.insereCaverna();
+
+		brisaBuraco = new Brisa(x + 1, y, caverna);
+		brisaBuraco.insereCaverna();
+
+		brisaBuraco = new Brisa(x, y - 1, caverna);
+		brisaBuraco.insereCaverna();
+
+		brisaBuraco = new Brisa(x, y + 1, caverna);
 		brisaBuraco.insereCaverna();
 	}
 }

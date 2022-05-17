@@ -7,10 +7,6 @@ public class Brisa extends Componente {
 	}
 	
 	public void insereCaverna() {
-		caverna.inserirComponente(this,this.x + 1,this.y);
-		caverna.inserirComponente(this,this.x - 1,this.y);
-		caverna.inserirComponente(this,this.x,this.y + 1);
-		caverna.inserirComponente(this,this.x ,this.y - 1);
-		
+		super.insereCaverna();
 	}
 }

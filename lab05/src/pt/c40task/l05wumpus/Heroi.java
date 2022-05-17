@@ -6,14 +6,14 @@ public class Heroi extends Componente {
 	
 	
 	public Heroi(int x, int y, Caverna caverna) {
-		super(x,y,caverna,"Heroi");
+		super(x,y,caverna,"heroi");
 		this.flecha = 0; // 0 = Não tentou equipar; 1 = Equipou; 2 = Ja equipou e perdeu 
 		this.pegouOuro = false;
 		this.pontuacao = 0;
 	}
 	
 	public void insereCaverna() {
-		caverna.inserirComponente(this,this.x,this.y);
+		super.insereCaverna();
 	}
 	
 	public void mover(char direcao) {
