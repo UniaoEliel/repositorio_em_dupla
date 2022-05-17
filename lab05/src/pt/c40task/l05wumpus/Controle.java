@@ -1,26 +1,60 @@
 package pt.c40task.l05wumpus;
 
-import java.util.Scanner;
+import java.util.HashSet;
 
 public class Controle {
+	private static char[] movValidos = {'w', 'a', 's', 'd', 'a', 'k', 'c', 'q'};
+	private HashSet<Character> movimentosValidos;
 	private Heroi hero;
+	private Caverna cave;
+	private char status = 'W';
 	
 	
-	private void realizarComando(char direcao) {
-		// pede o comando pro heroi
-		this.hero.mover(direcao);
+	public Controle(Heroi hero, Caverna cave) {
+		this.hero = hero;
+		this.cave = cave;
+		
+		movimentosValidos = new HashSet<Character>();
+		for (int i = 0; i < movValidos.length; i++)
+			movimentosValidos.add(movValidos[i]);
+	}
+
+	
+	public void realizarComando(char comando) {
+		if (movimentosValidos.contains(comando)) {
+			if (comando == 'k')
+				hero.equiparFlecha();
+			else if (comando == 'c')
+				hero.pegarOuro();
+			else
+				this.hero.mover(comando);
+		}
 	}
 	
 	
-	public void lerComandosTerminal() {
-		Scanner entrada = new Scanner(System.in);		
-		char comando = entrada.next().charAt(0);
-		this.realizarComando(comando);
-		entrada.close();
+	public char[][] getEstadoCaverna() {
+		return cave.getRepresentacaoCaverna();
+	}
+	
+	
+	public int getPontuacao() {
+		return hero.getPontuacao();
 	}
 	
 	
 	public void realizarComandosEntrada(char movimentos[]) {
-		// para o arquivo de entrada
+		for (int i = 0; i < movimentos.length; i++) {
+			if (movimentos[i] == 'q')
+				break;
+			else {
+				realizarComando(movimentos[i]);
+				cave.imprimeCaverna();
+			}
+		}
+	}
+
+
+	public char getStatus() {
+		return status;
 	}
 }

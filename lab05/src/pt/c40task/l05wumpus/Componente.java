@@ -13,10 +13,12 @@ public abstract class Componente {
 		// instancia os atributos gerais
 	}
 	
+
 	public void insereCaverna() {
 		caverna.inserirComponente(this, x, y);
 	}
 	
+
 	public int getX() {
 		return x;
 	}

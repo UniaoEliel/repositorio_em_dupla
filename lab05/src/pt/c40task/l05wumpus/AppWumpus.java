@@ -1,25 +1,96 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Scanner;
+
 public class AppWumpus {
 
-   public static void Amain(String[] args) {
+   public static void main(String[] args) {
       AppWumpus.executaJogo(
             (args.length > 0) ? args[0] : null,
             (args.length > 1) ? args[1] : null,
             (args.length > 2) ? args[2] : null);
    }
    
+   
+   public static void imprimeMatriz(char[][] matriz) {
+	   for (int i = 0; i < matriz.length; i++) {
+		   for (int j = 0; j < matriz[i].length; j++) {
+			   System.out.print(matriz[i][j] + ' ');
+		   }
+		   System.out.println();
+	   }
+   }
+   
+   
+   public static void executaJogo(String arquivoCaverna, String arquivoSaida,
+           String arquivoMovimentos) {
+		Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+		Caverna caverna;
+		Controle controleJogo;
+		Montador montadorCaverna = new Montador();
+		Heroi hero;
+		String cave[][] = tk.retrieveCave();
+		
+		caverna = montadorCaverna.montarCaverna(cave);
+		hero = montadorCaverna.getHeroi();
+		controleJogo = new Controle(hero, caverna);
+		
+		if (arquivoCaverna == null)
+			executaInterativo(tk, caverna, controleJogo);
+		else
+			executaOutro(tk, caverna, controleJogo);
+	}
+   
+   
+   public static void executaInterativo(Toolkit tk, Caverna caverna, Controle controleJogo) {
+	   Scanner entrada = new Scanner(System.in);
+	   char[][] cave;
+		while (true) {
+			cave = controleJogo.getEstadoCaverna();
+			tk.writeBoard(cave, controleJogo.getPontuacao(), 'P');
+
+			System.out.println("=====");
+			imprimeMatriz(cave);
+			System.out.println("Score: " + controleJogo.getPontuacao());
+			System.out.println("Status: " + controleJogo.getStatus());
+			
+			
+			char comando = entrada.next().charAt(0);
+			
+			if (comando == 'q')
+				break;
+				
+			controleJogo.realizarComando(comando);
+		}
+
+		entrada.close();
+   }
+   
+   
+   public static void executaOutro(Toolkit tk, Caverna caverna, Controle controleJogo) {
+	   char[][] cave;
+	   String movements = tk.retrieveMovements();
+	   char comando;
+		for (int i = 0; i < movements.length(); i++) {
+			cave = controleJogo.getEstadoCaverna();
+			tk.writeBoard(cave, controleJogo.getPontuacao(), 'P');
+
+			System.out.println("=====");
+			imprimeMatriz(cave);
+			System.out.println("Score: " + controleJogo.getPontuacao());
+			System.out.println("Status: " + controleJogo.getStatus());
+				
+			controleJogo.realizarComando(movements.charAt(i));
+		}
+   }
+   
+   /*
    public static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       
       String cave[][] = tk.retrieveCave();
-      System.out.println("=== Caverna");
-      for (int l = 0; l < cave.length; l++) {
-         for (int c = 0; c < cave[l].length; c++)
-            System.out.print(cave[l][c] + ((c < cave[l].length-1) ? ", " : ""));
-         System.out.println();
-      }
+ 
       
       String movements = tk.retrieveMovements();
       System.out.println("=== Movimentos");
@@ -49,5 +120,5 @@ public class AppWumpus {
       
       tk.stop();
    }
-
+	*/
 }

@@ -50,4 +50,9 @@ public class Heroi extends Componente {
 		this.pegouOuro = true;
 		this.caverna.removerComponente("ouro", this.x,this.y);
 	}
+	
+	
+	public int getPontuacao() {
+		return pontuacao;
+	}
 }

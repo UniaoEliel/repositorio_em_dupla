@@ -128,4 +128,14 @@ public class Caverna {
 			System.out.println();
 		}
 	}
+	
+	
+	public char[][] getRepresentacaoCaverna() {
+		char[][] caveRepr = new char[tamX][tamY];
+		for (int i = 0; i < tamX; i++) 
+			for (int j = 0; j < tamY; j++)
+				caveRepr[i][j] = representacaoSala(i, j);
+		
+		return caveRepr;
+	}
 }

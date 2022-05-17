@@ -12,26 +12,33 @@ public class Testes {
    public static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
+      Caverna caverna;
+      Controle controleJogo;
+      Montador montadorCaverna = new Montador();
+      Heroi hero;
       
       String cave[][] = tk.retrieveCave();
+
+      caverna = montadorCaverna.montarCaverna(cave);
+      hero = montadorCaverna.getHeroi();
       
-      for (int i = 0; i < cave.length; i++)
-    	  System.out.println(cave[i][0] + " " + cave[i][1] + " " + cave[i][2]);
       
-      Caverna c;
-      c = Montador.montarCaverna(cave);
+      controleJogo = new Controle(hero, caverna);
       
-      c.tornarVisivel(0, 0);
-      c.tornarVisivel(1, 1);
-      c.tornarVisivel(1, 3);
-      c.tornarVisivel(2, 3);
-      c.tornarVisivel(1, 2);
-      c.tornarVisivel(0, 3);
-      c.tornarVisivel(0, 2);
+      caverna.tornarVisivel(0, 0);
+      caverna.tornarVisivel(1, 1);
+      caverna.tornarVisivel(1, 3);
+      caverna.tornarVisivel(2, 3);
+      caverna.tornarVisivel(1, 2);
+      caverna.tornarVisivel(0, 3);
+      caverna.tornarVisivel(0, 2);
       
-      c.imprimeCaverna();
+      caverna.imprimeCaverna();
       
       tk.stop();
    }
+   
+   
+   
    
 }

@@ -2,19 +2,6 @@ package pt.c40task.l05wumpus;
 
 public class Montador {
 	/**
-	 * Separa as localizacoes em uma matriz de strings pela ','
-	 */
-	private static String[][] separarLocalizacoes(String entrada[]) {
-		String[][] localizacoes = new String[entrada.length][2];
-		
-		for (int i = 0; i < entrada.length; i++)
-			localizacoes[i] = entrada[i].split(",");
-		
-		return localizacoes;
-	}
-
-	
-	/**
 	 * Retorna se a caverna é válida, isto é
 	 * se há no mínimo 2 e no máximo 3 buracos, se
 	 * há 1 wumpus, 1 ouro e 1 herói, e se o herói está
@@ -82,11 +69,13 @@ public class Montador {
 	}
 	
 	
+	
+	private Heroi hero;
 	/**
 	 * se a caverna for valida, a monta e retorna,
 	 * se nao for valida, retorna null.
 	 */
-	public static Caverna montarCaverna(String localizacoes[][]) {
+	public Caverna montarCaverna(String localizacoes[][]) {
 		Caverna cave;
 		
 		if (!checarValidadeCaverna(localizacoes))
@@ -100,6 +89,9 @@ public class Montador {
 												Integer.parseInt(localizacoes[i][1]) - 1,
 												cave, localizacoes[i][2]);
 					
+					if (localizacoes[i][2].equals("P"))
+						hero = (Heroi) comp;
+					
 					comp.insereCaverna();
 				}
 						
@@ -107,5 +99,10 @@ public class Montador {
 		}
 		
 		return cave;
+	}
+	
+	
+	public Heroi getHeroi() {
+		return hero;
 	}
 }
