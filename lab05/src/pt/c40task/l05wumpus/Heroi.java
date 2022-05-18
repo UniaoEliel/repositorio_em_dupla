@@ -1,7 +1,10 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class Heroi extends Componente {
-	private boolean pegouOuro, vida;
+	private boolean pegouOuro, vida, ganhou;
 	private int pontuacao,flecha;
 	
 	
@@ -10,6 +13,7 @@ public class Heroi extends Componente {
 		this.flecha = 0; // 0 = Não tentou equipar; 1 = Equipou; 2 = Ja equipou e perdeu 
 		this.pegouOuro = false;
 		this.pontuacao = 0;
+		this.ganhou = false;
 	}
 	
 	public void insereCaverna() {
@@ -56,4 +60,44 @@ public class Heroi extends Componente {
 	public int getPontuacao() {
 		return pontuacao;
 	}
+
+	
+	public void entraSala(){
+		String[] componentesSala = caverna.getComponentesSala(this.x,this.y);
+		
+		if (Arrays.stream(componentesSala).anyMatch("wumpus" :: equals)) {
+			if (this.flecha == 1) {
+				if (mataWumpus()) {
+					caverna.removerComponente("wumpus", this.x, this.y);
+					//ganha pontos
+				}
+				else {
+					this.vida = false;					
+				}				
+			}
+		}
+		
+		else if (Arrays.stream(componentesSala).anyMatch("buraco" :: equals)) {
+			this.vida = false;
+		}		
+	}
+	
+	public boolean mataWumpus() {
+		Random sorte = new Random();
+			if (sorte.nextInt(2) == 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+	}
+	
+	public boolean getVida() {
+		return vida;
+	}
+	
+	public boolean getGanhou() {
+		return ganhou;
+	}
+
 }
