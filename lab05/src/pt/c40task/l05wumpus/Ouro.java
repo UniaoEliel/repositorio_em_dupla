@@ -15,5 +15,4 @@ public class Ouro extends Componente {
 	public void removeCaverna() {
 		super.removeCaverna();
 	}
-
 }
