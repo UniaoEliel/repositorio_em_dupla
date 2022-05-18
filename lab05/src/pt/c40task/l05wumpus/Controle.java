@@ -51,4 +51,22 @@ public class Controle {
 	public char getStatus() {
 		return status;
 	}
+	
+	public String estaSentindoBrisa(){
+		if (hero.isSentindoBrisa()) {
+			return " Sim";
+		}
+		else {
+			return " Não";
+		}
+	}		
+	
+	public String estaSentindoFedor() {
+		if (hero.isSentindoFedor()) {
+			return " Sim";
+		}
+		else {
+			return " Não";
+		}
+	}
 }

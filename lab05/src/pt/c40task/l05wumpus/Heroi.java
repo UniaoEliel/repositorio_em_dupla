@@ -23,6 +23,9 @@ public class Heroi extends Componente {
 		super.insereCaverna();
 	}
 	
+	/**
+	 * a partir do char de entrada, pede a caverna para que mova o heroi)
+	 */
 	public void mover(char direcao) {
 		boolean moveu = false;
 		if (direcao == 'w')
@@ -46,7 +49,6 @@ public class Heroi extends Componente {
 			caverna.tornarVisivel(x, y);
 			pontuacao -= 15;
 		}
-		// solicita a caverna o movimento
 	}
 	
 	
@@ -121,6 +123,9 @@ public class Heroi extends Componente {
 		}
 	}
 	
+	/**
+	 * Sorteia um numero entra 1 e 0, se for 1 o heroi mata, se for 2 ele morre
+	 */
 	public boolean mataWumpus() {
 		Random sorte = new Random();
 			if (sorte.nextInt(2) == 1) {
@@ -144,10 +149,8 @@ public class Heroi extends Componente {
 	public boolean isSentindoFedor() {
 		return sentindoFedor;
 	}
-
 	
 	public boolean isSentindoBrisa() {
 		return sentindoBrisa;
-	}
-
+	}	
 }

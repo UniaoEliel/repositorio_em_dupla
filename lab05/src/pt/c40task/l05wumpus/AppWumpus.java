@@ -52,6 +52,9 @@ public class AppWumpus {
 			imprimeCaverna(cave);
 			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
+			System.out.println("Brisa: " + controleJogo.estaSentindoBrisa());
+			System.out.println("Fedor: " + controleJogo.estaSentindoFedor());
+			
 
 			if (controleJogo.getStatus() == 'w') {
 				System.out.println("Voce ganhou =D !!!");
