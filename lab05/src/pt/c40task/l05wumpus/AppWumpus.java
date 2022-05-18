@@ -12,10 +12,10 @@ public class AppWumpus {
    }
    
    
-   public static void imprimeMatriz(char[][] matriz) {
-	   for (int i = 0; i < matriz.length; i++) {
-		   for (int j = 0; j < matriz[i].length; j++) {
-			   System.out.print(matriz[i][j] + " ");
+   public static void imprimeCaverna(char[][] cave) {
+	   for (int i = 0; i < cave.length; i++) {
+		   for (int j = 0; j < cave[i].length; j++) {
+			   System.out.print(cave[i][j] + " ");
 		   }
 		   System.out.println();
 	   }
@@ -29,9 +29,9 @@ public class AppWumpus {
 		Controle controleJogo;
 		Montador montadorCaverna = new Montador();
 		Heroi hero;
-		String cave[][] = tk.retrieveCave();
 		
-		caverna = montadorCaverna.montarCaverna(cave);
+		
+		caverna = montadorCaverna.montarCaverna(tk);
 		hero = montadorCaverna.getHeroi();
 		controleJogo = new Controle(hero, caverna);
 		
@@ -49,7 +49,7 @@ public class AppWumpus {
 			cave = controleJogo.getEstadoCaverna();
 			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			imprimeMatriz(cave);
+			imprimeCaverna(cave);
 			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
 
@@ -82,7 +82,7 @@ public class AppWumpus {
 			cave = controleJogo.getEstadoCaverna();
 			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			imprimeMatriz(cave);
+			imprimeCaverna(cave);
 			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
 
