@@ -57,7 +57,7 @@ public class Controle {
 			return " Sim";
 		}
 		else {
-			return " Não";
+			return " Nao";
 		}
 	}		
 	
@@ -66,7 +66,7 @@ public class Controle {
 			return " Sim";
 		}
 		else {
-			return " Não";
+			return " Nao";
 		}
 	}
 }
