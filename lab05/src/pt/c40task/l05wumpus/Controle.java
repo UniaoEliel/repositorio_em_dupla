@@ -13,7 +13,7 @@ public class Controle {
 	public Controle(Heroi hero, Caverna cave) {
 		this.hero = hero;
 		this.cave = cave;
-		this.status = 'P';
+		this.status = 'x';
 		
 		movimentosValidos = new HashSet<Character>();
 		for (int i = 0; i < movValidos.length; i++)
@@ -30,9 +30,9 @@ public class Controle {
 			else {
 				this.hero.mover(comando);
 				if (!hero.isVivo())
-					status = 'L';
+					status = 'n';
 				if (hero.getGanhou())
-					status = 'W';
+					status = 'w';
 			}
 		}
 	}
@@ -57,7 +57,7 @@ public class Controle {
 			return " Sim";
 		}
 		else {
-			return " Não";
+			return " Nao";
 		}
 	}		
 	
@@ -66,7 +66,7 @@ public class Controle {
 			return " Sim";
 		}
 		else {
-			return " Não";
+			return " Nao";
 		}
 	}
 }

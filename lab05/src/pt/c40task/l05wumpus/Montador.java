@@ -58,8 +58,6 @@ public class Montador {
 
 		if (tipoComponente.equals("B"))
 			comp = new Buraco(x, y, cave);
-		else if (tipoComponente.equals("P"))
-			comp = new Heroi(x, y, cave);
 		else if (tipoComponente.equals("W"))
 			comp = new Wumpus(x, y, cave);
 		else if (tipoComponente.equals("O"))
@@ -75,22 +73,26 @@ public class Montador {
 	 * se a caverna for valida, a monta e retorna,
 	 * se nao for valida, retorna null.
 	 */
-	public Caverna montarCaverna(String localizacoes[][]) {
+	public Caverna montarCaverna(Toolkit tk) {
 		Caverna cave;
+		String localizacoes[][] = tk.retrieveCave();
 		
 		if (!checarValidadeCaverna(localizacoes))
 			cave = null;
 		else {
 			Componente comp;
 			cave = new Caverna(4, 4);
-			for (int i = 0; i < localizacoes.length; i++) {
+
+			// como o heroi sempre comeca em 0, 0
+			Heroi heroi = new Heroi(0, 0, cave);
+			heroi.insereCaverna();
+			this.hero = heroi;
+
+			for (int i = 1; i < localizacoes.length; i++) {
 				if (!localizacoes[i][2].equals("_")) {
 					comp = instanciarComponente(Integer.parseInt(localizacoes[i][0]) - 1,
 												Integer.parseInt(localizacoes[i][1]) - 1,
 												cave, localizacoes[i][2]);
-					
-					if (localizacoes[i][2].equals("P"))
-						hero = (Heroi) comp;
 					
 					comp.insereCaverna();
 				}

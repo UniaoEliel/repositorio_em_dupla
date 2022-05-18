@@ -12,10 +12,10 @@ public class AppWumpus {
    }
    
    
-   public static void imprimeMatriz(char[][] matriz) {
-	   for (int i = 0; i < matriz.length; i++) {
-		   for (int j = 0; j < matriz[i].length; j++) {
-			   System.out.print(matriz[i][j] + " ");
+   public static void imprimeCaverna(char[][] cave) {
+	   for (int i = 0; i < cave.length; i++) {
+		   for (int j = 0; j < cave[i].length; j++) {
+			   System.out.print(cave[i][j] + " ");
 		   }
 		   System.out.println();
 	   }
@@ -29,9 +29,9 @@ public class AppWumpus {
 		Controle controleJogo;
 		Montador montadorCaverna = new Montador();
 		Heroi hero;
-		String cave[][] = tk.retrieveCave();
 		
-		caverna = montadorCaverna.montarCaverna(cave);
+		
+		caverna = montadorCaverna.montarCaverna(tk);
 		hero = montadorCaverna.getHeroi();
 		controleJogo = new Controle(hero, caverna);
 		
@@ -49,18 +49,18 @@ public class AppWumpus {
 			cave = controleJogo.getEstadoCaverna();
 			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			imprimeMatriz(cave);
+			imprimeCaverna(cave);
 			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
 			System.out.println("Brisa: " + controleJogo.estaSentindoBrisa());
 			System.out.println("Fedor: " + controleJogo.estaSentindoFedor());
 			
 
-			if (controleJogo.getStatus() == 'W') {
+			if (controleJogo.getStatus() == 'w') {
 				System.out.println("Voce ganhou =D !!!");
 				break;
 			}
-			if (controleJogo.getStatus() == 'L') {
+			if (controleJogo.getStatus() == 'n') {
 				System.out.println("Voce perdeu =(...");
 				break;
 			}
@@ -85,7 +85,7 @@ public class AppWumpus {
 			cave = controleJogo.getEstadoCaverna();
 			tk.writeBoard(cave, controleJogo.getPontuacao(), controleJogo.getStatus());
 
-			imprimeMatriz(cave);
+			imprimeCaverna(cave);
 			System.out.println("Player: Sting");
 			System.out.println("Score: " + controleJogo.getPontuacao());
 
@@ -101,42 +101,4 @@ public class AppWumpus {
 			controleJogo.realizarComando(movements.charAt(i));
 		}
    }
-   
-   /*
-   public static void executaJogo(String arquivoCaverna, String arquivoSaida,
-                                  String arquivoMovimentos) {
-      Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
-      
-      String cave[][] = tk.retrieveCave();
- 
-      
-      String movements = tk.retrieveMovements();
-      System.out.println("=== Movimentos");
-      System.out.println(movements);
-      
-      System.out.println("=== Caverna Intermediaria");
-      char partialCave[][] = {
-         {'#', '#', 'b', '-'},
-         {'#', 'b', '-', '-'},
-         {'b', '-', '-', '-'},
-         {'p', '-', '-', '-'}
-      };
-      int score = -120;
-      char status = 'x'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-      tk.writeBoard(partialCave, score, status);
-
-      System.out.println("=== Última Caverna");
-      char finalCave[][] = {
-         {'#', '#', 'b', '-'},
-         {'#', 'b', '#', 'f'},
-         {'b', '-', '-', 'w'},
-         {'#', '-', '-', '-'}
-      };
-      score = -1210;
-      status = 'n'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-      tk.writeBoard(finalCave, score, status);
-      
-      tk.stop();
-   }
-	*/
 }
