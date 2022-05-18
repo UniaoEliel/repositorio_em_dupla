@@ -1,10 +1,9 @@
 package pt.c40task.l05wumpus;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Heroi extends Componente {
-	private boolean pegouOuro, vida, ganhou;
+	private boolean pegouOuro, vivo, ganhou, sentindoFedor, sentindoBrisa, vendoOuro;
 	private int pontuacao,flecha;
 	
 	
@@ -14,6 +13,10 @@ public class Heroi extends Componente {
 		this.pegouOuro = false;
 		this.pontuacao = 0;
 		this.ganhou = false;
+		this.sentindoFedor = false;
+		this.sentindoBrisa = false;
+		this.vendoOuro = false;
+		this.vivo = true;
 	}
 	
 	public void insereCaverna() {
@@ -35,8 +38,11 @@ public class Heroi extends Componente {
 			moveu = this.caverna.mover(this, this.x, this.y + 1);
 		
 		if (moveu == true) {
-			if (this.flecha == 1)
+			entraSala();
+			if (this.flecha == 1) {
 				this.flecha = 2;
+				this.pontuacao -= 100;
+			}
 			caverna.tornarVisivel(x, y);
 			pontuacao -= 15;
 		}
@@ -51,9 +57,11 @@ public class Heroi extends Componente {
 
 	
 	public void pegarOuro() {
-		
-		this.pegouOuro = true;
-		this.caverna.removerComponente("ouro", this.x,this.y);
+		if (this.vendoOuro) {
+			this.pegouOuro = true;
+			this.caverna.removerComponente("ouro", this.x,this.y);
+			this.vendoOuro = false;
+		}
 	}
 	
 	
@@ -62,24 +70,55 @@ public class Heroi extends Componente {
 	}
 
 	
+	/**
+	 * primeiro verifica se o usuario ganhou. se não, pega os componentes
+	 * da sala e faz as interações deles com o herói.
+	 */
 	public void entraSala(){
-		String[] componentesSala = caverna.getComponentesSala(this.x,this.y);
+		sentindoFedor = false;
+		sentindoBrisa = false;
 		
-		if (Arrays.stream(componentesSala).anyMatch("wumpus" :: equals)) {
-			if (this.flecha == 1) {
-				if (mataWumpus()) {
-					caverna.removerComponente("wumpus", this.x, this.y);
-					//ganha pontos
+		
+		// se pegou o ouro e está na sala (1, 1)
+		if (pegouOuro && this.x == 0 && this.y == 0) {
+			this.ganhou = true;
+			this.pontuacao += 1000;
+		}
+		else {
+			String[] componentesSala = caverna.getComponentesSala(this.x,this.y);
+			
+			for (int i = 0; i < componentesSala.length; i++) {
+				if (componentesSala[i].equals("wumpus")) {
+					if (this.flecha == 1 && mataWumpus()) {
+						caverna.remover("wumpus", this.x, this.y);
+						pontuacao += 500; // por matar o wumpus
+					}
+					else {
+						this.vivo = false;
+						pontuacao -= 1000;
+						break;
+					}
 				}
-				else {
-					this.vida = false;					
-				}				
+				
+				else if (componentesSala[i].equals("buraco")) {
+					this.vivo = false;
+					pontuacao -= 1000;
+					break;
+				}
+				
+				else if (componentesSala[i].equals("brisa")) {
+					sentindoBrisa = true;
+				}
+				
+				else if (componentesSala[i].equals("fedor")) {
+					sentindoFedor = true;
+				}
+				
+				else if (componentesSala[i].equals("ouro")) {
+					vendoOuro = true;
+				}
 			}
 		}
-		
-		else if (Arrays.stream(componentesSala).anyMatch("buraco" :: equals)) {
-			this.vida = false;
-		}		
 	}
 	
 	public boolean mataWumpus() {
@@ -92,12 +131,23 @@ public class Heroi extends Componente {
 			}
 	}
 	
-	public boolean getVida() {
-		return vida;
+	public boolean isVivo() {
+		return vivo;
 	}
-	
+
+
 	public boolean getGanhou() {
 		return ganhou;
+	}
+	
+	
+	public boolean isSentindoFedor() {
+		return sentindoFedor;
+	}
+
+	
+	public boolean isSentindoBrisa() {
+		return sentindoBrisa;
 	}
 
 }

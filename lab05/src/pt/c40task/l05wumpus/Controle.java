@@ -29,12 +29,10 @@ public class Controle {
 				hero.pegarOuro();
 			else {
 				this.hero.mover(comando);
-				/*
 				if (!hero.isVivo())
 					status = 'L';
-				if (hero.ganhou())
+				if (hero.getGanhou())
 					status = 'W';
-					*/
 			}
 		}
 	}
