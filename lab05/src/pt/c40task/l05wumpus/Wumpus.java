@@ -42,8 +42,4 @@ public class Wumpus extends Componente {
 		caverna.remover("fedor", x, y - 1);
 	}
 
-
-	public void teste() {
-		caverna.remover("fedor", x, y + 1);
-	}
 }
