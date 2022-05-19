@@ -39,6 +39,8 @@ public class AppWumpus {
 			executaInterativo(tk, caverna, controleJogo);
 		else
 			executaOutro(tk, caverna, controleJogo);
+	   
+	   	tk.stop();
 	}
    
    
