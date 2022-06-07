@@ -1,5 +1,5 @@
 package pt.model.ator;
 
-public interface IAtor extends IAtorProperties, IRCavernaProperties {
+public interface IAtor extends IAtorProperties, IRAcessoCelulas {
 
 }

@@ -1,5 +1,5 @@
 package pt.model.caverna;
 
-public interface ICaverna extends ICavernaProperties {
+public interface ICaverna extends ICavernaProperties, IAcessoCelulas {
 
 }

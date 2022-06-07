@@ -1,5 +1,7 @@
 package pt.view.viewJogador;
 
-public interface IViewJogador extends IViewJogadorProperties {
+import pt.view.viewCaverna.IPlotarCaverna;
+
+public interface IViewJogador extends IViewJogadorProperties, IPlotarJogador {
 
 }
