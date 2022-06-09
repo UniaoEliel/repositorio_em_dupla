@@ -7,7 +7,8 @@ public abstract class Ator implements IAtor {
 	private String tipo;
 	
 
-
+	
+	
 	private char orientacao;
 	private IAcessoCelulas cave;
 	
@@ -25,5 +26,18 @@ public abstract class Ator implements IAtor {
 
 	public char getOrientacao() {
 		return orientacao;
+	}
+	
+	public int getX() {
+		return this.x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return this.y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 }
