@@ -1,5 +1,7 @@
 package pt.model.ator;
 
-public interface IRAcessoCelulas {
+import pt.model.caverna.IAcessoCelulas;
 
+public interface IRAcessoCelulas {
+	public void connect(IAcessoCelulas cave);
 }
