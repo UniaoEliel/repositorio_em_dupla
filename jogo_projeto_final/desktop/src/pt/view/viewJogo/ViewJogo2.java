@@ -22,6 +22,7 @@ public class ViewJogo2 extends ApplicationAdapter {
 		viewCave.setPixelsX(800);
 		viewCave.setPixelsY(480);
 		viewCave.setTamCelula(32);
+		// imprime 32 x 15 salas
 		
 		cave.setTamX(100);
 		cave.setTamY(100);

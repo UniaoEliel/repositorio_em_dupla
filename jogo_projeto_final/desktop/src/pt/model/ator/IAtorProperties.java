@@ -4,4 +4,6 @@ public interface IAtorProperties {
 	public String getTipo();
 	
 	public char getOrientacao();
+	
+	public boolean isSolido();
 }

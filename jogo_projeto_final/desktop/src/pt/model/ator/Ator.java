@@ -5,6 +5,7 @@ import pt.model.caverna.IAcessoCelulas;
 public abstract class Ator implements IAtor {
 	private int x, y;
 	private String tipo;
+	private boolean solido;
 	
 
 
@@ -25,5 +26,10 @@ public abstract class Ator implements IAtor {
 
 	public char getOrientacao() {
 		return orientacao;
+	}
+	
+	
+	public boolean isSolido() {
+		return solido;
 	}
 }

@@ -55,6 +55,7 @@ public class ViewCelula implements IViewCelula {
 	
 	public void connect(ICelula celula) {
 		this.celula = celula;
+	
 	}
 
 

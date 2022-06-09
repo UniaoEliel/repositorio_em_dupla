@@ -1,6 +1,7 @@
 package pt.model.caverna;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import pt.model.ator.*;
 import pt.view.viewCaverna.IViewCelula;
@@ -15,6 +16,8 @@ public class Celula implements ICelula {
 	
 	public Celula() {
 		iluminacao = 0;
+		atoresVivos = new HashMap<String, IAtorVivo>();
+		atoresObjeto = new HashMap<String, IAtorObjeto>();
 	}
 
 	
@@ -27,5 +30,56 @@ public class Celula implements ICelula {
 		String[] test = {"chao", "chao2"};
 		
 		return test;
+	}
+	
+	
+	protected void inserirAtor(IAtorObjeto a) {
+		atoresObjeto.put(a.getTipo(), a);
+	}
+	
+	
+	protected void inserirAtor(IAtorVivo a) {
+		atoresVivos.put(a.getTipo(), a);
+	}
+
+	
+	protected void removerAtor(IAtorObjeto a) {
+		atoresObjeto.remove(a.getTipo());
+	}
+	
+	
+	protected void removerAtor(IAtorVivo a) {
+		atoresVivos.remove(a.getTipo());
+	}
+	
+	
+	protected Map<String, IAtorVivo> getAtoresVivos() {
+		return atoresVivos;
+	}
+	
+	
+	protected Map<String, IAtorObjeto> getAtoresObjeto() {
+		return atoresObjeto;
+	}
+
+
+	public boolean isSolida() {
+		boolean solida = false;
+
+		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
+			if (pair.getValue().isSolido()) {
+				solida = true;
+				break;
+			}
+		}
+		
+		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
+			if (pair.getValue().isSolido()) {
+				solida = true;
+				break;
+			}
+		}
+		
+		return solida;
 	}
 }
