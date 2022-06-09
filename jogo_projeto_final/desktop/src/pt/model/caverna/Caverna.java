@@ -44,6 +44,16 @@ public class Caverna implements ICaverna {
 	
 	
 	public void connect(IViewCaverna viewCaverna) {
+		viewCaverna.setTamX(tamX);
+		viewCaverna.setTamY(tamY);
 		
+		viewCaverna.create();
+		
+		// conecta cada celula em seu viewCelula
+		for (int i = 0; i < tamX; i++) {
+	    	for (int j = 0; j < tamY; j++) {
+	    		celulas[i][j].connect(viewCaverna.getViewSala(i, j));
+	    	}
+		}
 	}
 }

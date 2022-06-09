@@ -25,9 +25,12 @@ public class ViewCaverna implements IViewCaverna {
 	
 	public void create() {
 		viewCelulas = new ViewCelula[100][100];
+
 		for (int i = 0; i < tamX; i++)
 			for (int j = 0; j < tamY; j++)
 				viewCelulas[i][j] = new ViewCelula();
+		
+		ViewCelula.iniciarTexturas();
 	}
 
 
@@ -68,5 +71,10 @@ public class ViewCaverna implements IViewCaverna {
 		for (int i = 0; i < celulasX; i++)
 			for (int j = 0; j < celulasY; j++)
 				viewCelulas[i][j].plotar(batch, tamCelula * i, tamCelula * j);
+	}
+	
+	
+	public IViewCelula getViewSala(int x, int y) {
+		return viewCelulas[x][y];
 	}
 }

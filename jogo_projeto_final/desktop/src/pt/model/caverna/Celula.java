@@ -20,5 +20,12 @@ public class Celula implements ICelula {
 	
 	public void connect(IViewCelula view) {
 		this.view = view;
+		view.connect(this);
+	}
+	
+	public String[] getAtores() {
+		String[] test = {"chao", "chao2"};
+		
+		return test;
 	}
 }

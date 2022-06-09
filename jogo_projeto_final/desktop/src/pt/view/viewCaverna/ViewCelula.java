@@ -1,28 +1,66 @@
 package pt.view.viewCaverna;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import pt.model.caverna.ICelula;
+
 public class ViewCelula implements IViewCelula {
 	// guarda as texturas de cada componente
 	private static Map<String, TextureRegion> textures;
-	// guarda as prioridades de cada elemento, quanto mais alta
-	// mais em cima da tela ele será impresso.
-	private static Map<String, Integer> prioridades;
 	
-	private int luminosidade;
+	private static Prioridades prio;
 	
 	
-	protected void plotar(SpriteBatch batch, int x, int y) {
-		Texture teste = new Texture(Gdx.files.internal("teste.png"));
-		TextureRegion teste2 = new TextureRegion(teste, 0, 0, 32, 32);
+	protected static void iniciarTexturas() {
+		textures = new HashMap<String, TextureRegion>();
 		
-		batch.draw(teste2, x, y);
+		Texture teste = new Texture(Gdx.files.internal("cave.png"));
+		TextureRegion teste2 = new TextureRegion(teste, 0, 144, 32, 32);
+		TextureRegion teste3 = new TextureRegion(teste, 0, 288, 32, 32);
+		textures.put("chao", teste2);
+		textures.put("chao2", teste3);
+		
+		prio = new Prioridades();
+	}
+	
+	private ICelula celula;
+	
+	
+	
+	public ViewCelula() {
 	}
 	
 	
+	protected void plotar(SpriteBatch batch, int x, int y) {
+		PriorityQueue<String> pt = new PriorityQueue<String>(prio);
+		String[] elementos = celula.getAtores();
+		String atual;
+		
+		for (int i = 0; i < elementos.length; i++)
+			pt.add(elementos[i]);
+		
+		while (!pt.isEmpty()) {
+			atual = pt.poll();
+			batch.draw(textures.get(atual), x, y);
+		}
+	}
+	
+	
+	public void connect(ICelula celula) {
+		this.celula = celula;
+	}
+
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 }

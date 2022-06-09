@@ -5,20 +5,30 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import pt.model.caverna.Caverna;
+import pt.model.caverna.ICaverna;
 import pt.view.viewCaverna.IPlotarCaverna;
 import pt.view.viewCaverna.IViewCaverna;
 import pt.view.viewCaverna.ViewCaverna;
 
 public class ViewJogo2 extends ApplicationAdapter {
-	private IViewCaverna caverna;
+	private IViewCaverna viewCave;
    private OrthographicCamera camera;
    private SpriteBatch batch;
 	
 	public void create() {
-		caverna = new ViewCaverna();
-		caverna.setPixelsX(800);
-		caverna.setPixelsY(480);
-		caverna.setTamCelula(32);
+		ICaverna cave = new Caverna();
+		viewCave = new ViewCaverna();
+		viewCave.setPixelsX(800);
+		viewCave.setPixelsY(480);
+		viewCave.setTamCelula(32);
+		
+		cave.setTamX(100);
+		cave.setTamY(100);
+		
+		cave.start();
+		
+		cave.connect(viewCave);
 		
 		camera = new OrthographicCamera();
       // fixa a quantidade de pixels que aparecem
@@ -38,7 +48,7 @@ public class ViewJogo2 extends ApplicationAdapter {
 		   // comeca uma tela
 		   batch.begin();
 		   // coloca as coisas na tela
-		   caverna.plotarCaverna(batch);
+		   viewCave.plotarCaverna(batch);
 		   // manda pra renderizar
 		   batch.end();
 	}
