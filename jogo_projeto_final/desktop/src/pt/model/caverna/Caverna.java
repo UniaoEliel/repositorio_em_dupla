@@ -72,24 +72,45 @@ public class Caverna implements ICaverna {
 		}
 	}
 	
-	public void inserirAtor(IAtor a, int x, int y) {
+	public void inserirAtorVivo(IAtorVivo a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].inserirAtor(a);
 		}	
 	}
 	
-	public void removerAtor(IAtor a, int x, int y) {
+	public void removerAtorVivo(IAtorVivo a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].removerAtor(a);
 		}
 	}
 	
-	public void moverAtor(IAtor a, int novox, int novoy) {
+	public void inserirAtorObjeto(IAtorObjeto a, int x, int y) {
+		if  (verificaValidade(x,y)) {
+			celulas[x][y].inserirAtor(a);
+		}	
+	}
+	
+	public void removerAtorObjeto(IAtorObjeto a, int x, int y) {
+		if  (verificaValidade(x,y)) {
+			celulas[x][y].removerAtor(a);
+		}
+	}
+	
+	
+	
+	
+	public void moverAtorVivo(IAtorVivo a, int novox, int novoy) {
 		if  (verificaValidade(novox,novoy)) {
 			removerAtor(a, a.getX(), a.getY());
 			inserirAtor(a,novox,novoy);
-		}
-			
+		}		
+	}
+	
+	public void moverAtorObjeto(IAtorObjeto a, int novox, int novoy) {
+		if  (verificaValidade(novox,novoy)) {
+			removerAtor(a, a.getX(), a.getY());
+			inserirAtor(a,novox,novoy);
+		}		
 	}
 	
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y){

@@ -8,5 +8,4 @@ public interface IAtor extends IAtorProperties, IRAcessoCelulas
 	public int getY();
 	public void setY();
 	
-	
 }
