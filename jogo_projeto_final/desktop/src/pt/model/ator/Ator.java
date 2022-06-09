@@ -13,6 +13,10 @@ public abstract class Ator implements IAtor {
 	private char orientacao;
 	private IAcessoCelulas cave;
 	
+	public Ator() {
+		
+	}
+	
 	
 	public void connect(IAcessoCelulas cave) {
 		this.cave = cave;

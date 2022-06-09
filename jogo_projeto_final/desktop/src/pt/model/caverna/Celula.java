@@ -27,9 +27,21 @@ public class Celula implements ICelula {
 	}
 	
 	public String[] getAtores() {
-		String[] test = {"chao", "chao2"};
+		String[] atores = new String[atoresVivos.size() + atoresObjeto.size() + 1];
 		
-		return test;
+		atores[0] = "chao";
+		int k = 1;
+		
+		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
+			atores[k++] = pair.getKey();
+		}
+		
+		
+		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
+			atores[k++] = pair.getKey();
+		}
+		
+		return atores;
 	}
 	
 	
