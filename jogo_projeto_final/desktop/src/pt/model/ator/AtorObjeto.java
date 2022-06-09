@@ -1,7 +1,9 @@
 package pt.model.ator;
 
-public abstract class AtorObjeto extends Ator {
+public abstract class AtorObjeto extends Ator implements IAtorObjeto {
 	
-	public AtorObjeto criarAtorObjeto(String tipo) {
+	public static IAtorObjeto criarAtorObjeto(String tipo) {
+		if (tipo == "jogador")
+			return new Jogador();
 	}
 }

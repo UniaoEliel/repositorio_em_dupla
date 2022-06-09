@@ -3,15 +3,15 @@ package pt.model.ator;
 import pt.model.caverna.IAcessoCelulas;
 
 public abstract class Ator implements IAtor {
-	private int x, y;
-	private String tipo;
-	private boolean solido;
+	protected int x, y;
+	protected String tipo;
+	protected boolean solido;
 	
 
 	
 	
-	private char orientacao;
-	private IAcessoCelulas cave;
+	protected char orientacao;
+	protected IAcessoCelulas cave;
 	
 	public Ator() {
 		

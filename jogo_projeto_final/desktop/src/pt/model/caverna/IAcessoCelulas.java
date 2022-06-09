@@ -9,8 +9,6 @@ public interface IAcessoCelulas {
 	
 	public void removerAtor(IAtor a, int x, int y);
 	
-	public void moverAtor(IAtor a, int novox, int novoy);
-	
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y);
 	
 	public Map<String, IAtorObjeto> getAtoresObjeto(int x, int y);
