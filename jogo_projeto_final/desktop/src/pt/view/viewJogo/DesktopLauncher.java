@@ -8,8 +8,8 @@ import pt.view.view_jogo.ViewJogo;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
+		config.setForegroundFPS(3);
 		config.setTitle("jogo_projeto_final");
-		new Lwjgl3Application(new ViewJogo(), config);
+		new Lwjgl3Application(new ViewJogo2(), config);
 	}
 }

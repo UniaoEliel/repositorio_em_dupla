@@ -1,5 +1,5 @@
 package pt.view.viewCaverna;
 
-public interface IRPlotarSala {
+public interface IRCaverna {
 
 }
