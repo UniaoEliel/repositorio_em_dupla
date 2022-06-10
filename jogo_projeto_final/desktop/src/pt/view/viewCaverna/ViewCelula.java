@@ -21,11 +21,11 @@ public class ViewCelula implements IViewCelula {
 	protected static void iniciarTexturas() {
 		textures = new HashMap<String, TextureRegion>();
 		
-		Texture teste = new Texture(Gdx.files.internal("cave.png"));
+		Texture teste = new Texture(Gdx.files.internal("tex_caverna.png"));
 
-		TextureRegion teste2 = new TextureRegion(teste, 0, 144, 32, 32);
-		TextureRegion teste3 = new TextureRegion(teste, 0, 288, 32, 32);
-		TextureRegion heroi = new TextureRegion(teste, 100, 100, 32, 32);
+		TextureRegion teste2 = new TextureRegion(teste, 96, 0, 32, 32);
+		TextureRegion teste3 = new TextureRegion(teste, 64, 0, 32, 32);
+		TextureRegion heroi = new TextureRegion(teste, 64, 0, 32, 32);
 		textures.put("chao", teste2);
 		textures.put("chao2", teste3);
 		textures.put("heroi", heroi);

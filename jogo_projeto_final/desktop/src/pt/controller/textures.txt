@@ -1,4 +1,7 @@
 MOLDE: nomeator; direcao; arquivo da textura; x textura; y textura; layer
 
-chao;-;cave.png;0;144;0
+chao1;-;tex_caverna.png;0;0;0
+chao2;-;tex_caverna.png;32;0;0
+chao3;-;tex_caverna.png;64;0;0
+parede;s;tex_caverna.png;96;0;0
 heroi;s;cave.png;o;144;0
