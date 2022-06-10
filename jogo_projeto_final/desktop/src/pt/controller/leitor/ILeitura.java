@@ -32,4 +32,11 @@ public interface ILeitura {
 	 * [NOME DO ATOR, LAYER]
 	 */
 	public String[][] getLayers();
+	
+	
+	/**
+	 * 
+	 * @return vetor de strings com os nomes de arquivos de texturas
+	 */
+	public String[] getNomeArquivosTexturas();
 }

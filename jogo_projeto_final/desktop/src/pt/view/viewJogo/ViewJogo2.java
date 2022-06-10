@@ -1,6 +1,7 @@
 package pt.view.viewJogo;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -15,10 +16,9 @@ import pt.view.viewCaverna.IPlotarCaverna;
 import pt.view.viewCaverna.IViewCaverna;
 import pt.view.viewCaverna.ViewCaverna;
 
-public class ViewJogo2 extends ApplicationAdapter {
-	private IViewCaverna viewCave;
-   private OrthographicCamera camera;
-   private SpriteBatch batch;
+public class ViewJogo2 extends Game {
+	public IViewCaverna viewCave;
+    public SpriteBatch batch;
 	
 	public void create() {
 		ICaverna cave = new Caverna();
@@ -39,27 +39,14 @@ public class ViewJogo2 extends ApplicationAdapter {
 		
 		cave.inserirAtorVivo(heroi, 5, 10);
 		
-		camera = new OrthographicCamera();
-      // fixa a quantidade de pixels que aparecem
-		camera.setToOrtho(false, 800, 480);
       
 		batch = new SpriteBatch();
+		
+		this.setScreen(new TelaJogo(this));
 	}
 	
 	public void render() {
-		   // limpa a tela, os 3 primeiros valores sao RGB
-		   ScreenUtils.clear(0, 0, 0.2f, 1);
-		   
-		   camera.update();
-		   
-		   // seta pra usar as coord da camera
-		   batch.setProjectionMatrix(camera.combined);
-		   // comeca uma tela
-		   batch.begin();
-		   // coloca as coisas na tela
-		   viewCave.plotarCaverna(batch);
-		   // manda pra renderizar
-		   batch.end();
+		super.render();
 	}
 	
 	
