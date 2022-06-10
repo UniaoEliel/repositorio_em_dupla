@@ -1,1 +1,37 @@
-SIZE= 100 100
+SIZE = 100 100
+
+MOLDE: x;y;nomeAtor;direcao
+
+5;5;heroi;w
+0;0;parede;s
+1;0;parede;s
+2;0;parede;s
+3;0;parede;s
+4;0;parede;s
+5;0;parede;s
+6;0;parede;s
+7;0;parede;s
+8;0;parede;s
+9;0;parede;s
+10;0;parede;s
+11;0;parede;s
+12;0;parede;s
+13;0;parede;s
+14;0;parede;s
+15;0;parede;s
+16;0;parede;s
+17;0;parede;s
+18;0;parede;s
+19;0;parede;s
+20;0;parede;s
+21;0;parede;s
+22;0;parede;s
+23;0;parede;s
+24;0;parede;s
+25;0;parede;s
+26;0;parede;s
+27;0;parede;s
+28;0;parede;s
+29;0;parede;s
+30;0;parede;s
+31;0;parede;s

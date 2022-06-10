@@ -1,5 +1,5 @@
 package pt.controller.leitor;
 
-public interface ILeitor {
+public interface ILeitor extends ILeitura {
 	
 }

@@ -37,7 +37,7 @@ public class ViewJogo2 extends ApplicationAdapter {
 		
 		cave.connect(viewCave);
 		
-		cave.inserirAtorVivo(heroi, 100, 100);
+		cave.inserirAtorVivo(heroi, 5, 10);
 		
 		camera = new OrthographicCamera();
       // fixa a quantidade de pixels que aparecem

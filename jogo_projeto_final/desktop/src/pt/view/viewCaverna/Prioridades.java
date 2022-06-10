@@ -21,7 +21,7 @@ public class Prioridades implements Comparator<String> {
 		
 		prioridades.put("chao", 0);
 		prioridades.put("chao2", 1);
-		prioridades.put("heroi_d", 100);
+		prioridades.put("heroi", 100);
 	}
 	
 	

@@ -22,8 +22,6 @@ public class ViewCelula implements IViewCelula {
 		textures = new HashMap<String, TextureRegion>();
 		
 		Texture teste = new Texture(Gdx.files.internal("cave.png"));
-		
-		Texture heroi = 
 
 		TextureRegion teste2 = new TextureRegion(teste, 0, 144, 32, 32);
 		TextureRegion teste3 = new TextureRegion(teste, 0, 288, 32, 32);
