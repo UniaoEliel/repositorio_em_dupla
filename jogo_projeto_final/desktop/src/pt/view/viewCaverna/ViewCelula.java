@@ -9,13 +9,17 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import pt.model.ator.IAtorObjeto;
 import pt.model.caverna.ICelula;
 
 public class ViewCelula implements IViewCelula {
 	// guarda as texturas de cada componente
 	private static Map<String, TextureRegion> textures;
+	private static HashMap<String, Texture> texs;
 	
 	private static Prioridades prio;
+	
+	private ICelula celula;
 	
 	
 	protected static void iniciarTexturas() {
@@ -28,11 +32,13 @@ public class ViewCelula implements IViewCelula {
 				{"heroi", "d", "hero.png", "0", "96"}
 		};
 		
+		
+		
 		String nomeTextura;
 		TextureRegion texRegionAtual;
 	
 		
-		HashMap<String, Texture> texs = new HashMap<String, Texture>();
+		texs = new HashMap<String, Texture>();
 		textures = new HashMap<String, TextureRegion>();
 		Texture texAtual;
 		
@@ -59,9 +65,12 @@ public class ViewCelula implements IViewCelula {
 		prio = new Prioridades();
 	}
 	
-	private ICelula celula;
 	
 	
+	protected static void dispose() {
+		for (Map.Entry<String,Texture> pair : texs.entrySet())
+			pair.getValue().dispose();
+	}
 	
 	public ViewCelula() {
 	}

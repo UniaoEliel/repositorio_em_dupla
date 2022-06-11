@@ -55,9 +55,10 @@ public class ViewJogo2 extends Game {
 	}
 	
 	
-	// dealoca as coisas
+	// desloca as coisas
 	   public void dispose() {
 	      batch.dispose();
+	      viewCave.dispose();
 	   }
 	
 }

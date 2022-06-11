@@ -77,4 +77,9 @@ public class ViewCaverna implements IViewCaverna {
 	public IViewCelula getViewSala(int x, int y) {
 		return viewCelulas[x][y];
 	}
+	
+	
+	public void dispose() {
+		ViewCelula.dispose();
+	}
 }
