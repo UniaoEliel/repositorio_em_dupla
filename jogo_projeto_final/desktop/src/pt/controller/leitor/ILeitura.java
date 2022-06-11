@@ -29,7 +29,7 @@ public interface ILeitura {
 	/**
 	 * 
 	 * @return vetor de strings onde cada posicao tem
-	 * [NOME DO ATOR, LAYER]
+	 * [NOME DO ATOR, DIRECAO, LAYER]
 	 */
 	public String[][] getLayers();
 	

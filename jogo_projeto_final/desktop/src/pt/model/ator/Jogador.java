@@ -3,6 +3,7 @@ package pt.model.ator;
 public class Jogador extends AtorVivo implements IJogador {
 	public Jogador() {
 		tipo = "heroi";
+		orientacao = 's';
 	}
 
 	@Override

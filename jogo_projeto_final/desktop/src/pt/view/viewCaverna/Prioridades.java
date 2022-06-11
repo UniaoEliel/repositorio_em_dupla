@@ -17,11 +17,20 @@ public class Prioridades implements Comparator<String> {
 	
 	
 	protected static void iniciarPrioridades() {
+		String[][] priorid = {
+				{"chao", "-", "0"},
+				{"heroi", "s", "100"}
+		};
 		prioridades = new HashMap<String, Integer>();
+		String nomeAtual;
 		
-		prioridades.put("chao", 0);
-		prioridades.put("chao2", 1);
-		prioridades.put("heroi", 100);
+		for (int i = 0; i < priorid.length; i++) {
+			nomeAtual = priorid[i][0];
+			if (priorid[i][1].charAt(0) != '-')
+				nomeAtual += "_" + priorid[i][1].charAt(0);
+			
+			prioridades.put(nomeAtual, Integer.parseInt(priorid[i][2]));
+		}
 	}
 	
 	

@@ -19,16 +19,39 @@ public class ViewCelula implements IViewCelula {
 	
 	
 	protected static void iniciarTexturas() {
-		textures = new HashMap<String, TextureRegion>();
+		String[] arquivosTexturas = {"tex_caverna.png", "hero.png"};
+		String[][] localizacaoTexturas = {
+				{"chao", "-", "tex_caverna.png", "0", "0"},
+				{"heroi", "s", "hero.png", "0", "0"}
+		};
 		
-		Texture teste = new Texture(Gdx.files.internal("tex_caverna.png"));
-
-		TextureRegion teste2 = new TextureRegion(teste, 96, 0, 32, 32);
-		TextureRegion teste3 = new TextureRegion(teste, 64, 0, 32, 32);
-		TextureRegion heroi = new TextureRegion(teste, 64, 0, 32, 32);
-		textures.put("chao", teste2);
-		textures.put("chao2", teste3);
-		textures.put("heroi", heroi);
+		String nomeTextura;
+		TextureRegion texRegionAtual;
+	
+		
+		HashMap<String, Texture> texs = new HashMap<String, Texture>();
+		textures = new HashMap<String, TextureRegion>();
+		Texture texAtual;
+		
+		// carrega os arquivos de texturas
+		for (int i = 0; i < arquivosTexturas.length; i++) {
+			texAtual = new Texture(Gdx.files.internal(arquivosTexturas[i]));
+			texs.put(arquivosTexturas[i], texAtual);
+		}
+		
+		
+		for (int j = 0; j < localizacaoTexturas.length; j++) {
+			nomeTextura = localizacaoTexturas[j][0];
+			if (localizacaoTexturas[j][1].charAt(0) != '-')
+				nomeTextura += "_" + localizacaoTexturas[j][1];
+			
+			texRegionAtual = new TextureRegion(texs.get(localizacaoTexturas[j][2]), 
+						Integer.parseInt(localizacaoTexturas[j][3]), Integer.parseInt(localizacaoTexturas[j][4]),
+						32, 32);
+			
+			textures.put(nomeTextura, texRegionAtual);
+			
+		}
 		
 		prio = new Prioridades();
 	}
