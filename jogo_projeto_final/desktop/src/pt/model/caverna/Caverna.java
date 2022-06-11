@@ -71,26 +71,28 @@ public class Caverna implements ICaverna {
 			return false;
 		}
 	}
-	
-	public void inserirAtorVivo(IAtorVivo a, int x, int y) {
+
+
+	public void inserirAtor(IAtorVivo a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].inserirAtor(a);
 		}	
 	}
 	
-	public void removerAtorVivo(IAtorVivo a, int x, int y) {
+	public void removerAtor(IAtorVivo a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].removerAtor(a);
 		}
 	}
 	
-	public void inserirAtorObjeto(IAtorObjeto a, int x, int y) {
+
+	public void inserirAtor(IAtorObjeto a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].inserirAtor(a);
 		}	
 	}
 	
-	public void removerAtorObjeto(IAtorObjeto a, int x, int y) {
+	public void removerAtor(IAtorObjeto a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].removerAtor(a);
 		}
@@ -98,22 +100,22 @@ public class Caverna implements ICaverna {
 	
 	
 	
-	
-	public void moverAtorVivo(IAtorVivo a, int novox, int novoy) {
+	public void moverAtor(IAtorVivo a, int novox, int novoy) {
 		if  (verificaValidade(novox,novoy)) {
-			removerAtorVivo(a, a.getX(), a.getY());
-			inserirAtorVivo(a,novox,novoy);
+			removerAtor(a, a.getX(), a.getY());
+			inserirAtor(a,novox,novoy);
 			a.setX(novox);
 			a.setY(novoy);
 		}		
 	}
 	
-	public void moverAtorObjeto(IAtorObjeto a, int novox, int novoy) {
+	public void moverAtor(IAtorObjeto a, int novox, int novoy) {
 		if  (verificaValidade(novox,novoy)) {
-			removerAtorObjeto(a, a.getX(), a.getY());
-			inserirAtorObjeto(a,novox,novoy);
+			removerAtor(a, a.getX(), a.getY());
+			inserirAtor(a,novox,novoy);
 		}		
 	}
+
 	
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y){
 		if (verificaValidade(x,y)) {

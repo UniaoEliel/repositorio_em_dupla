@@ -5,19 +5,20 @@ import java.util.Map;
 import pt.model.ator.*;
 
 public interface IAcessoCelulas {
-	public void inserirAtorVivo(IAtorVivo a, int x, int y);
+	public void inserirAtor(IAtorVivo a, int x, int y);
 	
-	public void removerAtorVivo(IAtorVivo a, int x, int y);
+	public void inserirAtor(IAtorObjeto a, int x, int y);
+
 	
-	public void inserirAtorObjeto(IAtorObjeto a, int x, int y);
+	public void removerAtor(IAtorVivo a, int x, int y);
+	
+	public void removerAtor(IAtorObjeto a, int x, int y);
 	
 	
-	public void removerAtorObjeto(IAtorObjeto a, int x, int y);
+	public void moverAtor(IAtorVivo a, int novox, int novoy);
 	
-	
-	public void moverAtorVivo(IAtorVivo a, int novox, int novoy);
-	
-	public void moverAtorObjeto(IAtorObjeto a, int novox, int novoy);
+	public void moverAtor(IAtorObjeto a, int novox, int novoy);
+
 	
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y);
 	

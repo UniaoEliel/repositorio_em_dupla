@@ -14,23 +14,23 @@ public abstract class AtorVivo extends Ator implements IAtorVivo {
 	
 	public void connect(IAcessoCelulas cave) {
 		this.cave = cave;
-		cave.inserirAtorVivo(this, x, y);
+		cave.inserirAtor(this, x, y);
 	}
 	
 	
 	public void mover(char direcao) {
 		switch (direcao) {
 		case 'w':
-			cave.moverAtorVivo(this, x, y + 1);
+			cave.moverAtor(this, x, y + 1);
 			break;
 		case 's':
-			cave.moverAtorVivo(this, x, y - 1);
+			cave.moverAtor(this, x, y - 1);
 			break;
 		case 'a':
-			cave.moverAtorVivo(this, x - 1, y);
+			cave.moverAtor(this, x - 1, y);
 			break;
 		case 'd':
-			cave.moverAtorVivo(this, x + 1, y);
+			cave.moverAtor(this, x + 1, y);
 
 		default:
 			break;

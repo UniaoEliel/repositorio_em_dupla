@@ -9,6 +9,6 @@ public abstract class AtorObjeto extends Ator implements IAtorObjeto {
 	
 	public void connect(IAcessoCelulas cave) {
 		this.cave = cave;
-		cave.inserirAtorObjeto(this, x, y);
+		cave.inserirAtor(this, x, y);
 	}
 }
