@@ -21,12 +21,12 @@ public class ViewCelula implements IViewCelula {
 	
 	private ICelula celula;
 	
-	
+
 	protected static void iniciarTexturas() {
-		String[] arquivosTexturas = {"tex_caverna.png", "hero.png"};
+		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiDireitaTB2.png"};
 		String[][] localizacaoTexturas = {
 				{"chao", "-", "tex_caverna.png", "0", "0"},
-				{"heroi", "s", "hero.png", "0", "0"},
+				{"heroi", "s", "HeroiDireitaTB2.png", "0", "0"},
 				{"heroi", "w", "hero.png", "0", "32"},
 				{"heroi", "a", "hero.png", "0", "64"},
 				{"heroi", "d", "hero.png", "0", "96"}
