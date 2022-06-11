@@ -18,10 +18,7 @@ public abstract class Ator implements IAtor {
 	}
 	
 	
-	public void connect(IAcessoCelulas cave) {
-		this.cave = cave;
-		cave.inserirAtor(this, x, y);
-	}
+	public abstract void connect(IAcessoCelulas cave);
 	
 	
 	public String getTipo() {

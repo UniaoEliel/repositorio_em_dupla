@@ -6,10 +6,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import pt.controller.comando.Comando;
+import pt.controller.comando.IComando;
 import pt.model.ator.AtorObjeto;
 import pt.model.ator.IAtorObjeto;
 import pt.model.ator.IAtorVivo;
-import pt.model.ator.Jogador;
+import pt.model.ator.Heroi;
 import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 import pt.view.viewCaverna.IPlotarCaverna;
@@ -19,6 +21,7 @@ import pt.view.viewCaverna.ViewCaverna;
 public class ViewJogo2 extends Game {
 	public IViewCaverna viewCave;
     public SpriteBatch batch;
+    private IComando leitorComandos;
 	
 	public void create() {
 		ICaverna cave = new Caverna();
@@ -28,7 +31,8 @@ public class ViewJogo2 extends Game {
 		viewCave.setTamCelula(32);
 		// imprime 32 x 15 salas
 		
-		IAtorVivo heroi = new Jogador();
+		Heroi heroi = new Heroi();
+		leitorComandos = new Comando();
 		
 		cave.setTamX(100);
 		cave.setTamY(100);
@@ -37,12 +41,13 @@ public class ViewJogo2 extends Game {
 		
 		cave.connect(viewCave);
 		
-		cave.inserirAtorVivo(heroi, 5, 10);
+		heroi.connect(cave);
 		
+		leitorComandos.connect(heroi);
       
 		batch = new SpriteBatch();
 		
-		this.setScreen(new TelaJogo(this));
+		this.setScreen(new TelaJogo(this, leitorComandos));
 	}
 	
 	public void render() {

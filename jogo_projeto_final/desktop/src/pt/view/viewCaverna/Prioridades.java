@@ -19,7 +19,10 @@ public class Prioridades implements Comparator<String> {
 	protected static void iniciarPrioridades() {
 		String[][] priorid = {
 				{"chao", "-", "0"},
-				{"heroi", "s", "100"}
+				{"heroi", "s", "100"},
+				{"heroi", "w", "100"},
+				{"heroi", "a", "100"},
+				{"heroi", "d", "100"}
 		};
 		prioridades = new HashMap<String, Integer>();
 		String nomeAtual;

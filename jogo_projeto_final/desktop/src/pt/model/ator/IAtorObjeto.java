@@ -1,5 +1,7 @@
 package pt.model.ator;
 
-public interface IAtorObjeto extends IAtor {
+import pt.model.caverna.IAcessoCelulas;
 
+public interface IAtorObjeto extends IAtor {
+	
 }

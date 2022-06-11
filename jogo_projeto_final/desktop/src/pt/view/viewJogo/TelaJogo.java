@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import pt.model.ator.IAtorVivo;
-import pt.model.ator.Jogador;
+import pt.controller.comando.IComando;
+import pt.model.ator.Heroi;
 import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 import pt.view.viewCaverna.IViewCaverna;
@@ -14,20 +15,24 @@ import pt.view.viewCaverna.ViewCaverna;
 
 public class TelaJogo implements Screen {
 	private final ViewJogo2 jogo;
+	private IComando leitorComandos;
 	OrthographicCamera camera;
 	
 	
 	
-	public TelaJogo(final ViewJogo2 jogo) {
+	public TelaJogo(final ViewJogo2 jogo, IComando leitorComandos) {
 		this.jogo = jogo;
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
+		
+		this.leitorComandos = leitorComandos;
 	}
 
 	@Override
 	public void render(float delta) {
 		// limpa a tela, os 3 primeiros valores sao RGB
+		leitorComandos.lerComando();
 	   ScreenUtils.clear(0, 0, 0.2f, 1);
 	   
 	   camera.update();
