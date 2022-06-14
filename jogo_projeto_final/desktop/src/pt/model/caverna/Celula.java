@@ -100,4 +100,26 @@ public class Celula implements ICelula {
 		
 		return solida;
 	}
+	
+	
+	protected boolean podeEntrar(IAtorObjeto a) {
+		boolean pode = true;
+		if (isSolida())
+			pode = false;
+		else if (atoresObjeto.containsKey(a.getTipo()))
+			pode = false;
+		
+		return pode;
+	}
+	
+	
+	protected boolean podeEntrar(IAtorVivo a) {
+		boolean pode = true;
+		if (isSolida())
+			pode = false;
+		else if (atoresVivos.containsKey(a.getTipo()))
+			pode = false;
+		
+		return pode;
+	}
 }
