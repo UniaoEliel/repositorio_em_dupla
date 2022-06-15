@@ -23,13 +23,13 @@ public class ViewCelula implements IViewCelula {
 	
 
 	protected static void iniciarTexturas() {
-		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiDireitaTB2.png","HeroiCostasTA.png","HeroiEsquerdaTB.png"};
+		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png"};
 		String[][] localizacaoTexturas = {
 				{"chao", "-", "tex_caverna.png", "0", "0"},
-				{"heroi", "s", "HeroiDireitaTB2.png", "0", "0"},
-				{"heroi", "w", "HeroiCostasTA.png", "0", "0"},
-				{"heroi", "a", "HeroiEsquerdaTB.png", "0", "0"},
-				{"heroi", "d", "HeroiDireitaTB2.png", "0", "0"}
+				{"heroi", "s", "HeroiTochaBaixa.png", "32", "32"},
+				{"heroi", "w", "HeroiTochaBaixa.png", "0", "64"},
+				{"heroi", "a", "HeroiTochaBaixa.png", "0", "32"},
+				{"heroi", "d", "HeroiTochaBaixa.png", "0", "0"}
 		};
 		
 		
