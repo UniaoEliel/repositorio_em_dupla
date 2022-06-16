@@ -33,7 +33,11 @@ public class ViewCelula implements IViewCelula {
 				{"parede", "s", "tex_caverna.png", "96", "0"},
 				{"parede", "w", "tex_caverna.png", "64", "32"},
 				{"parede", "a", "tex_caverna.png", "0", "32"},
-				{"parede", "d", "tex_caverna.png", "32", "32"}
+				{"parede", "d", "tex_caverna.png", "32", "32"},
+				{"escuro100", "-", "tex_caverna.png", "0", "288"},
+				{"escuro75", "-", "tex_caverna.png", "32", "288"},
+				{"escuro50", "-", "tex_caverna.png", "64", "288"},
+				{"escuro25", "-", "tex_caverna.png", "96", "288"},
 		};
 		
 		
@@ -70,16 +74,40 @@ public class ViewCelula implements IViewCelula {
 	}
 	
 	
+	public ViewCelula() {
+	}
+	
 	
 	protected static void dispose() {
 		for (Map.Entry<String,Texture> pair : texs.entrySet())
 			pair.getValue().dispose();
 	}
 	
-	public ViewCelula() {
+	
+	
+	
+	
+	private void plotarEscuridao(SpriteBatch batch, int x, int y) {
+		int iluminacao = celula.getIluminacao();
+		
+		if (iluminacao <= 0)
+			batch.draw(textures.get("escuro100"), x, y);
+		else if (iluminacao <= 25)
+			batch.draw(textures.get("escuro75"), x, y);
+		if (iluminacao <= 50)
+			batch.draw(textures.get("escuro50"), x, y);
+		if (iluminacao <= 75)
+			batch.draw(textures.get("escuro25"), x, y);
+		
 	}
 	
 	
+	/**
+	 * Plota a sala e seus elementos na tela
+	 * @param batch spritebatch que esta sendo usado no desenho
+	 * @param x coordenada x na tela em pixels
+	 * @param y coordenada y na tela em pixels
+	 */
 	protected void plotar(SpriteBatch batch, int x, int y) {
 		PriorityQueue<String> pt = new PriorityQueue<String>(prio);
 		String[] elementos = celula.getAtores();
@@ -92,6 +120,8 @@ public class ViewCelula implements IViewCelula {
 			atual = pt.poll();
 			batch.draw(textures.get(atual), x, y);
 		}
+		
+		plotarEscuridao(batch, x, y);
 	}
 	
 	

@@ -14,10 +14,23 @@ public class Celula implements ICelula {
 	private int iluminacao; 
 	private IViewCelula view;
 	
+
+
 	public Celula() {
 		iluminacao = 0;
 		atoresVivos = new HashMap<String, IAtorVivo>();
 		atoresObjeto = new HashMap<String, IAtorObjeto>();
+	}
+	
+	
+
+	public int getIluminacao() {
+		return iluminacao;
+	}
+
+
+	public void somaIluminacao(int iluminacao) {
+		this.iluminacao += iluminacao;
 	}
 
 	
@@ -53,21 +66,25 @@ public class Celula implements ICelula {
 	
 	protected void inserirAtor(IAtorObjeto a) {
 		atoresObjeto.put(a.getTipo(), a);
+		a.entrouCelula();
 	}
 	
 	
 	protected void inserirAtor(IAtorVivo a) {
 		atoresVivos.put(a.getTipo(), a);
+		a.entrouCelula();
 	}
 
 	
 	protected void removerAtor(IAtorObjeto a) {
 		atoresObjeto.remove(a.getTipo());
+		a.saiuCelula();
 	}
 	
 	
 	protected void removerAtor(IAtorVivo a) {
 		atoresVivos.remove(a.getTipo());
+		a.saiuCelula();
 	}
 	
 	

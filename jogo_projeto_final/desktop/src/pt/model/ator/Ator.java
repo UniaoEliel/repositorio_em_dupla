@@ -24,6 +24,7 @@ public abstract class Ator implements IAtor {
 	public String getTipo() {
 		return tipo;
 	}
+
 	
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -33,24 +34,42 @@ public abstract class Ator implements IAtor {
 	public char getOrientacao() {
 		return orientacao;
 	}
+
 	
 	public void setOrientacao(char orientacao) {
 		this.orientacao = orientacao;
 	}
+
 	
 	public boolean isSolido() {
 		return solido;
 	}
+	
+	
 	public int getX() {
 		return this.x;
 	}
+	
+	
 	public void setX(int x) {
 		this.x = x;
 	}
+	
+	
 	public int getY() {
 		return this.y;
 	}
+	
+	
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+
+	public void entrouCelula() {
+	}
+
+	
+	public void saiuCelula() {
 	}
 }
