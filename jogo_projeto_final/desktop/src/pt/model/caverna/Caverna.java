@@ -101,7 +101,7 @@ public class Caverna implements ICaverna {
 	
 	
 	public void moverAtor(IAtorVivo a, int novox, int novoy) {
-		if  (verificaValidade(novox,novoy)) {
+		if  (verificaValidade(novox,novoy) && celulas[novox][novoy].podeEntrar(a)) {
 			removerAtor(a, a.getX(), a.getY());
 			inserirAtor(a,novox,novoy);
 			a.setX(novox);
@@ -110,7 +110,7 @@ public class Caverna implements ICaverna {
 	}
 	
 	public void moverAtor(IAtorObjeto a, int novox, int novoy) {
-		if  (verificaValidade(novox,novoy)) {
+		if  (verificaValidade(novox,novoy) && celulas[novox][novoy].podeEntrar(a)) {
 			removerAtor(a, a.getX(), a.getY());
 			inserirAtor(a,novox,novoy);
 		}		

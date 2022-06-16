@@ -35,7 +35,7 @@ public class Celula implements ICelula {
 		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
 			atores[k] = pair.getKey();
 			if (pair.getValue().getOrientacao() != '-')
-				atores[k] += "-" + pair.getValue().getOrientacao();
+				atores[k] += "_" + pair.getValue().getOrientacao();
 			k++;
 		}
 		

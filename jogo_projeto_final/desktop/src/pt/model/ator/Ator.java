@@ -24,10 +24,18 @@ public abstract class Ator implements IAtor {
 	public String getTipo() {
 		return tipo;
 	}
+	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 
 	public char getOrientacao() {
 		return orientacao;
+	}
+	
+	public void setOrientacao(char orientacao) {
+		this.orientacao = orientacao;
 	}
 	
 	public boolean isSolido() {

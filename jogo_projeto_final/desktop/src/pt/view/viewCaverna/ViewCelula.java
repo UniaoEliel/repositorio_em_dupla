@@ -29,7 +29,11 @@ public class ViewCelula implements IViewCelula {
 				{"heroi", "s", "HeroiTochaBaixa.png", "32", "32"},
 				{"heroi", "w", "HeroiTochaBaixa.png", "0", "64"},
 				{"heroi", "a", "HeroiTochaBaixa.png", "0", "32"},
-				{"heroi", "d", "HeroiTochaBaixa.png", "0", "0"}
+				{"heroi", "d", "HeroiTochaBaixa.png", "0", "0"},
+				{"parede", "s", "tex_caverna.png", "96", "0"},
+				{"parede", "w", "tex_caverna.png", "64", "32"},
+				{"parede", "a", "tex_caverna.png", "0", "32"},
+				{"parede", "d", "tex_caverna.png", "32", "32"}
 		};
 		
 		
