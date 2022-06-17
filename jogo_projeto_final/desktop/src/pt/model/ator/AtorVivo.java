@@ -3,7 +3,7 @@ package pt.model.ator;
 import pt.model.caverna.IAcessoCelulas;
 
 public abstract class AtorVivo extends Ator implements IAtorVivo {
-	private int vidaTotal, vidaAtual, ataque, defesa;
+	protected int vidaTotal, vidaAtual, ataque, defesa;
 	
 	public static IAtorVivo criarAtorVivo(String tipo) {
 		if (tipo == "jogador")

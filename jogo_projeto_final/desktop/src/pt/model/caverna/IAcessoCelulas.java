@@ -42,6 +42,12 @@ public interface IAcessoCelulas {
 	 * @param raio raio do circulo
 	 */
 	public void desiluminarCelulas(int x, int y, int raio);
+	
+	/**
+	 * Avisa todos os componentes da caverna, na ordem do mais rápido
+	 * para o mais lento, que uma rodada passou.
+	 */
+	public void passarRodada();
 
 	
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y);

@@ -22,9 +22,11 @@ public class ViewJogo2 extends Game {
 	public IViewCaverna viewCave;
     public SpriteBatch batch;
     private IComando leitorComandos;
+    
+    public ICaverna cave;
 	
 	public void create() {
-		ICaverna cave = new Caverna();
+		cave = new Caverna();
 		viewCave = new ViewCaverna();
 		IAtorObjeto parede;
 		viewCave.setPixelsX(800);
@@ -46,6 +48,8 @@ public class ViewJogo2 extends Game {
 		heroi.setY(5);
 		
 		heroi.connect(cave);
+		
+		cave.connect(heroi);
 		
 		for (int i = 0; i < 32; i++) {
 			parede = AtorObjeto.criarAtorObjeto("parede", 's');

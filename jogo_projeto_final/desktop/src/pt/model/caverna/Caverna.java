@@ -1,21 +1,28 @@
 package pt.model.caverna;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 import pt.model.ator.Ator;
 import pt.model.ator.IAtor;
 import pt.model.ator.IAtorObjeto;
 import pt.model.ator.IAtorVivo;
+import pt.model.ator.IHeroiCoord;
 import pt.view.viewCaverna.IViewCaverna;
 
 public class Caverna implements ICaverna {
 	private int tamX, tamY;
 	private Celula[][] celulas;
+	private IHeroiCoord heroi;
+	private ControleRodada controle;
+	private PriorityQueue<IAtor> pq;
 	
 	public Caverna() {
 		tamX = 5;
 		tamY = 5;
+		pq = new PriorityQueue<IAtor>(new ControleRodada());
 	}
 	
 	public int getTamX() {
@@ -129,6 +136,11 @@ public class Caverna implements ICaverna {
 	}
 	
 	
+	public void connect(IHeroiCoord heroi) {
+		this.heroi = heroi;
+	}
+	
+	
 	public boolean verificaValidade(int x, int y) {//Verifica se a posição na caverna é válida
 		if ((x >= 0) && (x < this.tamX) && (y >= 0) && (y < this.tamY)) {
 			return true;
@@ -198,6 +210,30 @@ public class Caverna implements ICaverna {
 			return celulas[x][y].getAtoresObjeto();
 		}
 		return null;
+	}
+
+	@Override
+	public void passarRodada() {
+		ArrayList<IAtor> atores;
+		int x = heroi.getX(), y = heroi.getY();
+		
+		// adiciona todos os elementos numa fila de prioridade com
+		// base na velocidade
+		for (int i = x - 16; i <= x + 16; i++) {
+			for (int j = y - 16; j <= y + 16; j++) {
+				if (verificaValidade(i ,j)) {
+					atores = celulas[i][j].getAtores();
+					for (IAtor ator : atores) {
+						pq.add(ator);
+					}
+				}
+			}
+		}
+		
+		
+		while (!pq.isEmpty())
+			pq.poll().passarRodada();
+		
 	}
 	
 }

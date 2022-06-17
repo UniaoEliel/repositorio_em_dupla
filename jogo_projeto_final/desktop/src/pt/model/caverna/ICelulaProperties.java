@@ -1,7 +1,7 @@
 package pt.model.caverna;
 
 public interface ICelulaProperties {
-	public String[] getAtores();
+	public String[] getNomeAtores();
 	
 	public int getIluminacao();
 }

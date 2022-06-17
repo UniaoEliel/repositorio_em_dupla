@@ -110,7 +110,7 @@ public class ViewCelula implements IViewCelula {
 	 */
 	protected void plotar(SpriteBatch batch, int x, int y) {
 		PriorityQueue<String> pt = new PriorityQueue<String>(prio);
-		String[] elementos = celula.getAtores();
+		String[] elementos = celula.getNomeAtores();
 		String atual;
 		
 		for (int i = 0; i < elementos.length; i++)

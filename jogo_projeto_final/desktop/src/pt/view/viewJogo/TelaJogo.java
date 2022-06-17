@@ -37,6 +37,8 @@ public class TelaJogo implements Screen {
 	   
 	   camera.update();
 	   
+	   jogo.cave.passarRodada();
+	   
 	   // seta pra usar as coord da camera
 	   jogo.batch.setProjectionMatrix(camera.combined);
 	   // comeca uma tela
@@ -45,6 +47,8 @@ public class TelaJogo implements Screen {
 	   jogo.viewCave.plotarCaverna(jogo.batch);
 	   // manda pra renderizar
 	   jogo.batch.end();
+	   
+	   
 	}
 
 	

@@ -13,8 +13,10 @@ public abstract class Ator implements IAtor {
 	protected char orientacao;
 	protected IAcessoCelulas cave;
 	
+	protected int velocidade;
+	
 	public Ator() {
-		
+		velocidade = 0;
 	}
 	
 	
@@ -65,11 +67,20 @@ public abstract class Ator implements IAtor {
 		this.y = y;
 	}
 	
+	
+	public int getVelocidade() {
+		return velocidade;
+	}
+	
 
 	public void entrouCelula() {
 	}
 
 	
 	public void saiuCelula() {
+	}
+	
+	
+	public void passarRodada() {
 	}
 }

@@ -1,5 +1,6 @@
 package pt.model.caverna;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class Celula implements ICelula {
 		view.connect(this);
 	}
 	
-	public String[] getAtores() {
+	public String[] getNomeAtores() {
 		String[] atores = new String[atoresVivos.size() + atoresObjeto.size() + 1];
 		
 		atores[0] = "chao";
@@ -62,6 +63,22 @@ public class Celula implements ICelula {
 		
 		return atores;
 	}
+	
+	
+	protected ArrayList<IAtor> getAtores() {
+		ArrayList<IAtor> a = new ArrayList<IAtor>();
+		
+		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
+			a.add(pair.getValue());
+		}
+		
+		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
+			a.add(pair.getValue());
+		}
+		
+		return a;
+	}
+	
 	
 	
 	protected void inserirAtor(IAtorObjeto a) {
