@@ -7,16 +7,19 @@ public class Leitor implements ILeitor {
 
 	
 	
-	public int[] getTamanhoCaverna(Caverna caverna) {
-		int[] tamanho = new int [2];
-		tamanho[0] = caverna.getTamX();
-		tamanho[1] = caverna.getTamY();
-		return tamanho;	
+	public int[] getTamanhoCaverna() {
+		int[] tamanhos = {100, 100};
+		return tamanhos;
 	}
 	
 	
-	public String[][] getAtoresCaverna(Caverna caverna, Celula celula){
-		
+	public String[][] getAtoresCaverna(){
+		String[][] atores = {
+				{"heroi", "w", "5", "5"},
+				{"parede", "s", "6", "6"},
+				{"parede", "s", "6", "7"}
+		};
+		return atores;
 	}
 	
 	
