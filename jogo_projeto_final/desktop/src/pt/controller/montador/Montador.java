@@ -9,6 +9,11 @@ import pt.model.ator.*;
 import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 
+/**
+ * Singleton, responsavel por montar a caverna com base no arquivo cave.txt
+ * @author elias
+ *
+ */
 public class Montador implements IMontador {
 	private static String[] nomeAtoresObjeto = {"parede"};
 	private static String[] nomeAtoresVivos	= {"heroi"};
@@ -63,7 +68,7 @@ public class Montador implements IMontador {
 		for (int i = 0; i < atoresCaverna.length; i++) {
 			if (atoresVivos.contains(atoresCaverna[i][0])) {
 				aVivo = criarAtorVivo(atoresCaverna[i][0]);
-
+				// seta as coordenadas
 				aVivo.setOrientacao(atoresCaverna[i][1].charAt(0));
 				aVivo.setX(Integer.parseInt(atoresCaverna[i][2]));
 				aVivo.setY(Integer.parseInt(atoresCaverna[i][3]));
@@ -114,7 +119,7 @@ public class Montador implements IMontador {
 	}
 
 
-	@Override
+
 	public IHeroi getHeroi() {
 		return heroi;
 	}

@@ -12,8 +12,7 @@ public class Celula implements ICelula {
 	private Map<String, IAtorVivo> atoresVivos;
 	private Map<String, IAtorObjeto> atoresObjeto;
 	// luz da sala, um valor de 0 a 100
-	private int iluminacao; 
-	private IViewCelula view;
+	private int iluminacao;
 	
 
 
@@ -36,7 +35,6 @@ public class Celula implements ICelula {
 
 	
 	public void connect(IViewCelula view) {
-		this.view = view;
 		view.connect(this);
 	}
 	

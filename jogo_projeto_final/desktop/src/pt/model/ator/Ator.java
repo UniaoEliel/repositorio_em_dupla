@@ -2,6 +2,11 @@ package pt.model.ator;
 
 import pt.model.caverna.IAcessoCelulas;
 
+/**
+ * Define um ator da caverna
+ * @author elias
+ *
+ */
 public abstract class Ator implements IAtor {
 	protected int x, y;
 	protected String tipo;

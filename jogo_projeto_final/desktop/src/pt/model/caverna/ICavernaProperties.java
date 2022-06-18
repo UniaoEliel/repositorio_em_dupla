@@ -6,4 +6,6 @@ public interface ICavernaProperties {
 	
 	public int getTamX();
 	public int getTamY();
+	
+	public ICelula getCelula(int x, int y);
 }

@@ -1,5 +1,7 @@
 package pt.view.viewCaverna;
 
-public interface IRCaverna {
+import pt.model.caverna.ICaverna;
 
+public interface IRCaverna {
+	public void connect(ICaverna caverna);
 }

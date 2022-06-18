@@ -5,7 +5,12 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import pt.model.ator.IAtor;
-
+/**
+ * classe auxiliar para a lista de prioridade usada 
+ * em passarRodada()
+ * @author elias
+ *
+ */
 public class ControleRodada implements Comparator<IAtor>{
 
 	@Override

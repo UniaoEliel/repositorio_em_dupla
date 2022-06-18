@@ -2,6 +2,11 @@ package pt.model.ator;
 
 import pt.model.caverna.IAcessoCelulas;
 
+/**
+ * Define um ator que pode se mover e atacar na caverna
+ * @author elias
+ *
+ */
 public abstract class AtorVivo extends Ator implements IAtorVivo {
 	protected int vidaTotal, vidaAtual, ataque, defesa;
 	

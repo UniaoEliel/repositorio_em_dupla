@@ -12,7 +12,11 @@ import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 import pt.view.viewCaverna.IViewCaverna;
 import pt.view.viewCaverna.ViewCaverna;
-
+/**
+ * Define a tela principal do jogo, onde está a caverna
+ * @author elias
+ *
+ */
 public class TelaJogo implements Screen {
 	private final ViewJogo2 jogo;
 	private IComando leitorComandos;
@@ -29,7 +33,9 @@ public class TelaJogo implements Screen {
 		this.leitorComandos = leitorComandos;
 	}
 
-	@Override
+	/**
+	 * Renderiza a tela, é chamada toda vez que um loop do jogo se passa
+	 */
 	public void render(float delta) {
 		// limpa a tela, os 3 primeiros valores sao RGB
 		leitorComandos.lerComando();

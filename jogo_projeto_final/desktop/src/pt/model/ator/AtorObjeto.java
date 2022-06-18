@@ -2,6 +2,11 @@ package pt.model.ator;
 
 import pt.model.caverna.IAcessoCelulas;
 
+/**
+ * Define um ator que não se move nem combate na caverna
+ * @author elias
+ *
+ */
 public abstract class AtorObjeto extends Ator implements IAtorObjeto {
 	
 	public static IAtorObjeto criarAtorObjeto(String tipo, char orientacao) {

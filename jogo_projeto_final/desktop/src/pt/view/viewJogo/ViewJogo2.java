@@ -22,9 +22,11 @@ import pt.view.viewCaverna.IViewCaverna;
 import pt.view.viewCaverna.ViewCaverna;
 
 public class ViewJogo2 extends Game {
-	public IViewCaverna viewCave;
+	// batch é usado para plotar as coisas na tela
+	// devido ao libGDX esse atributo precisa ser public
     public SpriteBatch batch;
    
+    private IViewCaverna viewCave;
     private IComando leitorComandos;
     private IMontador montador;
     
@@ -45,7 +47,7 @@ public class ViewJogo2 extends Game {
 		montador = Montador.getInstance();
 		cave = montador.criarCaverna();
 		heroi = montador.getHeroi();
-		cave.connect(viewCave);
+		viewCave.connect(cave);
 		
 		leitorComandos = new Comando();
 		leitorComandos.connect(heroi);

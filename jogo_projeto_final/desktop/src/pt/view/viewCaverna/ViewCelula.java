@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pt.model.ator.IAtorObjeto;
 import pt.model.caverna.ICelula;
 
-public class ViewCelula implements IViewCelula {
+public class ViewCelula {
 	// guarda as texturas de cada componente
 	private static Map<String, TextureRegion> textures;
 	private static HashMap<String, Texture> texs;
@@ -77,16 +77,21 @@ public class ViewCelula implements IViewCelula {
 	public ViewCelula() {
 	}
 	
-	
+	/**
+	 * Desaloca as coisas do libGDX
+	 */
 	protected static void dispose() {
 		for (Map.Entry<String,Texture> pair : texs.entrySet())
 			pair.getValue().dispose();
 	}
 	
 	
-	
-	
-	
+	/**
+	 * coloca a camada de escuridao com base na luz atual da sala
+	 * @param batch spritebatch que esta sendo usado no desenho
+	 * @param x coordenada x na tela em pixels
+	 * @param y coordenada y na tela em pixels
+	 */
 	private void plotarEscuridao(SpriteBatch batch, int x, int y) {
 		int iluminacao = celula.getIluminacao();
 		
@@ -127,13 +132,5 @@ public class ViewCelula implements IViewCelula {
 	
 	public void connect(ICelula celula) {
 		this.celula = celula;
-	
-	}
-
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 }

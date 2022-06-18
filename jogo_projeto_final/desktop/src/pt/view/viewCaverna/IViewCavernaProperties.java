@@ -10,6 +10,4 @@ public interface IViewCavernaProperties {
 	public void setTamX(int tamX);
 	
 	public void setTamY(int tamY);
-	
-	public IViewCelula getViewSala(int x, int y);
 }

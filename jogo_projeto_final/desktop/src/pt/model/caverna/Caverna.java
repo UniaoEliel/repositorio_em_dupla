@@ -16,13 +16,17 @@ public class Caverna implements ICaverna {
 	private int tamX, tamY;
 	private Celula[][] celulas;
 	private IHeroiCoord heroi;
-	private ControleRodada controle;
 	private PriorityQueue<IAtor> pq;
+	
+	// define em qual raio ao redor do heroi a caverna vai
+	// se atualizar ao fim de uma rodada
+	private int raioRodada;
 	
 	public Caverna() {
 		tamX = 5;
 		tamY = 5;
 		pq = new PriorityQueue<IAtor>(new ControleRodada());
+		raioRodada = 16;
 	}
 	
 	public int getTamX() {
@@ -43,6 +47,10 @@ public class Caverna implements ICaverna {
 		this.tamY = tamY;
 	}
 	
+	
+	public ICelula getCelula(int x, int y) {
+		return celulas[x][y];
+	}
 	
 	public void somaIluminacao(int iluminacao, int x, int y) {
 		if  (verificaValidade(x,y))
@@ -121,27 +129,12 @@ public class Caverna implements ICaverna {
 	}
 	
 	
-	public void connect(IViewCaverna viewCaverna) {
-		viewCaverna.setTamX(tamX);
-		viewCaverna.setTamY(tamY);
-		
-		viewCaverna.create();
-		
-		// conecta cada celula em seu viewCelula
-		for (int i = 0; i < tamX; i++) {
-	    	for (int j = 0; j < tamY; j++) {
-	    		celulas[i][j].connect(viewCaverna.getViewSala(i, j));
-	    	}
-		}
-	}
-	
-	
 	public void connect(IHeroiCoord heroi) {
 		this.heroi = heroi;
 	}
 	
-	
-	public boolean verificaValidade(int x, int y) {//Verifica se a posição na caverna é válida
+	//Verifica se a posição na caverna é válida
+	public boolean verificaValidade(int x, int y) {
 		if ((x >= 0) && (x < this.tamX) && (y >= 0) && (y < this.tamY)) {
 			return true;
 		}
@@ -212,15 +205,15 @@ public class Caverna implements ICaverna {
 		return null;
 	}
 
-	@Override
+
 	public void passarRodada() {
 		ArrayList<IAtor> atores;
 		int x = heroi.getX(), y = heroi.getY();
 		
 		// adiciona todos os elementos numa fila de prioridade com
 		// base na velocidade
-		for (int i = x - 16; i <= x + 16; i++) {
-			for (int j = y - 16; j <= y + 16; j++) {
+		for (int i = x - raioRodada; i <= x + raioRodada; i++) {
+			for (int j = y - raioRodada; j <= y + raioRodada; j++) {
 				if (verificaValidade(i ,j)) {
 					atores = celulas[i][j].getAtores();
 					for (IAtor ator : atores) {
@@ -232,8 +225,7 @@ public class Caverna implements ICaverna {
 		
 		
 		while (!pq.isEmpty())
-			pq.poll().passarRodada();
-		
+			pq.poll().passarRodada();	
 	}
 	
 }

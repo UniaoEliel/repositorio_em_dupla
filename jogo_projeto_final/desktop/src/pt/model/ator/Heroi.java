@@ -1,7 +1,7 @@
 package pt.model.ator;
 
 public class Heroi extends AtorVivo implements IHeroi {
-	int luz;
+	private int luz;
 	public Heroi() {
 		tipo = "heroi";
 		orientacao = 's';
@@ -23,11 +23,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 		
 		entrouCelula();
 	}
+
 	
 	public void entrouCelula() {
-		cave.iluminarCelulas(x, y, luz / 10);
-		
-				
+		cave.iluminarCelulas(x, y, luz / 10);	
 	}
 	
 	public void saiuCelula() {

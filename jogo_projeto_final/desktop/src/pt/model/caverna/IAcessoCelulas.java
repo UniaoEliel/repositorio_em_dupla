@@ -49,9 +49,21 @@ public interface IAcessoCelulas {
 	 */
 	public void passarRodada();
 
-	
+	/**
+	 * 
+	 * @param x x da celula
+	 * @param y y da celula
+	 * @return hashmap com os atores vivos da celula
+	 */
 	public Map<String, IAtorVivo> getAtoresVivos(int x, int y);
 	
+	
+	/**
+	 * 
+	 * @param x x da celula
+	 * @param y y da celula
+	 * @return hashmap com os atores objeto da celula
+	 */
 	public Map<String, IAtorObjeto> getAtoresObjeto(int x, int y);
 	
 	public boolean verificaValidade(int x, int y);

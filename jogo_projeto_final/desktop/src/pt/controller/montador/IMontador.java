@@ -13,8 +13,8 @@ public interface IMontador extends IRLeitura {
 	
 	/**
 	 * 
-	 * @return o heroi da caverna, se for chamado apos a criacao dela
-	 * se nao retorna null
+	 * @return o heroi da caverna, se for chamado apos a criacao dela.
+	 * Se nao retorna null
 	 */
 	public IHeroi getHeroi();
 }
