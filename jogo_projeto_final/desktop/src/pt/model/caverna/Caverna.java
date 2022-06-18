@@ -227,5 +227,15 @@ public class Caverna implements ICaverna {
 		while (!pq.isEmpty())
 			pq.poll().passarRodada();	
 	}
+
+
+	public int getXHeroi() {
+		return heroi.getX();
+	}
+
+
+	public int getYHeroi() {
+		return heroi.getY();
+	}
 	
 }

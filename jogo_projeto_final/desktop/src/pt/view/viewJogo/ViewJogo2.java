@@ -64,6 +64,11 @@ public class ViewJogo2 extends Game {
 		viewCave.setTamCelula(32);
 	}
 	
+	
+	public IViewCaverna getViewCave() {
+		return viewCave;
+	}
+	
 	public void render() {
 		super.render();
 	}

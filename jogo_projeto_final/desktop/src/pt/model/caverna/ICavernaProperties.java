@@ -8,4 +8,7 @@ public interface ICavernaProperties {
 	public int getTamY();
 	
 	public ICelula getCelula(int x, int y);
+	
+	public int getXHeroi();
+	public int getYHeroi();
 }

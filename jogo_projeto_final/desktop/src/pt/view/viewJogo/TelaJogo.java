@@ -39,7 +39,7 @@ public class TelaJogo implements Screen {
 	public void render(float delta) {
 		// limpa a tela, os 3 primeiros valores sao RGB
 		leitorComandos.lerComando();
-	   ScreenUtils.clear(0, 0, 0.2f, 1);
+	   ScreenUtils.clear(0, 0, 0, 1);
 	   
 	   camera.update();
 	   
@@ -50,7 +50,7 @@ public class TelaJogo implements Screen {
 	   // comeca uma tela
 	   jogo.batch.begin();
 	   // coloca as coisas na tela
-	   jogo.viewCave.plotarCaverna(jogo.batch);
+	   jogo.getViewCave().plotarCaverna(jogo.batch);
 	   // manda pra renderizar
 	   jogo.batch.end();
 	   
