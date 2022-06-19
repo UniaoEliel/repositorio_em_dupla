@@ -1,6 +1,6 @@
 package pt.model.ator;
 
-public interface IHeroi extends IAtorVivo, IHeroiCoord{
+public interface IHeroi extends IAtor, IHeroiCoord, IHeroiProperties {
 	/**
 	 * Realiza um comando
 	 * @param comando char que representa o comando

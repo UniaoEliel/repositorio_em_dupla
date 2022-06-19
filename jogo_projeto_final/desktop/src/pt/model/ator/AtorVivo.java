@@ -7,14 +7,8 @@ import pt.model.caverna.IAcessoCelulas;
  * @author elias
  *
  */
-public abstract class AtorVivo extends Ator implements IAtorVivo {
+public abstract class AtorVivo extends Ator {
 	protected int vidaTotal, vidaAtual, ataque, defesa;
-	
-	public static IAtorVivo criarAtorVivo(String tipo) {
-		if (tipo == "jogador")
-			return new Heroi();
-		return null;
-	}
 
 	
 	public void connect(IAcessoCelulas cave) {
@@ -42,5 +36,15 @@ public abstract class AtorVivo extends Ator implements IAtorVivo {
 		}
 		
 		orientacao = direcao;
+	}
+	
+	
+	public int getVidaTotal() {
+		return vidaTotal;
+	}
+
+
+	public int getVidaAtual() {
+		return vidaAtual;
 	}
 }

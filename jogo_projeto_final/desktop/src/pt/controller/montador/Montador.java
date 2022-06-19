@@ -60,57 +60,48 @@ public class Montador implements IMontador {
 	}
 
 	
+	/**
+	 * Cria o componentes e os conecta a caverna
+	 * @param cave caverna
+	 */
 	private void colocarAtoresCaverna(ICaverna cave) {
 		String[][] atoresCaverna = leitor.getAtoresCaverna();
-		IAtorVivo aVivo;
-		IAtorObjeto aObjeto;
+		IAtor ator;
 		
 		for (int i = 0; i < atoresCaverna.length; i++) {
-			if (atoresVivos.contains(atoresCaverna[i][0])) {
-				aVivo = criarAtorVivo(atoresCaverna[i][0]);
-				// seta as coordenadas
-				aVivo.setOrientacao(atoresCaverna[i][1].charAt(0));
-				aVivo.setX(Integer.parseInt(atoresCaverna[i][2]));
-				aVivo.setY(Integer.parseInt(atoresCaverna[i][3]));
-				
-				aVivo.connect(cave);
-			} 
-			else if (atoresObjeto.contains(atoresCaverna[i][0])) {
-				aObjeto = criarAtorObjeto(atoresCaverna[i][0]);
-
-				aObjeto.setOrientacao(atoresCaverna[i][1].charAt(0));
-				aObjeto.setX(Integer.parseInt(atoresCaverna[i][2]));
-				aObjeto.setY(Integer.parseInt(atoresCaverna[i][3]));
-				
-				aObjeto.connect(cave);
-			}
+			ator = criarAtor(atoresCaverna[i][0]);
+			
+			// seta as coordenadas
+			ator.setOrientacao(atoresCaverna[i][1].charAt(0));
+			ator.setX(Integer.parseInt(atoresCaverna[i][2]));
+			ator.setY(Integer.parseInt(atoresCaverna[i][3]));
+			
+			ator.connect(cave);
 		}
 	}
 	
 	
-	private IAtorObjeto criarAtorObjeto(String tipoAtor) {
-		IAtorObjeto aObjeto = null;
-
+	/**
+	 * Cria o ator na classe correta de acordo com seu tipo
+	 * @param tipoAtor o tipo do ator
+	 * @return o ator
+	 */
+	private IAtor criarAtor(String tipoAtor) {
+		IAtor ator = null;
+		
 		if (tipoAtor == "parede") {
-			aObjeto = new ObjetoEstatico();
-			aObjeto.setTipo("parede");
+			ator = new ObjetoEstatico();
+			ator.setTipo("parede");
 		}
 		
-		return aObjeto;
-	}
-
-
-	private IAtorVivo criarAtorVivo(String tipoAtor) {
-		IAtorVivo aVivo = null;
-
 		if (tipoAtor == "heroi") {
 			// guarda o heroi
 			heroi = new Heroi();
 			heroi.setTipo("heroi");
-			aVivo = heroi;
+			ator = heroi;
 		}
 		
-		return aVivo;
+		return ator;
 	}
 
 

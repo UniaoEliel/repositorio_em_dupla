@@ -142,36 +142,23 @@ public class Caverna implements ICaverna {
 			return false;
 		}
 	}
-
-
-	public void inserirAtor(IAtorVivo a, int x, int y) {
+	
+	
+	public void inserirAtor(IAtor a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].inserirAtor(a);
 		}	
 	}
 	
-	public void removerAtor(IAtorVivo a, int x, int y) {
-		if  (verificaValidade(x,y)) {
-			celulas[x][y].removerAtor(a);
-		}
-	}
 	
-
-	public void inserirAtor(IAtorObjeto a, int x, int y) {
-		if  (verificaValidade(x,y)) {
-			celulas[x][y].inserirAtor(a);
-		}	
-	}
-	
-	public void removerAtor(IAtorObjeto a, int x, int y) {
+	public void removerAtor(IAtor a, int x, int y) {
 		if  (verificaValidade(x,y)) {
 			celulas[x][y].removerAtor(a);
 		}
 	}
 	
 	
-	
-	public void moverAtor(IAtorVivo a, int novox, int novoy) {
+	public void moverAtor(IAtor a, int novox, int novoy) {
 		if  (verificaValidade(novox,novoy) && celulas[novox][novoy].podeEntrar(a)) {
 			removerAtor(a, a.getX(), a.getY());
 			
@@ -180,31 +167,8 @@ public class Caverna implements ICaverna {
 
 			inserirAtor(a,novox,novoy);
 			
-		}		
-	}
-	
-	public void moverAtor(IAtorObjeto a, int novox, int novoy) {
-		if  (verificaValidade(novox,novoy) && celulas[novox][novoy].podeEntrar(a)) {
-			removerAtor(a, a.getX(), a.getY());
-			inserirAtor(a,novox,novoy);
-		}		
-	}
-
-	
-	public Map<String, IAtorVivo> getAtoresVivos(int x, int y){
-		if (verificaValidade(x,y)) {
-			return celulas[x][y].getAtoresVivos();
 		}
-		return null;
 	}
-	
-	public Map<String, IAtorObjeto> getAtoresObjeto(int x, int y){
-		if (verificaValidade(x,y)) {
-			return celulas[x][y].getAtoresObjeto();
-		}
-		return null;
-	}
-
 
 	public void passarRodada() {
 		ArrayList<IAtor> atores;
@@ -226,6 +190,16 @@ public class Caverna implements ICaverna {
 		
 		while (!pq.isEmpty())
 			pq.poll().passarRodada();	
+	}
+	
+	
+	public ArrayList<IAtor> getAtores(int x, int y) {
+		ArrayList<IAtor> atores = null;
+
+		if (verificaValidade(x, y))
+			atores = celulas[x][y].getAtores();
+		
+		return atores;
 	}
 
 

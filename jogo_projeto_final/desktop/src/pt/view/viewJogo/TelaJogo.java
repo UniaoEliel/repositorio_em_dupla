@@ -51,6 +51,8 @@ public class TelaJogo implements Screen {
 	   jogo.batch.begin();
 	   // coloca as coisas na tela
 	   jogo.getViewCave().plotarCaverna(jogo.batch);
+	   
+	   jogo.getViewHeroi().plotarHeroi(jogo.batch, jogo.font);
 	   // manda pra renderizar
 	   jogo.batch.end();
 	   

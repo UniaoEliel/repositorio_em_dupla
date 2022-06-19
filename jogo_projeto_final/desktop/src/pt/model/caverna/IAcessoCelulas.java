@@ -1,24 +1,16 @@
 package pt.model.caverna;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import pt.model.ator.*;
 
 public interface IAcessoCelulas {
-	public void inserirAtor(IAtorVivo a, int x, int y);
+	public void inserirAtor(IAtor a, int x, int y);
 	
-	public void inserirAtor(IAtorObjeto a, int x, int y);
-
+	public void removerAtor(IAtor a, int x, int y);
 	
-	public void removerAtor(IAtorVivo a, int x, int y);
-	
-	public void removerAtor(IAtorObjeto a, int x, int y);
-	
-	
-	public void moverAtor(IAtorVivo a, int novox, int novoy);
-	
-	public void moverAtor(IAtorObjeto a, int novox, int novoy);
-	
+	public void moverAtor(IAtor a, int novox, int novoy);
 	
 	public void somaIluminacao(int iluminacao, int x, int y);
 	
@@ -49,22 +41,21 @@ public interface IAcessoCelulas {
 	 */
 	public void passarRodada();
 
-	/**
-	 * 
-	 * @param x x da celula
-	 * @param y y da celula
-	 * @return hashmap com os atores vivos da celula
-	 */
-	public Map<String, IAtorVivo> getAtoresVivos(int x, int y);
-	
 	
 	/**
 	 * 
 	 * @param x x da celula
 	 * @param y y da celula
-	 * @return hashmap com os atores objeto da celula
+	 * @return a lista com os atores na celula
 	 */
-	public Map<String, IAtorObjeto> getAtoresObjeto(int x, int y);
+	public ArrayList<IAtor> getAtores(int x, int y);
+
 	
+	/**
+	 * 
+	 * @param x x da celula
+	 * @param y y da celula
+	 * @return se a celula está dentro da caverna
+	 */
 	public boolean verificaValidade(int x, int y);
 }

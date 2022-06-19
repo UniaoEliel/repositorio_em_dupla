@@ -8,9 +8,7 @@ import pt.model.ator.*;
 import pt.view.viewCaverna.IViewCelula;
 
 public class Celula implements ICelula {
-	// dicionarios que guardam os atores
-	private Map<String, IAtorVivo> atoresVivos;
-	private Map<String, IAtorObjeto> atoresObjeto;
+	private ArrayList<IAtor> atores;
 	// luz da sala, um valor de 0 a 100
 	private int iluminacao;
 	
@@ -18,8 +16,7 @@ public class Celula implements ICelula {
 
 	public Celula() {
 		iluminacao = 0;
-		atoresVivos = new HashMap<String, IAtorVivo>();
-		atoresObjeto = new HashMap<String, IAtorObjeto>();
+		atores = new ArrayList<IAtor>(5);
 	}
 	
 	
@@ -34,122 +31,71 @@ public class Celula implements ICelula {
 	}
 
 	
-	public void connect(IViewCelula view) {
-		view.connect(this);
-	}
-	
 	public String[] getNomeAtores() {
-		String[] atores = new String[atoresVivos.size() + atoresObjeto.size() + 1];
-		
-		atores[0] = "chao";
+		String[] nomeAtores = new String[atores.size() + 1];
+		nomeAtores[0] = "chao";
 		int k = 1;
 		
-		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
-			atores[k] = pair.getKey();
-			if (pair.getValue().getOrientacao() != '-')
-				atores[k] += "_" + pair.getValue().getOrientacao();
+		for (IAtor ator : atores) {
+			nomeAtores[k] = ator.getTipo();
+			if (ator.getOrientacao() != '-')
+				nomeAtores[k] += "_" + ator.getOrientacao();
+			
 			k++;
 		}
 		
-		
-		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
-			atores[k] = pair.getKey();
-			if (pair.getValue().getOrientacao() != '-')
-				atores[k] += "_" + pair.getValue().getOrientacao();
-			k++;
-		}
-		
-		return atores;
+		return nomeAtores;
 	}
 	
 	
 	protected ArrayList<IAtor> getAtores() {
-		ArrayList<IAtor> a = new ArrayList<IAtor>();
-		
-		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
-			a.add(pair.getValue());
-		}
-		
-		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
-			a.add(pair.getValue());
-		}
-		
-		return a;
+		return atores;
 	}
 	
 	
-	
-	protected void inserirAtor(IAtorObjeto a) {
-		atoresObjeto.put(a.getTipo(), a);
+	protected void inserirAtor(IAtor a) {
+		atores.add(a);
 		a.entrouCelula();
 	}
 	
 	
-	protected void inserirAtor(IAtorVivo a) {
-		atoresVivos.put(a.getTipo(), a);
-		a.entrouCelula();
-	}
-
-	
-	protected void removerAtor(IAtorObjeto a) {
-		atoresObjeto.remove(a.getTipo());
+	protected void removerAtor(IAtor a) {
+		atores.remove(a);
 		a.saiuCelula();
 	}
-	
-	
-	protected void removerAtor(IAtorVivo a) {
-		atoresVivos.remove(a.getTipo());
-		a.saiuCelula();
-	}
-	
-	
-	protected Map<String, IAtorVivo> getAtoresVivos() {
-		return atoresVivos;
-	}
-	
-	
-	protected Map<String, IAtorObjeto> getAtoresObjeto() {
-		return atoresObjeto;
-	}
-
 
 	public boolean isSolida() {
 		boolean solida = false;
-
-		for (Map.Entry<String,IAtorVivo> pair : atoresVivos.entrySet()) {
-			if (pair.getValue().isSolido()) {
+		
+		for (IAtor ator : atores) {
+			if (ator.isSolido()) {
 				solida = true;
 				break;
 			}
 		}
-		
-		for (Map.Entry<String,IAtorObjeto> pair : atoresObjeto.entrySet()) {
-			if (pair.getValue().isSolido()) {
-				solida = true;
-				break;
-			}
-		}
-		
 		return solida;
 	}
 	
 	
-	protected boolean podeEntrar(IAtorObjeto a) {
-		boolean pode = true;
-		if (isSolida())
-			pode = false;
-		else if (atoresObjeto.containsKey(a.getTipo()))
-			pode = false;
+	
+	private boolean contemTipo(String tipo) {
+		boolean contem = false;
+
+		for (IAtor ator : atores) {
+			if (ator.getTipo() == tipo) {
+				contem = true;
+				break;
+			}
+		}
 		
-		return pode;
+		return contem;
 	}
 	
-	
-	protected boolean podeEntrar(IAtorVivo a) {
+
+	protected boolean podeEntrar(IAtor a) {
 		boolean pode = true;
-		if (isSolida())
-			pode = false;
-		else if (atoresVivos.containsKey(a.getTipo()))
+		
+		if (isSolida() || contemTipo(a.getTipo()))
 			pode = false;
 		
 		return pode;

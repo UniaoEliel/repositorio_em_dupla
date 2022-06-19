@@ -8,9 +8,12 @@ public class Heroi extends AtorVivo implements IHeroi {
 		luz = 100;
 		
 		velocidade = 10;
+		
+		vidaTotal = 50;
+		vidaAtual = 40;
 	}
 
-	@Override
+
 	public void realizarComando(char comando) {
 		super.mover(comando);
 	}
@@ -19,7 +22,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void passarRodada() {
 		saiuCelula();
 		
-		luz--;
+		//luz--;
 		
 		entrouCelula();
 	}
