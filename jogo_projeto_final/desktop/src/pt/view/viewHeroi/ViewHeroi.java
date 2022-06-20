@@ -9,9 +9,16 @@ public class ViewHeroi implements IViewHeroi {
 	private int pixelsX, pixelsY;
 	
 	
-
+	
 
 	private IHeroiProperties heroi;
+	
+	private ViewInventario viewInventario;
+	
+	
+	public ViewHeroi() {
+		this.viewInventario = new ViewInventario();
+	}
 	
 	
 	public void setPixelsX(int pixelsX) {
@@ -29,11 +36,10 @@ public class ViewHeroi implements IViewHeroi {
 		// vermelho
 		font.setColor(255, 0, 0, 1);
 		
-		
 		font.draw(batch, vida, pixelsX / 10, pixelsY / 10);
 		
 		
-		
+		//viewInventario.plotar(batch, font);
 	}
 
 
@@ -45,5 +51,6 @@ public class ViewHeroi implements IViewHeroi {
 
 	public void connect(IHeroiProperties heroi) {
 		this.heroi = heroi;
+		this.viewInventario.connect(heroi.getInventario());
 	}
 }

@@ -1,7 +1,15 @@
 package pt.model.ator;
 
+import pt.model.inventario.IInventario;
+import pt.model.inventario.IInventarioProperties;
+import pt.model.inventario.IItem;
+import pt.model.inventario.Inventario;
+
 public class Heroi extends AtorVivo implements IHeroi {
 	private int luz;
+	private IInventario inventario;
+	private IItem itemSelecionado;
+
 	public Heroi() {
 		tipo = "heroi";
 		orientacao = 's';
@@ -13,6 +21,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 		vidaAtual = 40;
 		
 		defesa = 10;
+		
+		inventario = new Inventario();
 	}
 
 
@@ -22,23 +32,35 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	
 	public void passarRodada() {
-		//saiuCelula();
-		
-		//luz--;
-		
-		//entrouCelula();
 		if (aleatorio.nextInt(5) == 1)
 		movimentoAleatorio();
 		
 		receberAtaque(4);
+		
+		//itemSelecionado.passarRodada();
 	}
 
 	
 	public void entrouCelula() {
-		cave.iluminarCelulas(x, y, luz / 10);	
+		cave.iluminarCelulas(x, y, luz / 10);
+		
+		//itemSelecionado.entrouCelula();
 	}
 	
 	public void saiuCelula() {
 		cave.desiluminarCelulas(x, y, luz / 10);
+		
+		//itemSelecionado.saiuCelula();
+	}
+
+
+	public void connect(IInventario inventario) {
+		this.inventario = inventario;
+	}
+
+
+	@Override
+	public IInventarioProperties getInventario() {
+		return inventario;
 	}
 }
