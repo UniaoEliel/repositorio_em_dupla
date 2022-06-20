@@ -11,6 +11,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 		
 		vidaTotal = 50;
 		vidaAtual = 40;
+		
+		defesa = 10;
 	}
 
 
@@ -20,11 +22,15 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	
 	public void passarRodada() {
-		saiuCelula();
+		//saiuCelula();
 		
 		//luz--;
 		
-		entrouCelula();
+		//entrouCelula();
+		if (aleatorio.nextInt(5) == 1)
+		movimentoAleatorio();
+		
+		receberAtaque(4);
 	}
 
 	

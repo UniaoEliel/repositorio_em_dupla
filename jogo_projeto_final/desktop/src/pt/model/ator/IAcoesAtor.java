@@ -15,4 +15,7 @@ public interface IAcoesAtor {
 	 * Chamado toda vez que uma rodada passa
 	 */
 	public void passarRodada();
+	
+	
+	public void receberAtaque(int dano);
 }

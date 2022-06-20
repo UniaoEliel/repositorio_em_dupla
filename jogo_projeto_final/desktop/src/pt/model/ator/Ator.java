@@ -1,5 +1,8 @@
 package pt.model.ator;
 
+
+import java.util.Random;
+
 import pt.model.caverna.IAcessoCelulas;
 
 /**
@@ -8,9 +11,12 @@ import pt.model.caverna.IAcessoCelulas;
  *
  */
 public abstract class Ator implements IAtor {
+	protected static Random aleatorio = new Random();
+	
 	protected int x, y;
 	protected String tipo;
 	protected boolean solido;
+	
 	
 
 	
@@ -88,4 +94,7 @@ public abstract class Ator implements IAtor {
 	
 	public void passarRodada() {
 	}
+	
+	
+	public abstract void receberAtaque(int dano);
 }

@@ -14,4 +14,10 @@ public abstract class AtorObjeto extends Ator {
 		this.cave = cave;
 		cave.inserirAtor(this, x, y);
 	}
+	
+	/**
+	 * nao faz nada pois é um objeto
+	 */
+	public void receberAtaque(int dano) {
+	}
 }
