@@ -83,12 +83,12 @@ public class Montador implements IMontador {
 		IAtor ator;
 		
 		for (int i = 0; i < atoresCaverna.length; i++) {
-			ator = criarAtor(atoresCaverna[i][0]);
+			ator = criarAtor(atoresCaverna[i][2]);
 			
 			// seta as coordenadas
-			ator.setOrientacao(atoresCaverna[i][1].charAt(0));
-			ator.setX(Integer.parseInt(atoresCaverna[i][2]));
-			ator.setY(Integer.parseInt(atoresCaverna[i][3]));
+			ator.setOrientacao(atoresCaverna[i][3].charAt(0));
+			ator.setX(Integer.parseInt(atoresCaverna[i][0]));
+			ator.setY(Integer.parseInt(atoresCaverna[i][1]));
 			
 			ator.connect(cave);
 		}
@@ -105,12 +105,12 @@ public class Montador implements IMontador {
 	private IAtor criarAtor(String tipoAtor) {
 		IAtor ator = null;
 		
-		if (tipoAtor == "parede") {
+		if (tipoAtor.equals("parede")) {
 			ator = new ObjetoEstatico();
 			ator.setTipo("parede");
 		}
 		
-		if (tipoAtor == "heroi") {
+		if (tipoAtor.equals("heroi")) {
 			// guarda o heroi
 			heroi = new Heroi();
 			heroi.setTipo("heroi");
