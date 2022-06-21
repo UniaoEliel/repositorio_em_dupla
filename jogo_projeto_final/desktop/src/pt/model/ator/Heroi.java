@@ -35,7 +35,12 @@ public class Heroi extends AtorVivo implements IHeroi {
 		if (aleatorio.nextInt(5) == 1)
 		movimentoAleatorio();
 		
-		receberAtaque(4);
+		//receberAtaque(4);
+		
+		saiuCelula();
+		luz--;
+		entrouCelula();
+		
 		
 		//itemSelecionado.passarRodada();
 	}
