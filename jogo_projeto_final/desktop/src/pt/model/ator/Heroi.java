@@ -11,6 +11,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private IItem itemSelecionado;
 
 	public Heroi() {
+		super();
 		tipo = "heroi";
 		orientacao = 's';
 		luz = 100;
@@ -32,15 +33,15 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	
 	public void passarRodada() {
-		if (aleatorio.nextInt(5) == 1)
-		movimentoAleatorio();
+		//if (aleatorio.nextInt(5) == 1)
+		//movimentoAleatorio();
 		
 		//receberAtaque(4);
 		
-		saiuCelula();
-		luz--;
-		entrouCelula();
-		
+		//saiuCelula();
+		//luz--;
+		//entrouCelula();
+		//seMoverEmDirecaoA(0, 0);
 		
 		//itemSelecionado.passarRodada();
 	}

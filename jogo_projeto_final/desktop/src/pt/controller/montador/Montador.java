@@ -1,6 +1,7 @@
 package pt.controller.montador;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import pt.controller.leitor.ILeitura;
@@ -18,6 +19,7 @@ public class Montador implements IMontador {
 	private static String[] nomeAtoresObjeto = {"parede"};
 	private static String[] nomeAtoresVivos	= {"heroi"};
 	private static Set<String> atoresObjeto, atoresVivos;
+	private static Random aleatorio = new Random();
 	
 	private ILeitura leitor;
 	private IHeroi heroi;
@@ -58,6 +60,18 @@ public class Montador implements IMontador {
 		
 		return cave;
 	}
+	
+	
+	private void colocarAtor(ICaverna cave, int x, int y, String nomeAtor, char orientacao) {
+		IAtor ator = criarAtor(nomeAtor);
+		
+		// seta as coordenadas
+		ator.setOrientacao(orientacao);
+		ator.setX(x);
+		ator.setY(y);
+		
+		ator.connect(cave);
+	}
 
 	
 	/**
@@ -78,6 +92,8 @@ public class Montador implements IMontador {
 			
 			ator.connect(cave);
 		}
+		
+		gerarMonstrosAleatorios(cave, 3);
 	}
 	
 	
@@ -101,7 +117,23 @@ public class Montador implements IMontador {
 			ator = heroi;
 		}
 		
+		if (tipoAtor == "morcego") {
+			ator = new Morcego();
+			ator.setTipo("morcego");
+		}
+		
 		return ator;
+	}
+	
+	
+	private void gerarMonstrosAleatorios(ICaverna cave, int numMonstros) {
+		int x, y;
+		for (int i = 0; i < numMonstros; i++) {
+			x = aleatorio.nextInt(16);
+			y = aleatorio.nextInt(16);
+			
+			colocarAtor(cave, x, y, "morcego", 'w');
+		}
 	}
 
 

@@ -4,6 +4,7 @@ package pt.model.ator;
 import java.util.Random;
 
 import pt.model.caverna.IAcessoCelulas;
+import pt.model.caverna.ICaverna;
 
 /**
  * Define um ator da caverna
@@ -22,7 +23,7 @@ public abstract class Ator implements IAtor {
 	
 	
 	protected char orientacao;
-	protected IAcessoCelulas cave;
+	protected ICaverna cave;
 	
 	protected int velocidade;
 	
@@ -31,7 +32,10 @@ public abstract class Ator implements IAtor {
 	}
 	
 	
-	public abstract void connect(IAcessoCelulas cave);
+	public void connect(ICaverna cave) {
+		this.cave = cave;
+		cave.inserirAtor(this, x, y);
+	}
 	
 	
 	public String getTipo() {

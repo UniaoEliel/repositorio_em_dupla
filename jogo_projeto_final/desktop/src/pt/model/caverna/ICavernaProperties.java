@@ -11,4 +11,8 @@ public interface ICavernaProperties {
 	
 	public int getXHeroi();
 	public int getYHeroi();
+	
+	public int distanciaQuadrado(int x1, int y1, int x2, int y2);
+	
+	public String[] getLogRodada();
 }

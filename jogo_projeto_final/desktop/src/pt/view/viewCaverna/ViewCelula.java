@@ -23,7 +23,7 @@ public class ViewCelula {
 	
 
 	protected static void iniciarTexturas() {
-		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png"};
+		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png", "morcego.png"};
 		String[][] localizacaoTexturas = {
 				{"chao", "-", "tex_caverna.png", "0", "0"},
 				{"heroi", "s", "HeroiTochaBaixa.png", "32", "32"},
@@ -38,6 +38,11 @@ public class ViewCelula {
 				{"escuro75", "-", "tex_caverna.png", "32", "288"},
 				{"escuro50", "-", "tex_caverna.png", "64", "288"},
 				{"escuro25", "-", "tex_caverna.png", "96", "288"},
+				
+				{"morcego", "s", "morcego.png", "32", "0"},
+				{"morcego", "d", "morcego.png", "32", "32"},
+				{"morcego", "w", "morcego.png", "32", "64"},
+				{"morcego", "a", "morcego.png", "32", "96"},
 		};
 		
 		

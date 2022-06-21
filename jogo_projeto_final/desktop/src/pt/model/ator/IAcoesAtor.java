@@ -17,5 +17,5 @@ public interface IAcoesAtor {
 	public void passarRodada();
 	
 	
-	public void receberAtaque(int dano);
+	public void receberAtaque(String nomeAtacante, int dano);
 }

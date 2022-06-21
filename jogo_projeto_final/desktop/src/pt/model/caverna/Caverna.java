@@ -17,6 +17,7 @@ public class Caverna implements ICaverna {
 	private Celula[][] celulas;
 	private IHeroiCoord heroi;
 	private PriorityQueue<IAtor> pq;
+	private ArrayList<String> logRodada;
 	
 	// define em qual raio ao redor do heroi a caverna vai
 	// se atualizar ao fim de uma rodada
@@ -27,6 +28,7 @@ public class Caverna implements ICaverna {
 		tamY = 5;
 		pq = new PriorityQueue<IAtor>(new ControleRodada());
 		raioRodada = 16;
+		logRodada = new ArrayList<String>();
 	}
 	
 	public int getTamX() {
@@ -67,7 +69,7 @@ public class Caverna implements ICaverna {
 	}
 	
 	
-	private int distanciaQuadrado(int x1, int y1, int x2, int y2) {
+	public int distanciaQuadrado(int x1, int y1, int x2, int y2) {
 		return (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
 	}
 	
@@ -174,6 +176,9 @@ public class Caverna implements ICaverna {
 		ArrayList<IAtor> atores;
 		int x = heroi.getX(), y = heroi.getY();
 		
+		// renicia o log
+		logRodada.clear();
+		
 		// adiciona todos os elementos numa fila de prioridade com
 		// base na velocidade
 		for (int i = x - raioRodada; i <= x + raioRodada; i++) {
@@ -210,6 +215,23 @@ public class Caverna implements ICaverna {
 
 	public int getYHeroi() {
 		return heroi.getY();
+	}
+	
+	
+	public void inserirNoLog(String acontecimento) {
+		logRodada.add(acontecimento);
+		System.out.println(acontecimento);
+	}
+	
+	
+	public String[] getLogRodada() {
+		String[] log = new String[logRodada.size()];
+		int k = 0;
+		
+		for (String acontecimento : logRodada) {
+			log[k++] = acontecimento;
+		}
+		return log;
 	}
 	
 }

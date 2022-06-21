@@ -58,4 +58,11 @@ public interface IAcessoCelulas {
 	 * @return se a celula está dentro da caverna
 	 */
 	public boolean verificaValidade(int x, int y);
+	
+	
+	/**
+	 * insere no log da rodada
+	 * @param acontecimento o que aconteceu
+	 */
+	public void inserirNoLog(String acontecimento);
 }

@@ -30,7 +30,11 @@ public class Prioridades implements Comparator<String> {
 				{"escuro100", "-", "1000"},
 				{"escuro75", "-", "1000"},
 				{"escuro50", "-", "1000"},
-				{"escuro25", "-", "1000"}
+				{"escuro25", "-", "1000"},
+				{"morcego", "w", "10"},
+				{"morcego", "a", "10"},
+				{"morcego", "s", "10"},
+				{"morcego", "d", "10"}
 		};
 		prioridades = new HashMap<String, Integer>();
 		String nomeAtual;
