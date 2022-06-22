@@ -53,4 +53,9 @@ public class ViewHeroi implements IViewHeroi {
 		this.heroi = heroi;
 		this.viewInventario.connect(heroi.getInventario());
 	}
+	
+	
+	public boolean heroiEstaVivo() {
+		return heroi.isVivo();
+	}
 }

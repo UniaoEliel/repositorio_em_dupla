@@ -9,6 +9,9 @@ public class Morcego extends AtorInimigo {
 		this.velocidade = 20;
 		this.vidaTotal = 20;
 		this.vidaAtual = vidaTotal;
+		
+		this.rodadasMover = 7;
+		this.rodadasAtacar = 15;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import pt.model.ator.IHeroi;
 
 public class Comando implements IComando {
 	private IHeroi jogador;
-	private int[] keys = {Keys.W, Keys.S, Keys.A, Keys.D};
+	private int[] keys = {Keys.W, Keys.S, Keys.A, Keys.D, Keys.P};
 	
 	
 	public void lerComando() {
@@ -19,7 +19,7 @@ public class Comando implements IComando {
 				comando = comando.toLowerCase();
 				letraComando = comando.charAt(0);
 				
-				jogador.realizarComando(letraComando);
+				jogador.setComandoAtual(letraComando);
 			}
 		}
 	}

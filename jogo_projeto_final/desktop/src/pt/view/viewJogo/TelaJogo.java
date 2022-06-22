@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import pt.model.ator.IAtorVivo;
+import pt.model.ator.IHeroi;
 import pt.controller.comando.IComando;
 import pt.model.ator.Heroi;
 import pt.model.caverna.Caverna;
@@ -20,6 +21,8 @@ import pt.view.viewCaverna.ViewCaverna;
 public class TelaJogo implements Screen {
 	private final ViewJogo2 jogo;
 	private IComando leitorComandos;
+	private IHeroi heroi;
+	private int count;
 	OrthographicCamera camera;
 	
 	
@@ -38,24 +41,38 @@ public class TelaJogo implements Screen {
 	 */
 	public void render(float delta) {
 		// limpa a tela, os 3 primeiros valores sao RGB
-		leitorComandos.lerComando();
-	   ScreenUtils.clear(0, 0, 0, 1);
-	   
-	   camera.update();
-	   
-	   jogo.cave.passarRodada();
+		
+	  
 	   
 	   // seta pra usar as coord da camera
 	   jogo.batch.setProjectionMatrix(camera.combined);
 	   // comeca uma tela
 	   jogo.batch.begin();
-	   // coloca as coisas na tela
-	   jogo.getViewCave().plotarCaverna(jogo.batch);
 	   
-	   jogo.getViewHeroi().plotarHeroi(jogo.batch, jogo.font);
-	   // manda pra renderizar
+	   if (jogo.getViewHeroi().heroiEstaVivo()) {
+		   leitorComandos.lerComando();
+		   
+		   
+		   ScreenUtils.clear(0, 0, 0, 1);
+		   
+		   camera.update();
+		   jogo.getViewCave().plotarCaverna(jogo.batch, jogo.font);
+		   
+		   jogo.getViewHeroi().plotarHeroi(jogo.batch, jogo.font);
+		   
+		   jogo.cave.passarRodada();
+		   
+		   
+		   
+		   // coloca as coisas na tela
+		   
+		   // manda pra renderizar
+		   
+	   } else {
+		   jogo.font.draw(jogo.batch, "Voce Perdeu", 100, 100);
+	   }
+	   
 	   jogo.batch.end();
-	   
 	   
 	}
 

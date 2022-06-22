@@ -48,7 +48,7 @@ public interface IAcessoCelulas {
 	 * @param y y da celula
 	 * @return a lista com os atores na celula
 	 */
-	public ArrayList<IAtor> getAtores(int x, int y);
+	public IAtor[] getAtores(int x, int y);
 
 	
 	/**
@@ -65,4 +65,7 @@ public interface IAcessoCelulas {
 	 * @param acontecimento o que aconteceu
 	 */
 	public void inserirNoLog(String acontecimento);
+	
+	
+	public boolean entravel(int x, int y);
 }

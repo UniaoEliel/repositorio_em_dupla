@@ -198,13 +198,24 @@ public class Caverna implements ICaverna {
 	}
 	
 	
-	public ArrayList<IAtor> getAtores(int x, int y) {
+	public IAtor[] getAtores(int x, int y) {
 		ArrayList<IAtor> atores = null;
+		IAtor[] atoresV = null;
 
-		if (verificaValidade(x, y))
+		if (verificaValidade(x, y)) {
+			
 			atores = celulas[x][y].getAtores();
+			
+			atoresV = new IAtor[atores.size()];
+			
+			int k = 0;
+			
+			for (IAtor ator : atores) {
+				atoresV[k++] = ator;
+			}
+		}
 		
-		return atores;
+		return atoresV;
 	}
 
 
@@ -215,6 +226,13 @@ public class Caverna implements ICaverna {
 
 	public int getYHeroi() {
 		return heroi.getY();
+	}
+	
+	
+	public boolean entravel(int x, int y) {
+		if (verificaValidade(x, y) && !celulas[x][y].isSolida())
+			return true;
+		return false;
 	}
 	
 	

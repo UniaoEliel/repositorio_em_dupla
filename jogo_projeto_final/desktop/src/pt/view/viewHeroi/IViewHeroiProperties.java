@@ -5,4 +5,6 @@ public interface IViewHeroiProperties {
 
 
 	public void setPixelsY(int pixelsY);
+	
+	public boolean heroiEstaVivo();
 }

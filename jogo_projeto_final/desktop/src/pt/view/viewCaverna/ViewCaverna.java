@@ -1,5 +1,9 @@
 package pt.view.viewCaverna;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import pt.model.caverna.ICaverna;
@@ -12,6 +16,8 @@ public class ViewCaverna implements IViewCaverna {
 	
 	private ICaverna caverna;
 	
+	
+	private ArrayList<MensagemLog> logCave;
 	// coordenadas da celula que e impressa no canto esquerdo superior
 	// usado como referencia para o resto
 	private int coordXPlot, coordYPlot;
@@ -21,6 +27,7 @@ public class ViewCaverna implements IViewCaverna {
 		tamY = 5;
 		coordXPlot = 0;
 		coordYPlot = 0;
+		logCave = new ArrayList<MensagemLog>();
 	}
 	
 	
@@ -111,9 +118,9 @@ public class ViewCaverna implements IViewCaverna {
 		else if (yHeroi - coordYPlot > 2 * celulasY / 3)
 			coordYPlot = yHeroi - 2 * celulasY / 3;
 	}
-
-
-	public void plotarCaverna(SpriteBatch batch) {
+	
+	
+	private void plotarCelulas(SpriteBatch batch) {
 		int celulasX = pixelsX/tamCelula;
 		int celulasY = pixelsY/tamCelula;
 		
@@ -124,6 +131,33 @@ public class ViewCaverna implements IViewCaverna {
 				if (verificaValidade(i, j))
 					viewCelulas[i][j].plotar(batch,
 						tamCelula * (i - coordXPlot), tamCelula * (j - coordYPlot));
+	}
+	
+	
+	private void plotarLog(SpriteBatch batch, BitmapFont font) {
+		String[] log = caverna.getLogRodada();
+		font.setColor(Color.WHITE);
+		
+		// cada mensagem dura 5 ciclos na tela
+		for (int i = 0; i < log.length; i++)
+			logCave.add(new MensagemLog(log[i], 3));
+		
+		for (int i = logCave.size() - 1; i >= 0; i--) {
+			font.draw(batch, logCave.get(i).getMensagem(), 100, 100 + 20 * i);
+			logCave.get(i).passarTempo();
+		}
+		
+		// remove as mensagens que ja passaram
+		for (int i = logCave.size() - 1; i >= 0; i--) {
+			if (logCave.get(i).getTempo() <= 0)
+				logCave.remove(i);
+		}
+	}
+
+
+	public void plotarCaverna(SpriteBatch batch, BitmapFont font) {
+		plotarCelulas(batch);
+		plotarLog(batch, font);
 	}
 	
 	

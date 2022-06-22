@@ -2,7 +2,12 @@ SIZE;1000;1000
 
 MOLDE; x;y;nomeAtor;direcao;
 
-5;5;heroi;w
+4;4;heroi;w
+
+3;3;parede;s
+3;4;parede;s
+3;5;parede;s
+
 0;0;parede;s
 1;0;parede;s
 2;0;parede;s

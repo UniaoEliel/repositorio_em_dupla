@@ -5,6 +5,12 @@ package pt.model.ator;
  *
  */
 public abstract class AtorInimigo extends AtorVivo {
+	protected int raioAlcance;
+	
+	protected AtorInimigo() {
+		super();
+		raioAlcance = 6;
+	}
 
 	public void passarRodada() {
 		super.passarRodada();
@@ -12,22 +18,23 @@ public abstract class AtorInimigo extends AtorVivo {
 		int xHeroi = cave.getXHeroi(), yHeroi = cave.getYHeroi();
 		
 		int distanciaAoHeroi;
+		// so vai atras do heroi se tiver luz
 		if (cave.getIluminacao(x, y) > 0 ) {
 			distanciaAoHeroi = cave.distanciaQuadrado(x, y, xHeroi, yHeroi);
-			// se esta de 2 a 9 de distancia
-			if (distanciaAoHeroi >= 4 &&
-					distanciaAoHeroi <= 25)
-				seMoverEmDirecaoA(xHeroi, yHeroi);
 			
-			else if (distanciaAoHeroi < 4)
+			if (distanciaAoHeroi <= raioAtaque * raioAtaque + 1)
 				atacar(xHeroi, yHeroi);
 			
-			else {
-				// 20% de chance de fazer um movimento aleatorio
-				if (aleatorio.nextInt(100) <= 20)
+			else if (podeMover() && distanciaAoHeroi >= raioAtaque * raioAtaque &&
+					distanciaAoHeroi <= raioAlcance * raioAlcance)
+				seMoverEmDirecaoA(xHeroi, yHeroi);
+			
+			
+			
+			else if (podeMover() && aleatorio.nextInt(100) <= 20)
 					movimentoAleatorio();
 			}
 		}
 	}
 
-}
+

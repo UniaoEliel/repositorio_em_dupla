@@ -1,6 +1,9 @@
 package pt.model.ator;
 
+import java.util.AbstractQueue;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import pt.model.caverna.IAcessoCelulas;
 
@@ -10,35 +13,103 @@ import pt.model.caverna.IAcessoCelulas;
  *
  */
 public abstract class AtorVivo extends Ator {
-	protected int vidaTotal, vidaAtual, ataque, defesa;
+	protected int vidaTotal, vidaAtual, ataque, defesa, raioAtaque;
 	// iniciativa vai acumulando quando as rodadas se passam.
 	// quando chega no valor 100 o ator pode atacar
 	protected int iniciativaAtual;
 	
+	protected int rodadasMover, rodadasAtacar;
+	
+	protected int countMover, countAtacar;
+
+	/**
+	 * Utiliza busca em largura para achar um caminho
+	 * 
+	 * @param xAtual x atual
+	 * @param yAtual y atual
+	 * @param xDest x destino
+	 * @param yDest y destino
+	 * @param maxProfundidade profundidade maxima da busca
+	 * @return vetor com os movimentos em ordem caso existir caminho,
+	 * null caso nao existir
+	 */
+	public char[] buscarCaminho(int xAtual, int yAtual, int xDest, int yDest, int maxProfundidade) {
+		char[] caminhoResposta = null;
+		Caminho caminho, cloneCaminho;
+		int xCam, yCam;
+		Queue<Caminho> caminhos = new LinkedList<Caminho>();
+		
+		caminhos.add(new Caminho(xAtual, yAtual));
+		
+		while (!caminhos.isEmpty()) {
+			caminho = caminhos.poll();
+			xCam = caminho.getX();
+			yCam = caminho.getY();
+			
+			if (cave.distanciaQuadrado(xCam, yCam, xDest, yDest) < 4) {
+				caminhoResposta = caminho.getCaminho();
+				break;
+			}
+			else if (caminho.getTamanho() < maxProfundidade) {
+				if (cave.entravel(xCam, yCam + 1)) {
+					cloneCaminho = caminho.clone();
+					cloneCaminho.inserirMovimento('w');
+					caminhos.add(cloneCaminho);
+				}
+				if (cave.entravel(xCam, yCam - 1)) {
+					cloneCaminho = caminho.clone();
+					cloneCaminho.inserirMovimento('s');
+					caminhos.add(cloneCaminho);
+				}
+				if (cave.entravel(xCam + 1, yCam)) {
+					cloneCaminho = caminho.clone();
+					cloneCaminho.inserirMovimento('d');
+					caminhos.add(cloneCaminho);
+				}
+				if (cave.entravel(xCam - 1, yCam)) {
+					cloneCaminho = caminho.clone();
+					cloneCaminho.inserirMovimento('a');
+					caminhos.add(cloneCaminho);
+				}
+			}
+		}
+		caminhos.clear();
+		
+		return caminhoResposta;
+	}
+	
+	
 	public AtorVivo() {
 		this.solido = true;
 		iniciativaAtual = 0;
+		
+		countMover = 0;
+		countAtacar = 0;
+		
+		raioAtaque = 1;
 	}
 	
 	public void mover(char direcao) {
 		switch (direcao) {
-		case 'w':
-			cave.moverAtor(this, x, y + 1);
-			break;
-		case 's':
-			cave.moverAtor(this, x, y - 1);
-			break;
-		case 'a':
-			cave.moverAtor(this, x - 1, y);
-			break;
-		case 'd':
-			cave.moverAtor(this, x + 1, y);
-
-		default:
-			break;
+			case 'w':
+				cave.moverAtor(this, x, y + 1);
+				break;
+			case 's':
+				cave.moverAtor(this, x, y - 1);
+				break;
+			case 'a':
+				cave.moverAtor(this, x - 1, y);
+				break;
+			case 'd':
+				cave.moverAtor(this, x + 1, y);
+	
+			default:
+				break;
 		}
 		
 		orientacao = direcao;
+		
+		countMover = rodadasMover;
 	}
 	
 	
@@ -59,13 +130,18 @@ public abstract class AtorVivo extends Ator {
 	 * @param y y da célula
 	 */
 	protected void atacar(int x, int y) {
-		ArrayList<IAtor> atores = cave.getAtores(x, y);
-		
-		if (atores != null && podeAtacar()) {
-			for (IAtor ator : atores)
-				ator.receberAtaque(this.tipo, this.ataque);
+		if (podeAtacar()) {
+			IAtor[] atores = cave.getAtores(x, y);
 			
-			iniciativaAtual -= 100;
+			if (atores != null && podeAtacar()) {
+					for (IAtor ator : atores) {
+						ator.receberAtaque(tipo, ataque);
+					}
+				
+			}
+			
+			// renicia o contador
+			countAtacar = rodadasAtacar;
 		}
 	}
 	
@@ -109,36 +185,46 @@ public abstract class AtorVivo extends Ator {
 	 * @param x x da celula
 	 * @param y y da celula
 	 */
-	protected void seMoverEmDirecaoA(int x, int y) {
-		if (this.x < x)
-			mover('d');
-		else if (this.x > x)
-			mover('a');
-		else if (this.y < y)
-			mover('w');
-		else if (this.y > y)
-			mover('s');
+	protected void seMoverEmDirecaoA(int xDest, int yDest) {
+		char[] caminho = buscarCaminho(x, y, xDest, yDest, 50);
+		
+		if (caminho != null && caminho.length > 0)
+			mover(caminho[0]);
+		else
+			movimentoAleatorio();
 	}
 	
 	
 	protected boolean podeAtacar() {
-		boolean pode = false;
-		if (iniciativaAtual >= 100)
-			pode = true;
+		return (countAtacar == 0);
+	}
+	
+	
+	protected boolean podeMover() {
+		return (countMover == 0);
 		
-		return pode;
 	}
 	
 	
 	public void passarRodada() {
-		iniciativaAtual += velocidade;
+		if (countMover > 0)
+			countMover--;
+		if (countAtacar > 0)
+			countAtacar--;
 	}
 	
 	/**
 	 * 
 	 * @return os atores na sala diretamente em frente do ator
 	 */
-	protected Arraylist<IAtor> getAtoresEmFrente() {
-		
+	protected void atacarFrente() {
+		if (orientacao == 'w')
+			atacar(x, y+1);
+		else if (orientacao == 's')
+			atacar(x, y-1);
+		else if (orientacao == 'a')
+			atacar(x-1, y);
+		else
+			atacar(x+1, y);
 	}
 }

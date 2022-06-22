@@ -9,6 +9,11 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private int luz;
 	private IInventario inventario;
 	private IItem itemSelecionado;
+	private boolean vivo;
+	private char comandoAtual;
+
+	
+
 
 	public Heroi() {
 		super();
@@ -16,23 +21,38 @@ public class Heroi extends AtorVivo implements IHeroi {
 		orientacao = 's';
 		luz = 100;
 		
-		velocidade = 10;
+		velocidade = 15;
+		
+		rodadasMover = 5;
+		rodadasAtacar = 15;
 		
 		vidaTotal = 50;
-		vidaAtual = 40;
+		vidaAtual = 50000;
+		
+		comandoAtual = '*';
 		
 		defesa = 10;
-		
+		ataque = 10;
 		inventario = new Inventario();
+		
+		vivo = true;
 	}
 
 
 	public void realizarComando(char comando) {
-		super.mover(comando);
+		if (comando == '*')
+			comando = '*';
+		else if (comando == 'p' && podeAtacar())
+			atacarFrente();
+		else if (podeMover())
+			super.mover(comando);
+
 	}
 	
 	
 	public void passarRodada() {
+		super.passarRodada();
+		realizarComando(comandoAtual);
 		//if (aleatorio.nextInt(5) == 1)
 		//movimentoAleatorio();
 		
@@ -44,6 +64,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		//seMoverEmDirecaoA(0, 0);
 		
 		//itemSelecionado.passarRodada();
+		comandoAtual = '*';
 	}
 
 	
@@ -63,7 +84,22 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void connect(IInventario inventario) {
 		this.inventario = inventario;
 	}
+	
+	
+	public void morrer() {
+		super.morrer();
+		vivo = false;
+	}
+	
+	
+	public void setComandoAtual(char comandoAtual) {
+		this.comandoAtual = comandoAtual;
+	}
 
+	
+	public boolean isVivo() {
+		return vivo;
+	}
 
 	@Override
 	public IInventarioProperties getInventario() {

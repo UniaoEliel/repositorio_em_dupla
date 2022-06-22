@@ -2,6 +2,10 @@ package pt.view.viewCaverna;
 
 import java.util.Comparator;
 import java.util.Map;
+
+import pt.controller.leitor.ILeitor;
+import pt.controller.leitor.Leitor;
+
 import java.util.HashMap;
 /**
  * Objeto da fila de prioridades da classe celula, serve para 
@@ -17,6 +21,7 @@ public class Prioridades implements Comparator<String> {
 	
 	
 	protected static void iniciarPrioridades() {
+		/**
 		String[][] priorid = {
 				{"chao", "-", "0"},
 				{"heroi", "s", "100"},
@@ -36,6 +41,10 @@ public class Prioridades implements Comparator<String> {
 				{"morcego", "s", "10"},
 				{"morcego", "d", "10"}
 		};
+		**/
+		ILeitor leitor = new Leitor();
+		
+		String[][] priorid = leitor.getLayers();
 		prioridades = new HashMap<String, Integer>();
 		String nomeAtual;
 		

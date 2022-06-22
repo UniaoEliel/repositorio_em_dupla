@@ -4,19 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
+
 import pt.model.ator.*;
 import pt.view.viewCaverna.IViewCelula;
 
 public class Celula implements ICelula {
+	private static Random aleatorio = new Random();
 	private ArrayList<IAtor> atores;
 	// luz da sala, um valor de 0 a 100
 	private int iluminacao;
+	private String tipoChao;
 	
 
 
 	public Celula() {
 		iluminacao = 0;
 		atores = new ArrayList<IAtor>(5);
+		
+		if (aleatorio.nextInt(100) <= 80)
+			tipoChao = "chao";
+		else
+			tipoChao = "chao" + Integer.toString(2 + aleatorio.nextInt(8));
 	}
 	
 	
@@ -33,7 +42,7 @@ public class Celula implements ICelula {
 	
 	public String[] getNomeAtores() {
 		String[] nomeAtores = new String[atores.size() + 1];
-		nomeAtores[0] = "chao";
+		nomeAtores[0] = tipoChao;
 		int k = 1;
 		
 		for (IAtor ator : atores) {

@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import pt.controller.leitor.ILeitor;
+import pt.controller.leitor.Leitor;
 import pt.model.ator.IAtorObjeto;
 import pt.model.caverna.ICelula;
 
@@ -23,27 +25,10 @@ public class ViewCelula {
 	
 
 	protected static void iniciarTexturas() {
+		ILeitor leitor = new Leitor();
 		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png", "morcego.png"};
-		String[][] localizacaoTexturas = {
-				{"chao", "-", "tex_caverna.png", "0", "0"},
-				{"heroi", "s", "HeroiTochaBaixa.png", "32", "32"},
-				{"heroi", "w", "HeroiTochaBaixa.png", "0", "64"},
-				{"heroi", "a", "HeroiTochaBaixa.png", "0", "32"},
-				{"heroi", "d", "HeroiTochaBaixa.png", "0", "0"},
-				{"parede", "s", "tex_caverna.png", "96", "0"},
-				{"parede", "w", "tex_caverna.png", "64", "32"},
-				{"parede", "a", "tex_caverna.png", "0", "32"},
-				{"parede", "d", "tex_caverna.png", "32", "32"},
-				{"escuro100", "-", "tex_caverna.png", "0", "288"},
-				{"escuro75", "-", "tex_caverna.png", "32", "288"},
-				{"escuro50", "-", "tex_caverna.png", "64", "288"},
-				{"escuro25", "-", "tex_caverna.png", "96", "288"},
-				
-				{"morcego", "s", "morcego.png", "32", "0"},
-				{"morcego", "d", "morcego.png", "32", "32"},
-				{"morcego", "w", "morcego.png", "32", "64"},
-				{"morcego", "a", "morcego.png", "32", "96"},
-		};
+		
+		String[][] localizacaoTexturas = leitor.getTexturas();
 		
 		
 		

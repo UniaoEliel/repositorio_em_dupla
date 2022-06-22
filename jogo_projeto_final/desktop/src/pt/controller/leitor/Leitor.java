@@ -107,7 +107,6 @@ public class Leitor implements ILeitor {
 		        Pattern pattern = Pattern.compile(patternString);	        
 		        String[] split = pattern.split(linhaTexturas);
 		        
-		        ArrayList<String> row = new ArrayList<String>(Arrays.asList(split[0],split[1],split[2],split[3],split[4]));
 		        matrix.add(split);
 	        }
 	        
@@ -146,10 +145,15 @@ public class Leitor implements ILeitor {
 		        String[] split = pattern.split(linhaLayers);
 		        
 		        ArrayList<String> row = new ArrayList<String>(Arrays.asList(split[0],split[1],split[5]));
-		        matrix.add(split);
+		        
+		        String[] rowS = new String[3];
+		        
+		        for (int i = 0; i < 3; i++)
+		        	rowS[i] = row.get(i);
+		        matrix.add(rowS);
 	        }
 	        
-	        String [][] layersCaverna = new String[matrix.size()][4];
+	        String [][] layersCaverna = new String[matrix.size()][3];
 	        for (int i=0;i < matrix.size(); i++) {
 	        	layersCaverna[i] = matrix.get(i); 
 	        }
@@ -164,7 +168,7 @@ public class Leitor implements ILeitor {
 		
 	}
 	
-	
+	/*
 	public String[] getNomeArquivosTexturas() {
 		ArrayList<String> matrix = new ArrayList<String>();
 		
@@ -191,4 +195,5 @@ public class Leitor implements ILeitor {
 		return null;
 		
 	}
+	*/
 }

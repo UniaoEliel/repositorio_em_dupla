@@ -7,4 +7,9 @@ public interface IHeroiProperties {
 	public int getVidaAtual();
 	
 	public IInventarioProperties getInventario();
+	
+	
+	public boolean isVivo();
+	
+	public void setComandoAtual(char comandoAtual);
 }
