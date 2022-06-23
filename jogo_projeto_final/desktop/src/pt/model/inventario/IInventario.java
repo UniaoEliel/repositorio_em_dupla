@@ -9,4 +9,7 @@ public interface IInventario extends IInventarioProperties {
 	 * Avisa os itens que uma rodada se passou.
 	 */
 	public void passarRodada();
+	
+	
+	
 }

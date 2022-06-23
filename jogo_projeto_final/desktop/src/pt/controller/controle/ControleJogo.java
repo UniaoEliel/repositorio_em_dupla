@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import pt.controller.comando.Comando;
 import pt.controller.comando.IComando;
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.montador.IMontador;
 import pt.controller.montador.Montador;
 import pt.model.ator.IHeroi;
@@ -41,7 +43,7 @@ public class ControleJogo implements IControleJogo {
 	}
 	
 	
-	private void criarViewCaverna() {
+	private void criarViewCaverna() throws ArquivoAusente {
 		viewCave = new ViewCaverna();
 		
 		viewCave.setPixelsX(pixelsX);
@@ -58,14 +60,14 @@ public class ControleJogo implements IControleJogo {
 	}
 	
 	
-	private void iniciarModel() {
+	private void iniciarModel() throws ArquivoAusente, ArquivoMalFormatado {
 		montador = Montador.getInstance();
 		cave = montador.criarCaverna();
 		heroi = montador.getHeroi();
 	}
 	
 	
-	private void conectarComponentes() {
+	private void conectarComponentes() throws ArquivoAusente, ArquivoMalFormatado {
 		viewCave.connect(cave);
 		viewHeroi.connect(heroi);
 		leitorComandos.connect(heroi);
@@ -75,12 +77,13 @@ public class ControleJogo implements IControleJogo {
 	}
 
 	@Override
-	public void iniciarJogo() {
+	public void iniciarJogo() throws ArquivoAusente, ArquivoMalFormatado {
 		criarViewCaverna();
 		criarViewHeroi();
 		iniciarModel();
 		leitorComandos = new Comando();
 		conectarComponentes();
+		
 	}
 
 	@Override
@@ -109,5 +112,4 @@ public class ControleJogo implements IControleJogo {
 	public void dispose() {
 		viewCave.dispose();
 	}
-
 }

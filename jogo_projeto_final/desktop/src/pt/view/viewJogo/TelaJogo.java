@@ -12,6 +12,8 @@ import pt.model.ator.IHeroi;
 import pt.controller.comando.IComando;
 import pt.controller.controle.ControleJogo;
 import pt.controller.controle.IControleJogo;
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.model.ator.Heroi;
 import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
@@ -25,6 +27,7 @@ import pt.view.viewCaverna.ViewCaverna;
 public class TelaJogo implements Screen {
 	private final ViewJogo2 jogo;
 	private IControleJogo controleJogo;
+	private boolean erro;
 	public SpriteBatch batch;
     
     // font é usado para plotar textos na tela
@@ -57,7 +60,13 @@ public class TelaJogo implements Screen {
 	   // comeca uma tela
 	   batch.begin();
 	   
-	   if (controleJogo.perdeu()) {
+	   if (erro) {
+		   font.getData().setScale(5);
+		   font.setColor(Color.RED);
+		   font.draw(batch, "Erro", 160, 250);
+	   }
+	   
+	   else if (controleJogo.perdeu()) {
 		   font.getData().setScale(5);
 		   font.setColor(Color.RED);
 		   font.draw(batch, "Voce perdeu", 160, 250);
@@ -83,7 +92,15 @@ public class TelaJogo implements Screen {
 
 	@Override
 	public void show() {
+		try {
 		controleJogo.iniciarJogo();
+		} catch (ArquivoAusente arquivo) {
+			System.err.println(arquivo.getMessage());
+			erro = true;
+		} catch (ArquivoMalFormatado arquivo) {
+			System.err.println(arquivo.getMessage());
+			erro = true;
+		}
 	}
 	
 

@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.model.caverna.ICaverna;
 import pt.model.caverna.ICavernaProperties;
 
@@ -33,7 +35,7 @@ public class ViewCaverna implements IViewCaverna {
 	}
 	
 	
-	public void connect(ICaverna caverna) {
+	public void connect(ICaverna caverna) throws ArquivoAusente, ArquivoMalFormatado {
 		this.caverna = caverna;
 		
 		tamX = caverna.getTamX();
@@ -55,7 +57,7 @@ public class ViewCaverna implements IViewCaverna {
 	}
 	
 	
-	public void create() {
+	public void create() throws ArquivoAusente, ArquivoMalFormatado {
 		viewCelulas = new ViewCelula[tamX][tamY];
 
 		for (int i = 0; i < tamX; i++)

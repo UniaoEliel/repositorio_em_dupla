@@ -1,5 +1,7 @@
 package pt.controller.montador;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.model.ator.IHeroi;
 import pt.model.caverna.ICaverna;
 
@@ -9,7 +11,7 @@ public interface IMontador extends IRLeitura {
 	 * cave.txt nela
 	 * @return caverna criada
 	 */
-	public ICaverna criarCaverna();
+	public ICaverna criarCaverna() throws ArquivoAusente, ArquivoMalFormatado;
 	
 	/**
 	 * 

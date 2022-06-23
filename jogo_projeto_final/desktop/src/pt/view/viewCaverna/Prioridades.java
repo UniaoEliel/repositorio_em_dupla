@@ -3,6 +3,8 @@ package pt.view.viewCaverna;
 import java.util.Comparator;
 import java.util.Map;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.leitor.ILeitor;
 import pt.controller.leitor.Leitor;
 
@@ -20,7 +22,7 @@ public class Prioridades implements Comparator<String> {
 	
 	
 	
-	protected static void iniciarPrioridades() {
+	protected static void iniciarPrioridades() throws ArquivoAusente, ArquivoMalFormatado {
 		/**
 		String[][] priorid = {
 				{"chao", "-", "0"},
@@ -58,7 +60,7 @@ public class Prioridades implements Comparator<String> {
 	}
 	
 	
-	protected Prioridades() {
+	protected Prioridades() throws ArquivoAusente, ArquivoMalFormatado {
 		iniciarPrioridades();
 	}
 	

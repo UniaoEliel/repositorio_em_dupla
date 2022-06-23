@@ -29,7 +29,7 @@ public class ViewInventario {
 	}
 	
 	
-	protected void plotarInventario(SpriteBatch batch, BitmapFont font) {
+	private void plotarBordas(SpriteBatch batch, BitmapFont font) {
 		int inicioX = 400 - ((40 + 36 * inventario.getTamanho()) / 2);
 		for (int i = 0; i < inventario.getTamanho(); i++) {
 			batch.draw(borda, inicioX + 36 * i, 30);
@@ -38,6 +38,15 @@ public class ViewInventario {
 		}
 		
 		batch.draw(bordaSelecionada, inicioX + 36 * (heroi.getNumItem() - 1), 30);
+	}
+	
+	protected void plotarInventario(SpriteBatch batch, BitmapFont font) {
+		plotarBordas(batch, font);
+		
+		if (!heroi.getNomeItemSelecionado().equals("nada")) {
+			font.setColor(Color.WHITE);
+			font.draw(batch, heroi.getNomeItemSelecionado(), 360, 85);
+		}
 	}
 	
 	protected void dispose() {

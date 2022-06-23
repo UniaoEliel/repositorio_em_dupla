@@ -17,4 +17,6 @@ public interface IHeroiProperties {
 	public void setComandoAtual(char comandoAtual);
 	
 	public int getNumItem();
+	
+	public String getNomeItemSelecionado();
 }

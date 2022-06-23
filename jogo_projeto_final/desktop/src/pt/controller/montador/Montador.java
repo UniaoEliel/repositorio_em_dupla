@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.leitor.ILeitura;
 import pt.controller.leitor.Leitor;
 import pt.model.ator.*;
@@ -47,7 +49,7 @@ public class Montador implements IMontador {
 	}
 	
 	
-	public ICaverna criarCaverna() {
+	public ICaverna criarCaverna() throws ArquivoAusente, ArquivoMalFormatado {
 		ICaverna cave = new Caverna();
 		
 		int[] tamanhos = leitor.getTamanhoCaverna();
@@ -74,26 +76,40 @@ public class Montador implements IMontador {
 	}
 
 	
+	private void checarValidade(String[][] atoresCaverna) throws ArquivoMalFormatado {
+		for (int i = 0; i < atoresCaverna.length; i++) {
+			if (atoresCaverna[i].length != 4) 
+				throw new ArquivoMalFormatado("cave.txt", i);
+		}
+	}
 	/**
 	 * Cria o componentes e os conecta a caverna
 	 * @param cave caverna
+	 * @throws ArquivoAusente 
 	 */
-	private void colocarAtoresCaverna(ICaverna cave) {
+	private void colocarAtoresCaverna(ICaverna cave)  throws ArquivoAusente, ArquivoMalFormatado {
 		String[][] atoresCaverna = leitor.getAtoresCaverna();
+		checarValidade(atoresCaverna);
 		IAtor ator;
+		int i = 0;
 		
-		for (int i = 0; i < atoresCaverna.length; i++) {
-			ator = criarAtor(atoresCaverna[i][2]);
-			
-			// seta as coordenadas
-			ator.setOrientacao(atoresCaverna[i][3].charAt(0));
-			ator.setX(Integer.parseInt(atoresCaverna[i][0]));
-			ator.setY(Integer.parseInt(atoresCaverna[i][1]));
-			
-			ator.connect(cave);
+		try {
+			for (i = 0; i < atoresCaverna.length; i++) {
+				ator = criarAtor(atoresCaverna[i][2]);
+				
+				// seta as coordenadas
+				ator.setOrientacao(atoresCaverna[i][3].charAt(0));
+				ator.setX(Integer.parseInt(atoresCaverna[i][0]));
+				ator.setY(Integer.parseInt(atoresCaverna[i][1]));
+				
+				ator.connect(cave);
+			}
+		} catch (NumberFormatException e) {
+			System.err.println(e.getMessage());
+			throw new ArquivoMalFormatado("cave.txt", i + 5);
+		} catch (NullPointerException e) {
+			throw new ArquivoMalFormatado("cave.txt", i + 5);
 		}
-		
-		gerarMonstrosAleatorios(cave, 3);
 	}
 	
 	
@@ -127,7 +143,7 @@ public class Montador implements IMontador {
 		
 		else if (tipoAtor.equals("goblin")) {
 			ator = new Goblin();
-		}
+		} 
 		
 		return ator;
 	}

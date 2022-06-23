@@ -11,5 +11,5 @@ public interface IInventarioProperties {
 	
 	public void setTamanho();
 	
-	
+	public String getNomeItem(int indice);
 }

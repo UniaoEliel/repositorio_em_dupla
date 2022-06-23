@@ -8,7 +8,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.leitor.ILeitor;
 import pt.controller.leitor.Leitor;
 import pt.model.ator.IAtorObjeto;
@@ -27,29 +30,30 @@ public class ViewCelula {
 		return textures;
 	}
 	
-
-	protected static void iniciarTexturas() {
-		ILeitor leitor = new Leitor();
+	
+	private static void abrirArquivosTexturas(ILeitor leitor) throws ArquivoAusente, ArquivoMalFormatado {
+		int i = -1;
 		String[] arquivosTexturas = leitor.getNomeArquivosTexturas();
-		
+		Texture texAtual;
+
+		try {
+			for (i = 0; i < arquivosTexturas.length; i++) {
+				texAtual = new Texture(Gdx.files.internal(arquivosTexturas[i]));
+				texs.put(arquivosTexturas[i], texAtual);
+			}
+		} catch (GdxRuntimeException e) {
+			if (i != -1)
+				throw new ArquivoAusente(arquivosTexturas[i], "assets");
+			else
+				throw new ArquivoAusente();
+		}
+	}
+	
+	
+	private static void iniciarPedacosTexturas(ILeitor leitor) throws ArquivoAusente, ArquivoMalFormatado {
 		String[][] localizacaoTexturas = leitor.getTexturas();
-		
-		
-		
 		String nomeTextura;
 		TextureRegion texRegionAtual;
-	
-		
-		texs = new HashMap<String, Texture>();
-		textures = new HashMap<String, TextureRegion>();
-		Texture texAtual;
-		
-		// carrega os arquivos de texturas
-		for (int i = 0; i < arquivosTexturas.length; i++) {
-			texAtual = new Texture(Gdx.files.internal(arquivosTexturas[i]));
-			texs.put(arquivosTexturas[i], texAtual);
-		}
-		
 		
 		for (int j = 0; j < localizacaoTexturas.length; j++) {
 			nomeTextura = localizacaoTexturas[j][0];
@@ -63,6 +67,22 @@ public class ViewCelula {
 			textures.put(nomeTextura, texRegionAtual);
 			
 		}
+	}
+
+	protected static void iniciarTexturas() throws ArquivoAusente, ArquivoMalFormatado {
+		ILeitor leitor = new Leitor();
+		
+		String[][] localizacaoTexturas = leitor.getTexturas();
+		
+		String nomeTextura;
+		TextureRegion texRegionAtual;
+
+		texs = new HashMap<String, Texture>();
+		textures = new HashMap<String, TextureRegion>();
+
+		abrirArquivosTexturas(leitor);
+		
+		iniciarPedacosTexturas(leitor);
 		
 		prio = new Prioridades();
 	}

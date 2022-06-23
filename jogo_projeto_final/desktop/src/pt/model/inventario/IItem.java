@@ -12,4 +12,7 @@ public interface IItem extends IRHeroi {
 	public void equipar();
 	
 	public void desequipar();
+	
+	
+	public String getNome();
 }

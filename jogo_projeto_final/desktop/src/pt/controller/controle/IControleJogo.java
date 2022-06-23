@@ -3,8 +3,11 @@ package pt.controller.controle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import pt.controller.exceptions.ArquivoAusente;
+import pt.controller.exceptions.ArquivoMalFormatado;
+
 public interface IControleJogo {
-	public void iniciarJogo();
+	public void iniciarJogo() throws ArquivoAusente, ArquivoMalFormatado;
 	
 	
 	public void passarRodada();

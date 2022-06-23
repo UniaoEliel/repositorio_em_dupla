@@ -39,6 +39,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 		
 		numItem = 1;
 		
+		itemSelecionado = null;
+		
 		vivo = true;
 		ganhou = false;
 	}
@@ -76,17 +78,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void passarRodada() {
 		super.passarRodada();
 		realizarComando(comandoAtual);
-		//if (aleatorio.nextInt(5) == 1)
-		//movimentoAleatorio();
 		
-		//receberAtaque(4);
 		
-		//saiuCelula();
-		//luz--;
-		//entrouCelula();
-		//seMoverEmDirecaoA(0, 0);
-		
-		//itemSelecionado.passarRodada();
+		if (itemSelecionado != null)
+			itemSelecionado.passarRodada();
 		comandoAtual = '*';
 	}
 
@@ -94,13 +89,15 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void entrouCelula() {
 		cave.iluminarCelulas(x, y, luz / 10);
 		
-		//itemSelecionado.entrouCelula();
+		if (itemSelecionado != null)
+			itemSelecionado.entrouCelula();
 	}
 	
 	public void saiuCelula() {
 		cave.desiluminarCelulas(x, y, luz / 10);
 		
-		//itemSelecionado.saiuCelula();
+		if (itemSelecionado != null)
+		 itemSelecionado.saiuCelula();
 	}
 
 
@@ -147,5 +144,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 		//this.itemSelecionado = inventario.getItem(numItem);
 		
 		//itemSelecionado.equipar();
+	}
+	
+	
+	public String getNomeItemSelecionado() {
+		return "Tocha";
 	}
 }
