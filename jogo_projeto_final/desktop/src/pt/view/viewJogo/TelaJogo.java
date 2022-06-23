@@ -1,6 +1,7 @@
 package pt.view.viewJogo;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -51,7 +52,7 @@ public class TelaJogo implements Screen {
 		// limpa a tela, os 3 primeiros valores sao RGB
 		
 	  
-	   
+	   ScreenUtils.clear(Color.BLACK);
 	   // seta pra usar as coord da camera
 	   batch.setProjectionMatrix(camera.combined);
 	   // comeca uma tela
