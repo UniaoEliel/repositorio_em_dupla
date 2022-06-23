@@ -27,4 +27,14 @@ public class Tocha extends Item {
 	public void usar() {
 	}
 
+
+	public void equipar() {
+		
+	}
+
+
+	public void desequipar() {
+		
+	}
+
 }
