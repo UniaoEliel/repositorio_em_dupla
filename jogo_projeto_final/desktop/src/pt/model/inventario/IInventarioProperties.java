@@ -9,7 +9,6 @@ public interface IInventarioProperties {
 	
 	public void setTamanho(int tamanho);
 	
-	public void setTamanho();
 	
 	public String getNomeItem(int indice);
 }

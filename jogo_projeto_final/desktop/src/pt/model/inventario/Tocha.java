@@ -37,4 +37,8 @@ public class Tocha extends Item {
 		
 	}
 
+	public String getNome() {
+		return this.nome;
+	}
+
 }

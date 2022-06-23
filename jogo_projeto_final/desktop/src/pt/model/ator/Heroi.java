@@ -147,6 +147,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 	
 
+<<<<<<< HEAD
 	
 	public String getNomeItemSelecionado() {
 		return "Tocha";
@@ -155,10 +156,23 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void setVidaAtual(int NovaVida) {
 		if (NovaVida <= this.vidaTotal ) {
 			this.vidaAtual = NovaVida;
+=======
+	public void setVidaAtual(int novaVida) {
+		if (novaVida <= this.vidaTotal ) {
+			this.vidaAtual = novaVida;
+>>>>>>> 208e8c6 (Cria espada einventario)
 		}
 		else {
 			this.vidaAtual = this.vidaTotal;
 		}
+	}
+	
+	public int getAtaque() {
+		return this.ataque;
+	}
+	
+	public void setAtaque(int novoAtaque) {
+		this.ataque = (novoAtaque);
 	}
 }
 
