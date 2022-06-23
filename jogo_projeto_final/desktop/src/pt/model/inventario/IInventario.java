@@ -10,3 +10,4 @@ public interface IInventario extends IInventarioProperties {
 	 */
 	public void passarRodada();
 }
+
