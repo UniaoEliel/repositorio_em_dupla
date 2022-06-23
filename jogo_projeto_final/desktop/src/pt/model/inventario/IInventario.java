@@ -13,3 +13,4 @@ public interface IInventario extends IInventarioProperties {
 	
 	
 }
+

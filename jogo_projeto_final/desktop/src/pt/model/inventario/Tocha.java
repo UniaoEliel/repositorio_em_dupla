@@ -2,28 +2,39 @@ package pt.model.inventario;
 
 public class Tocha extends Item {
 
-	@Override
+	private int luz = 100;
+	
+	public Tocha() {
+		this.nome = "tocha";
+	}
+	
+	
 	public void passarRodada() {
-		// TODO Auto-generated method stub
+		luz = luz--;
 
 	}
 
-	@Override
 	public void entrouCelula() {
-		// TODO Auto-generated method stub
+		cave.iluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/10);
 
 	}
 
-	@Override
 	public void saiuCelula() {
-		// TODO Auto-generated method stub
+		cave.desiluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/10);
 
 	}
-
-	@Override
+	
 	public void usar() {
-		// TODO Auto-generated method stub
+	}
 
+
+	public void equipar() {
+		
+	}
+
+
+	public void desequipar() {
+		
 	}
 
 }

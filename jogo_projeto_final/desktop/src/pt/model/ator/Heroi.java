@@ -127,7 +127,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 
 
-	@Override
+	
 	public boolean ganhou() {
 		return ganhou;
 	}
@@ -146,8 +146,19 @@ public class Heroi extends AtorVivo implements IHeroi {
 		//itemSelecionado.equipar();
 	}
 	
+
 	
 	public String getNomeItemSelecionado() {
 		return "Tocha";
 	}
+
+	public void setVidaAtual(int NovaVida) {
+		if (NovaVida <= this.vidaTotal ) {
+			this.vidaAtual = NovaVida;
+		}
+		else {
+			this.vidaAtual = this.vidaTotal;
+		}
+	}
 }
+

@@ -1,6 +1,6 @@
 package pt.model.inventario;
 
-public interface IItem extends IRHeroi {
+public interface IItem extends IRHeroi, IRCaverna {
 	public void passarRodada();
 	
 	public void entrouCelula();
@@ -16,3 +16,4 @@ public interface IItem extends IRHeroi {
 	
 	public String getNome();
 }
+	
