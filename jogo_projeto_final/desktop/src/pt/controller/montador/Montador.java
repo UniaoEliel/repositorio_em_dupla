@@ -110,16 +110,23 @@ public class Montador implements IMontador {
 			ator.setTipo("parede");
 		}
 		
-		if (tipoAtor.equals("heroi")) {
+		else if (tipoAtor.equals("heroi")) {
 			// guarda o heroi
 			heroi = new Heroi();
 			heroi.setTipo("heroi");
 			ator = heroi;
 		}
 		
-		if (tipoAtor == "morcego") {
+		else if (tipoAtor.equals("morcego")) {
 			ator = new Morcego();
-			ator.setTipo("morcego");
+		}
+		
+		else if (tipoAtor.equals("aranha")) {
+			ator = new Aranha();
+		}
+		
+		else if (tipoAtor.equals("goblin")) {
+			ator = new Goblin();
 		}
 		
 		return ator;

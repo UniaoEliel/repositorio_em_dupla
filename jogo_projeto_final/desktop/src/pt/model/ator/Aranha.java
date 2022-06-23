@@ -8,15 +8,14 @@ public class Aranha extends AtorInimigo {
 		this.vidaTotal = 30;
 		this.vidaAtual = this.vidaTotal;
 		this.velocidade = 10;
+		this.raioAlcance = 2;
 		
 		this.rodadasMover = 9;
 		this.rodadasAtacar = 20;
+		
+		this.tipo = "aranha";
 	}
 
-	@Override
-	public void receberAtaque(int dano) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

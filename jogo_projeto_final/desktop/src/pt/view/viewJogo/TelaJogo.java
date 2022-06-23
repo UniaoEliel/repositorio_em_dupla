@@ -49,7 +49,6 @@ public class TelaJogo implements Screen {
 	 * Renderiza a tela, é chamada toda vez que um loop do jogo se passa
 	 */
 	public void render(float delta) {
-		// limpa a tela, os 3 primeiros valores sao RGB
 		
 	  
 	   ScreenUtils.clear(Color.BLACK);
@@ -59,9 +58,13 @@ public class TelaJogo implements Screen {
 	   batch.begin();
 	   
 	   if (controleJogo.perdeu()) {
-		   font.draw(batch, "Voce perdeu", 100, 100);
+		   font.getData().setScale(5);
+		   font.setColor(Color.RED);
+		   font.draw(batch, "Voce perdeu", 160, 250);
 	   } else if (controleJogo.ganhou()) {
-		   font.draw(batch, "Voce ganhou", 100, 100);
+		   font.getData().setScale(5);
+		   font.setColor(Color.BLUE);
+		   font.draw(batch, "Voce ganhou", 160, 250);
 	   } else {
 		   controleJogo.passarRodada();
 		   controleJogo.plotarJogo(batch, font);

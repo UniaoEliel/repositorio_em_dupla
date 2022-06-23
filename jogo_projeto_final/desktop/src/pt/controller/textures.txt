@@ -23,3 +23,11 @@ morcego;s;morcego.png;32;0;10
 morcego;d;morcego.png;32;32;10
 morcego;w;morcego.png;32;64;10
 morcego;a;morcego.png;32;96;10
+aranha;w;aranha.png;0;0;10
+aranha;a;aranha.png;0;32;10
+aranha;s;aranha.png;0;64;10
+aranha;d;aranha.png;0;96;10
+goblin;s;goblin_r.png;0;0;10
+goblin;d;goblin_r.png;0;32;10
+goblin;w;goblin_r.png;0;64;10
+goblin;a;goblin_r.png;0;96;10

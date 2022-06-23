@@ -28,7 +28,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		rodadasAtacar = 15;
 		
 		vidaTotal = 50;
-		vidaAtual = 50000;
+		vidaAtual = 50;
 		
 		comandoAtual = '*';
 		
@@ -46,7 +46,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 			comando = '*';
 		else if (comando == 'p' && podeAtacar())
 			atacarFrente();
-		else if (podeMover())
+		else if ((comando == 'w' ||
+				comando == 's' ||
+				comando == 'a' ||
+				comando == 'd') && podeMover())
 			super.mover(comando);
 
 	}
