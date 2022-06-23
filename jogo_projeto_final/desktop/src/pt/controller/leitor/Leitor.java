@@ -1,7 +1,7 @@
 package pt.controller.leitor;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -168,32 +168,38 @@ public class Leitor implements ILeitor {
 		
 	}
 	
-	/*
+	
 	public String[] getNomeArquivosTexturas() {
-		ArrayList<String> matrix = new ArrayList<String>();
 		
-        while ((linhaLayers = br.readLine()) != null)   {
+		try{
+			FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/textures.txt");
+			  
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String linhaTexturas;
+		Set<String> nomeTexturas = new HashSet<String>();
+		
+        while ((linhaTexturas = br.readLine()) != null)   {
         	String patternString = ";";
 	        Pattern pattern = Pattern.compile(patternString);	        
-	        String[] split = pattern.split(linhaLayers);
-	        
-	        ArrayList<String> row = new ArrayList<String>(Arrays.asList(split[0],split[1],split[5]));
-	        matrix.add(split);
+	        String[] split = pattern.split(linhaTexturas);
+	        nomeTexturas.add(split[2]);
         }
         
-        String [][] layersCaverna = new String[matrix.size()][4];
-        for (int i=0;i < matrix.size(); i++) {
-        	layersCaverna[i] = matrix.get(i); 
+        String [] texturasCaverna = new String[nomeTexturas.size()];
+        
+        int i = 0;
+        for (String x : nomeTexturas) {
+            texturasCaverna[i++] = x;
         }
         
-        return layersCaverna;
-        
-        	
+        return texturasCaverna;
+         	
 	    }catch (Exception e){//Catch exception if anyp
 		  System.err.println("Error: " + e.getMessage());
 		 }
 		return null;
 		
 	}
-	*/
+
 }

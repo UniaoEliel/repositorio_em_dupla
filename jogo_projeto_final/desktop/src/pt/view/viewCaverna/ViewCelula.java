@@ -28,7 +28,7 @@ public class ViewCelula {
 
 	protected static void iniciarTexturas() {
 		ILeitor leitor = new Leitor();
-		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png", "morcego.png"};
+		String[] arquivosTexturas = leitor.getNomeArquivosTexturas();
 		
 		String[][] localizacaoTexturas = leitor.getTexturas();
 		
