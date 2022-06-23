@@ -32,6 +32,16 @@ public abstract class Ator implements IAtor {
 	}
 	
 	
+	public String getNomeRepresentacao() {
+		String representacao = tipo;
+		
+		if (orientacao != '-')
+			representacao += "_" + orientacao;
+		
+		return representacao;
+	}
+	
+	
 	public void connect(ICaverna cave) {
 		this.cave = cave;
 		cave.inserirAtor(this, x, y);

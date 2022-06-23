@@ -40,17 +40,13 @@ public class Celula implements ICelula {
 	}
 
 	
-	public String[] getNomeAtores() {
+	public String[] getNomeRepresentacoes() {
 		String[] nomeAtores = new String[atores.size() + 1];
 		nomeAtores[0] = tipoChao;
 		int k = 1;
 		
 		for (IAtor ator : atores) {
-			nomeAtores[k] = ator.getTipo();
-			if (ator.getOrientacao() != '-')
-				nomeAtores[k] += "_" + ator.getOrientacao();
-			
-			k++;
+			nomeAtores[k++] = ator.getNomeRepresentacao();
 		}
 		
 		return nomeAtores;

@@ -3,6 +3,8 @@ package pt.model.ator;
 public interface IAtorProperties {
 	public String getTipo();
 	
+	public String getNomeRepresentacao();
+	
 	public void setTipo(String tipo);
 	
 	public char getOrientacao();

@@ -62,8 +62,8 @@ public class TelaJogo implements Screen {
 	   } else if (controleJogo.ganhou()) {
 		   font.draw(batch, "Voce ganhou", 100, 100);
 	   } else {
-	   controleJogo.passarRodada();
-	   controleJogo.plotarJogo(batch, font);
+		   controleJogo.passarRodada();
+		   controleJogo.plotarJogo(batch, font);
 	   }
 
 	   batch.end();

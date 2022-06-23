@@ -24,6 +24,8 @@ public class ViewCelula {
 	private ICelula celula;
 	
 
+	
+
 	protected static void iniciarTexturas() {
 		ILeitor leitor = new Leitor();
 		String[] arquivosTexturas = {"tex_caverna.png", "hero.png","HeroiTochaBaixa.png", "morcego.png"};
@@ -105,7 +107,7 @@ public class ViewCelula {
 	 */
 	protected void plotar(SpriteBatch batch, int x, int y) {
 		PriorityQueue<String> pt = new PriorityQueue<String>(prio);
-		String[] elementos = celula.getNomeAtores();
+		String[] elementos = celula.getNomeRepresentacoes();
 		String atual;
 		
 		for (int i = 0; i < elementos.length; i++)

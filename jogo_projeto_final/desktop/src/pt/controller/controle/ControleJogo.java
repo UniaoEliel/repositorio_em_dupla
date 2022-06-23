@@ -95,7 +95,7 @@ public class ControleJogo implements IControleJogo {
 
 	@Override
 	public boolean perdeu() {
-		return heroi.isVivo();
+		return !heroi.isVivo();
 	}
 
 	@Override

@@ -7,7 +7,6 @@ MOLDE; x;y;nomeAtor;direcao;
 3;3;parede;s
 3;4;parede;s
 3;5;parede;s
-
 0;0;parede;s
 1;0;parede;s
 2;0;parede;s
