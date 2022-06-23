@@ -11,5 +11,8 @@ public interface IHeroiProperties {
 	
 	public boolean isVivo();
 	
+	
+	public boolean ganhou();
+	
 	public void setComandoAtual(char comandoAtual);
 }

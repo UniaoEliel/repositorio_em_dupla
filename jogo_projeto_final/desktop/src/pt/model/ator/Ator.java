@@ -100,5 +100,6 @@ public abstract class Ator implements IAtor {
 	}
 	
 	
-	public abstract void receberAtaque(int dano);
+	public void receberAtaque(int nomeAtacante, int dano) {
+	}
 }

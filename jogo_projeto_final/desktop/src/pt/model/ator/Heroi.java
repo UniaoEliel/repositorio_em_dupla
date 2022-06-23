@@ -11,6 +11,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private IItem itemSelecionado;
 	private boolean vivo;
 	private char comandoAtual;
+	private boolean ganhou;
 
 	
 
@@ -36,6 +37,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		inventario = new Inventario();
 		
 		vivo = true;
+		ganhou = false;
 	}
 
 
@@ -104,5 +106,11 @@ public class Heroi extends AtorVivo implements IHeroi {
 	@Override
 	public IInventarioProperties getInventario() {
 		return inventario;
+	}
+
+
+	@Override
+	public boolean ganhou() {
+		return ganhou;
 	}
 }

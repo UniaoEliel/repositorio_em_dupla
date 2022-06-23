@@ -31,69 +31,29 @@ public class ViewJogo2 extends Game {
     
     // font é usado para plotar textos na tela
     public BitmapFont font;
-   
-    private IViewCaverna viewCave;
-    private IViewHeroi viewHeroi;
-    private IComando leitorComandos;
-    private IMontador montador;
     
     private int pixelsX = 800, pixelsY = 480;
     
     public ICaverna cave;
 	
 	public void create() {
-		criarViewCaverna();
-		criarViewHeroi();
-
-		iniciarJogo();
 		batch = new SpriteBatch();
 		
 		font = new BitmapFont();
 		
-		this.setScreen(new TelaJogo(this, leitorComandos));
+		this.setScreen(new TelaJogo(this));
 	}
 	
 	
-	private void iniciarJogo() {
-		IHeroi heroi;
-		montador = Montador.getInstance();
-		cave = montador.criarCaverna();
-		heroi = montador.getHeroi();
-		viewCave.connect(cave);
-		viewHeroi.connect(heroi);
-		
-		leitorComandos = new Comando();
-		leitorComandos.connect(heroi);
-		
-		cave.connect(heroi);
+	public SpriteBatch getBatch() {
+		return batch;
 	}
 	
 	
-	private void criarViewCaverna() {
-		viewCave = new ViewCaverna();
-		
-		viewCave.setPixelsX(pixelsX);
-		viewCave.setPixelsY(pixelsY);
-		viewCave.setTamCelula(32);
+	public BitmapFont getFont() {
+		return font;
 	}
-	
-	
-	private void criarViewHeroi() {
-		viewHeroi = new ViewHeroi();
-		
-		viewHeroi.setPixelsX(pixelsX);
-		viewHeroi.setPixelsY(pixelsY);
-	}
-	
-	
-	public IViewCaverna getViewCave() {
-		return viewCave;
-	}
-	
-	
-	public IViewHeroi getViewHeroi() {
-		return viewHeroi;
-	}
+
 	
 	public void render() {
 		super.render();
@@ -104,7 +64,6 @@ public class ViewJogo2 extends Game {
 	   public void dispose() {
 	      batch.dispose();
 	      font.dispose();
-	      viewCave.dispose();
 	      
 	   }
 	

@@ -14,10 +14,4 @@ public class Morcego extends AtorInimigo {
 		this.rodadasAtacar = 15;
 	}
 
-	@Override
-	public void receberAtaque(int dano) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
