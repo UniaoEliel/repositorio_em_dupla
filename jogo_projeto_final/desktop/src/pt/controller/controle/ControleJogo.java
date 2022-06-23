@@ -70,6 +70,8 @@ public class ControleJogo implements IControleJogo {
 		viewHeroi.connect(heroi);
 		leitorComandos.connect(heroi);
 		cave.connect(heroi);
+		
+		viewHeroi.setTexturas(viewCave.getTexturas());
 	}
 
 	@Override

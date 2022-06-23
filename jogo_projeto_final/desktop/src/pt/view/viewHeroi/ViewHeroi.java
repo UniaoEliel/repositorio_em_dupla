@@ -1,15 +1,17 @@
 package pt.view.viewHeroi;
 
+import java.util.Map;
+
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import pt.model.ator.IHeroiProperties;
 
 public class ViewHeroi implements IViewHeroi {
 	private int pixelsX, pixelsY;
 	
-	
-	
+	private Map<String, TextureRegion> textures;
 
 	private IHeroiProperties heroi;
 	
@@ -39,7 +41,7 @@ public class ViewHeroi implements IViewHeroi {
 		font.draw(batch, vida, pixelsX / 10, pixelsY / 10);
 		
 		
-		//viewInventario.plotar(batch, font);
+		viewInventario.plotarInventario(batch, font);
 	}
 
 
@@ -51,11 +53,17 @@ public class ViewHeroi implements IViewHeroi {
 
 	public void connect(IHeroiProperties heroi) {
 		this.heroi = heroi;
-		this.viewInventario.connect(heroi.getInventario());
+		this.viewInventario.connect(heroi);
 	}
 	
 	
 	public boolean heroiEstaVivo() {
 		return heroi.isVivo();
+	}
+
+
+	@Override
+	public void setTexturas(Map<String, TextureRegion> textures) {
+		this.textures = textures;
 	}
 }

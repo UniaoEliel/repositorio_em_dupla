@@ -8,4 +8,8 @@ public interface IItem extends IRHeroi {
 	public void saiuCelula();
 	
 	public void usar();
+	
+	public void equipar();
+	
+	public void desequipar();
 }

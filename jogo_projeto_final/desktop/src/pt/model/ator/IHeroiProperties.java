@@ -15,4 +15,6 @@ public interface IHeroiProperties {
 	public boolean ganhou();
 	
 	public void setComandoAtual(char comandoAtual);
+	
+	public int getNumItem();
 }

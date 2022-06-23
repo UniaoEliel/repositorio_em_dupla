@@ -1,10 +1,12 @@
 package pt.view.viewCaverna;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import pt.model.caverna.ICaverna;
 import pt.model.caverna.ICavernaProperties;
@@ -61,6 +63,11 @@ public class ViewCaverna implements IViewCaverna {
 				viewCelulas[i][j] = new ViewCelula();
 		
 		ViewCelula.iniciarTexturas();
+	}
+	
+	
+	public Map<String, TextureRegion> getTexturas() {
+		return ViewCelula.getTexturas();
 	}
 
 

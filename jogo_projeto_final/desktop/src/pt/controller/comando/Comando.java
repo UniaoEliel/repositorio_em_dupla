@@ -7,7 +7,8 @@ import pt.model.ator.IHeroi;
 
 public class Comando implements IComando {
 	private IHeroi jogador;
-	private int[] keys = {Keys.W, Keys.S, Keys.A, Keys.D, Keys.P};
+	private int[] keys = {Keys.W, Keys.S, Keys.A, Keys.D, Keys.J,
+			Keys.NUM_1, Keys.NUM_2, Keys.NUM_3, Keys.NUM_4, Keys.NUM_5, Keys.NUM_6, Keys.NUM_7};
 	
 	
 	public void lerComando() {

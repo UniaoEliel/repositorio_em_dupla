@@ -23,7 +23,9 @@ public class ViewCelula {
 	
 	private ICelula celula;
 	
-
+	protected static Map<String, TextureRegion> getTexturas() {
+		return textures;
+	}
 	
 
 	protected static void iniciarTexturas() {

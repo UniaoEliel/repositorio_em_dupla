@@ -12,7 +12,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private boolean vivo;
 	private char comandoAtual;
 	private boolean ganhou;
-
+	private int numItem;
 	
 
 
@@ -35,6 +35,9 @@ public class Heroi extends AtorVivo implements IHeroi {
 		defesa = 10;
 		ataque = 10;
 		inventario = new Inventario();
+		inventario.setTamanho(7);
+		
+		numItem = 1;
 		
 		vivo = true;
 		ganhou = false;
@@ -44,14 +47,29 @@ public class Heroi extends AtorVivo implements IHeroi {
 	public void realizarComando(char comando) {
 		if (comando == '*')
 			comando = '*';
-		else if (comando == 'p' && podeAtacar())
+		else if (comando == 'j' && podeAtacar())
 			atacarFrente();
 		else if ((comando == 'w' ||
 				comando == 's' ||
 				comando == 'a' ||
 				comando == 'd') && podeMover())
 			super.mover(comando);
-
+		
+		else if (comando == '1')
+			setNumItem(1);
+		else if (comando == '2')
+			setNumItem(2);
+		else if (comando == '3')
+			setNumItem(3);
+		else if (comando == '4')
+			setNumItem(4);
+		else if (comando == '5')
+			setNumItem(5);
+		else if (comando == '6')
+			setNumItem(6);
+		else if (comando == '7')
+			setNumItem(7);
+		
 	}
 	
 	
@@ -115,5 +133,19 @@ public class Heroi extends AtorVivo implements IHeroi {
 	@Override
 	public boolean ganhou() {
 		return ganhou;
+	}
+	
+	
+	public int getNumItem() {
+		return numItem;
+	}
+	
+	
+	public void setNumItem(int numItem) {
+		this.numItem = numItem;
+		
+		//this.itemSelecionado = inventario.getItem(numItem);
+		
+		//itemSelecionado.equipar();
 	}
 }
