@@ -146,18 +146,25 @@ public class Heroi extends AtorVivo implements IHeroi {
 		//itemSelecionado.equipar();
 	}
 	
-
 	public String getNomeItemSelecionado() {
 		return "Tocha";
 	}
-
-	public void setVidaAtual(int NovaVida) {
-		if (NovaVida <= this.vidaTotal ) {
-			this.vidaAtual = NovaVida;
+	
+	public void setVidaAtual(int novaVida) {
+		if (novaVida <= this.vidaTotal ) {
+			this.vidaAtual = novaVida;
 		}
 		else {
 			this.vidaAtual = this.vidaTotal;
 		}
+	}
+	
+	public int getAtaque() {
+		return this.ataque;
+	}
+	
+	public void setAtaque(int novoAtaque) {
+		this.ataque = (novoAtaque);
 	}
 }
 

@@ -19,5 +19,11 @@ public interface IHeroiProperties {
 	
 	public int getNumItem();
 	
+<<<<<<< HEAD
 	public String getNomeItemSelecionado();
+=======
+	public int getAtaque();
+	
+	public void setAtaque(int novoAtaque);
+>>>>>>> 208e8c6 (Cria espada einventario)
 }

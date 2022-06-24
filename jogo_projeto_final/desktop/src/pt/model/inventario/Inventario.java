@@ -1,7 +1,14 @@
 package pt.model.inventario;
 
+import java.util.*;
+
 public class Inventario implements IInventario {
 	private int tamanho;
+	private ArrayList <IItem> itens;
+	
+	public Inventario() {
+		itens = new ArrayList<IItem>();
+	}
 	
 	
 	public void setTamanho(int tamanho) {
@@ -10,34 +17,37 @@ public class Inventario implements IInventario {
 	public int getTamanho() {
 		return 7;
 	}
-	@Override
+	
+	
 	public IItem getItem(int posicao) {
-		// TODO Auto-generated method stub
-		return null;
+		return itens.get(posicao - 1);
 	}
-	@Override
+	
 	public int getQuantidadeItens() {
-		// TODO Auto-generated method stub
-		return 0;
+		return itens.size();
 	}
-	@Override
-	public void setTamanho() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
+
+	
 	public void inserirItem(IItem item) {
-		// TODO Auto-generated method stub
-		
+		if (this.getQuantidadeItens() < 7) {
+			itens.add(item);
+		}	
 	}
-	@Override
+	
+	
 	public void removerItem(IItem item) {
-		// TODO Auto-generated method stub
-		
+		itens.remove(item); 
 	}
-	@Override
+	
 	public void passarRodada() {
-		// TODO Auto-generated method stub
+		Iterator<IItem> iterate = itens.iterator();
 		
+	    while(iterate.hasNext()){
+	    	
+	      IItem element = iterate.next();
+	      element.passarRodada();	
+	    }
 	}
+		
 }
+
