@@ -147,7 +147,6 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 	
 
-	
 	public String getNomeItemSelecionado() {
 		return "Tocha";
 	}
