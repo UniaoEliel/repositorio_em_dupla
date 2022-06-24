@@ -16,6 +16,6 @@ public interface IItem extends IRHeroi, IRCaverna {
 	public void desequipar();
 	
 	
-	public String getNome();
+	public void setInventario(Inventario inventario);
 }
 	

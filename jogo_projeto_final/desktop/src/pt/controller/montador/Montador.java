@@ -107,7 +107,7 @@ public class Montador implements IMontador {
 		} catch (NumberFormatException e) {
 			System.err.println(e.getMessage());
 			throw new ArquivoMalFormatado("cave.txt", i + 5);
-		} catch (NullPointerException e) {
+		} catch (ArquivoMalFormatado e) {
 			throw new ArquivoMalFormatado("cave.txt", i + 5);
 		}
 	}
@@ -118,7 +118,7 @@ public class Montador implements IMontador {
 	 * @param tipoAtor o tipo do ator
 	 * @return o ator
 	 */
-	private IAtor criarAtor(String tipoAtor) {
+	private IAtor criarAtor(String tipoAtor) throws ArquivoMalFormatado {
 		IAtor ator = null;
 		
 		if (tipoAtor.equals("parede")) {
@@ -140,10 +140,14 @@ public class Montador implements IMontador {
 		else if (tipoAtor.equals("aranha")) {
 			ator = new Aranha();
 		}
+		else if (tipoAtor.equals("bau")) {
+			ator = new Bau();
+		}
 		
 		else if (tipoAtor.equals("goblin")) {
 			ator = new Goblin();
-		} 
+		} else
+			throw new ArquivoMalFormatado();
 		
 		return ator;
 	}

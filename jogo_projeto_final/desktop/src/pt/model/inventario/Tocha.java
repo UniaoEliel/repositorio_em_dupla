@@ -2,43 +2,33 @@ package pt.model.inventario;
 
 public class Tocha extends Item {
 
-	private int luz = 100;
+	private int luz;
 	
 	public Tocha() {
 		this.nome = "tocha";
+		luz = 500;
 	}
 	
 	
 	public void passarRodada() {
-		luz = luz--;
-
+		saiuCelula();
+		luz--;
+		entrouCelula();
 	}
 
 	public void entrouCelula() {
-		cave.iluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/10);
+		cave.iluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/50);
 
 	}
 
 	public void saiuCelula() {
-		cave.desiluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/10);
+		cave.desiluminarCelulas(heroi.getX(), heroi.getY(), (this.luz)/50);
 
-	}
-	
-	public void usar() {
-	}
-
-
-	public void equipar() {
-		
-	}
-
-
-	public void desequipar() {
-		
 	}
 
 	public String getNome() {
 		return this.nome;
 	}
+	
 
 }

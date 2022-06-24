@@ -11,7 +11,7 @@ public class Aranha extends AtorInimigo {
 		this.raioAlcance = 2;
 		
 		this.rodadasMover = 9;
-		this.rodadasAtacar = 20;
+		this.rodadasAtacar = 25;
 		
 		this.tipo = "aranha";
 	}

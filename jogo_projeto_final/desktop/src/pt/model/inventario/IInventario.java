@@ -1,6 +1,6 @@
 package pt.model.inventario;
 
-public interface IInventario extends IInventarioProperties {
+public interface IInventario extends IInventarioProperties, IRHeroi, IRCaverna {
 	public void inserirItem(IItem item);
 	
 	public void removerItem(IItem item);

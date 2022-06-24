@@ -1,6 +1,7 @@
 package pt.model.ator;
 
 import pt.model.inventario.IInventarioProperties;
+import pt.model.inventario.IItem;
 
 public interface IHeroiProperties {
 	public int getVidaTotal();
@@ -19,11 +20,11 @@ public interface IHeroiProperties {
 	
 	public int getNumItem();
 	
-<<<<<<< HEAD
 	public String getNomeItemSelecionado();
-=======
+
 	public int getAtaque();
 	
 	public void setAtaque(int novoAtaque);
->>>>>>> 208e8c6 (Cria espada einventario)
+
+	public void receberItem(IItem item);
 }

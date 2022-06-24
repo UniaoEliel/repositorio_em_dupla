@@ -21,6 +21,7 @@ public class PocaoVida extends Item {
 	public void usar() {
 		heroi.setVidaAtual(heroi.getVidaAtual() + 10);
 		this.desequipar();
+		inventario.removerItem(this);
 	}
 
 

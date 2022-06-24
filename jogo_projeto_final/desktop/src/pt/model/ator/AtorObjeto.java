@@ -13,6 +13,6 @@ public abstract class AtorObjeto extends Ator {
 	/**
 	 * nao faz nada pois é um objeto
 	 */
-	public void receberAtaque(int dano) {
+	public void receberAtaque(String nomeAtor, int dano) {
 	}
 }

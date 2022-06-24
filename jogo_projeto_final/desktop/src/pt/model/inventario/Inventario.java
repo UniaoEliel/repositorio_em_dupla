@@ -2,17 +2,24 @@ package pt.model.inventario;
 
 import java.util.*;
 
+import pt.model.ator.IHeroi;
+import pt.model.caverna.ICaverna;
+
 public class Inventario implements IInventario {
 	private int tamanho;
-	private ArrayList <IItem> itens;
+	private IItem[] itens;
+	private IHeroi heroi;
+	private ICaverna caverna;
 	
 	public Inventario() {
-		itens = new ArrayList<IItem>();
 	}
 	
 	
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
+		itens = new IItem[tamanho];
+		for (int i = 0; i < 7; i++)
+			itens[i] = null;
 	}
 	public int getTamanho() {
 		return 7;
@@ -20,33 +27,68 @@ public class Inventario implements IInventario {
 	
 	
 	public IItem getItem(int posicao) {
-		return itens.get(posicao - 1);
+		return itens[posicao - 1];
 	}
 	
 	public int getQuantidadeItens() {
-		return itens.size();
+		int quant = 0;
+
+		for (IItem item : itens) {
+			if (item != null)
+				quant++;
+		}
+		
+		return quant;
 	}
 
 	
 	public void inserirItem(IItem item) {
-		if (this.getQuantidadeItens() < 7) {
-			itens.add(item);
-		}	
+		for (int i = 0; i < itens.length; i++)
+			if (itens[i] == null) {
+				itens[i] = item;
+				item.connect(heroi);
+				item.connect(caverna);
+				item.setInventario(this);
+				break;
+			}
 	}
 	
 	
+	public void connect(IHeroi heroi) {
+		this.heroi = heroi;
+	}
+	
 	public void removerItem(IItem item) {
-		itens.remove(item); 
+		for (int i = 0; i < itens.length; i++)
+			if (itens[i] == item)
+				itens[i] = null;
 	}
 	
 	public void passarRodada() {
-		Iterator<IItem> iterate = itens.iterator();
+		for (IItem item : itens) {
+			if (item != null)
+				item.passarRodada();
+		}
+	}
+
+
+	@Override
+	public String getNomeItem(int indice) {
+		String nome = "nada";
 		
-	    while(iterate.hasNext()){
-	    	
-	      IItem element = iterate.next();
-	      element.passarRodada();	
-	    }
+		if (itens[indice - 1] != null)
+			nome = itens[indice - 1].getNome();
+		
+		return nome;
+	}
+
+
+	public void connect(ICaverna caverna) {
+		this.caverna = caverna;
+		for (IItem item : itens) {
+			if (item != null)
+				item.connect(caverna);
+		}
 	}
 		
 }

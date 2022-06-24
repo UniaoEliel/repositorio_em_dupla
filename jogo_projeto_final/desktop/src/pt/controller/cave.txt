@@ -3,6 +3,11 @@ SIZE;1000;1000
 MOLDE; x;y;nomeAtor;direcao;
 
 4;4;heroi;s
+3;3;bau;-
+4;3;bau;-
+5;3;bau;-
+6;3;bau;-
+7;3;bau;-
 1;1;aranha;s
 2;2;goblin;s
 3;3;parede;s

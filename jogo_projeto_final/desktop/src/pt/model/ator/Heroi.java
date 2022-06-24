@@ -1,9 +1,11 @@
 package pt.model.ator;
 
+import pt.model.caverna.ICaverna;
 import pt.model.inventario.IInventario;
 import pt.model.inventario.IInventarioProperties;
 import pt.model.inventario.IItem;
 import pt.model.inventario.Inventario;
+import pt.model.inventario.Tocha;
 
 public class Heroi extends AtorVivo implements IHeroi {
 	private int luz;
@@ -36,10 +38,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		ataque = 10;
 		inventario = new Inventario();
 		inventario.setTamanho(7);
-		
-		numItem = 1;
-		
-		itemSelecionado = null;
+		inventario.connect(this);
 		
 		vivo = true;
 		ganhou = false;
@@ -51,6 +50,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 			comando = '*';
 		else if (comando == 'j' && podeAtacar())
 			atacarFrente();
+		else if (comando == 'k')
+			interagirFrente();
+		else if (comando == 'l')
+			usarItem();
 		else if ((comando == 'w' ||
 				comando == 's' ||
 				comando == 'a' ||
@@ -75,6 +78,37 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 	
 	
+	private void interagirFrente() {
+		if (orientacao == 'w')
+			interagir(x, y+1);
+		else if (orientacao == 's')
+			interagir(x, y-1);
+		else if (orientacao == 'a')
+			interagir(x-1, y);
+		else
+			interagir(x+1, y);
+	}
+	
+	
+	private void interagir(int x, int y) {
+		IAtor[] atores = cave.getAtores(x, y);
+		
+		if (atores != null) {
+				for (IAtor ator : atores) {
+					ator.interagir(this);
+				}
+			
+		}
+	}
+	
+	
+	private void usarItem() {
+		if (itemSelecionado != null) {
+			itemSelecionado.usar();
+			setNumItem(this.numItem);
+		}
+	}
+	
 	public void passarRodada() {
 		super.passarRodada();
 		realizarComando(comandoAtual);
@@ -84,17 +118,24 @@ public class Heroi extends AtorVivo implements IHeroi {
 			itemSelecionado.passarRodada();
 		comandoAtual = '*';
 	}
+	
+	public void mover(char direcao) {
+		if (itemSelecionado != null)
+			itemSelecionado.saiuCelula();
+		super.mover(direcao);
+		if (itemSelecionado != null)
+			itemSelecionado.entrouCelula();
+	}
 
 	
 	public void entrouCelula() {
-		cave.iluminarCelulas(x, y, luz / 10);
 		
 		if (itemSelecionado != null)
 			itemSelecionado.entrouCelula();
 	}
+
 	
 	public void saiuCelula() {
-		cave.desiluminarCelulas(x, y, luz / 10);
 		
 		if (itemSelecionado != null)
 		 itemSelecionado.saiuCelula();
@@ -103,6 +144,16 @@ public class Heroi extends AtorVivo implements IHeroi {
 
 	public void connect(IInventario inventario) {
 		this.inventario = inventario;
+	}
+	
+	
+	public void connect(ICaverna caverna) {
+		this.cave = caverna;
+		inventario.connect(cave);
+		cave.inserirAtor(this, x, y);
+		
+		inventario.inserirItem(new Tocha());
+		setNumItem(1);
 	}
 	
 	
@@ -139,16 +190,27 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	
 	public void setNumItem(int numItem) {
+		if (itemSelecionado != null) {
+			itemSelecionado.desequipar();
+		}
+
 		this.numItem = numItem;
 		
-		//this.itemSelecionado = inventario.getItem(numItem);
+		this.itemSelecionado = inventario.getItem(numItem);
 		
-		//itemSelecionado.equipar();
+		if (itemSelecionado != null)
+			itemSelecionado.equipar();
 	}
+
 	
 	public String getNomeItemSelecionado() {
-		return "Tocha";
+		String nome = "nada";
+		if (itemSelecionado != null)
+			nome = itemSelecionado.getNome();
+		
+		return nome;
 	}
+
 	
 	public void setVidaAtual(int novaVida) {
 		if (novaVida <= this.vidaTotal ) {
@@ -165,6 +227,16 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	public void setAtaque(int novoAtaque) {
 		this.ataque = (novoAtaque);
+	}
+	
+	
+	public boolean inventarioContem(String item) {
+		return true;
+	}
+	
+	
+	public void receberItem(IItem item) {
+		inventario.inserirItem(item);
 	}
 }
 

@@ -149,9 +149,9 @@ public class ViewCaverna implements IViewCaverna {
 		
 		// cada mensagem dura 5 ciclos na tela
 		for (int i = 0; i < log.length; i++)
-			logCave.add(new MensagemLog(log[i], 3));
+			logCave.add(new MensagemLog(log[i], 10));
 		
-		for (int i = logCave.size() - 1; i >= 0; i--) {
+		for (int i = 0; i < logCave.size(); i++) {
 			font.draw(batch, logCave.get(i).getMensagem(), 100, 100 + 20 * i);
 			logCave.get(i).passarTempo();
 		}

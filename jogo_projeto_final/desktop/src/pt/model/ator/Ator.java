@@ -18,10 +18,6 @@ public abstract class Ator implements IAtor {
 	protected String tipo;
 	protected boolean solido;
 	
-	
-
-	
-	
 	protected char orientacao;
 	protected ICaverna cave;
 	
@@ -109,6 +105,9 @@ public abstract class Ator implements IAtor {
 	public void passarRodada() {
 	}
 	
+	
+	public void interagir(IHeroi heroi) {
+	}
 	
 	public void receberAtaque(int nomeAtacante, int dano) {
 	}

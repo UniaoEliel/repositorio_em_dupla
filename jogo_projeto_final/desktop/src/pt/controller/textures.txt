@@ -31,3 +31,7 @@ goblin;s;goblin_r.png;0;0;10
 goblin;d;goblin_r.png;0;32;10
 goblin;w;goblin_r.png;0;64;10
 goblin;a;goblin_r.png;0;96;10
+bau;-;chest2.png;0;0;100
+bauaberto;-;chest2.png;32;0;100
+ataquepadrao;-;ataques.png;0;0;1000
+alertaataque;-;ataques.png;32;0;10

@@ -6,6 +6,7 @@ import pt.model.caverna.ICaverna;
 public abstract class Item implements IItem {
 	protected IHeroi heroi;
 	protected ICaverna cave;
+	protected Inventario inventario;
 	protected int durabilidadeTotal, durabilidadeAtual;
 	protected String nome;
 
@@ -28,5 +29,18 @@ public abstract class Item implements IItem {
 	}
 	
 	public void usar() {
+	}
+	
+	public void equipar() {
+		entrouCelula();
+	}
+	
+	public void desequipar() {
+		saiuCelula();
+	}
+	
+	
+	public void setInventario(Inventario inventario) {
+		this.inventario = inventario;
 	}
 }

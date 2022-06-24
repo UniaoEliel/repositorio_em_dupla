@@ -1,5 +1,7 @@
 package pt.model.inventario;
 
-public interface IRHeroi {
+import pt.model.ator.IHeroi;
 
+public interface IRHeroi {
+	public void connect(IHeroi heroi);
 }

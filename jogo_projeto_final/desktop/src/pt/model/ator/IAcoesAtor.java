@@ -18,4 +18,7 @@ public interface IAcoesAtor {
 	
 	
 	public void receberAtaque(String nomeAtacante, int dano);
+	
+	
+	public void interagir(IHeroi heroi);
 }

@@ -35,6 +35,18 @@ public abstract class AtorInimigo extends AtorVivo {
 					movimentoAleatorio();
 			}
 		}
+	
+	protected AlertaAtaque gerarAlertaAtaque(AtorAtaque ataque, int dano, int duracao, int x, int y) {
+		AlertaAtaque alerta = new AlertaAtaque();
+
+		alerta.setX(x);
+		alerta.setY(y);
+		alerta.setAutor(tipo);
+		alerta.setAtaque(ataque);
+		alerta.setDuracao(duracao);
+		
+		return alerta;
+	}
 	}
 
 

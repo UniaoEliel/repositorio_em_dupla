@@ -11,7 +11,7 @@ public class Morcego extends AtorInimigo {
 		this.vidaAtual = vidaTotal;
 		
 		this.rodadasMover = 7;
-		this.rodadasAtacar = 15;
+		this.rodadasAtacar = 18;
 	}
 
 }

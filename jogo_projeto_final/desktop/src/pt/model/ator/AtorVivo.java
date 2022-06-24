@@ -20,7 +20,8 @@ public abstract class AtorVivo extends Ator {
 	
 	protected int rodadasMover, rodadasAtacar;
 	
-	protected int countMover, countAtacar;
+	// contadores para saber o cooldown do movimento, do ataque, e da imobilizacao
+	protected int countMover, countAtacar, countImobilizado;
 
 	/**
 	 * Utiliza busca em largura para achar um caminho
@@ -131,19 +132,23 @@ public abstract class AtorVivo extends Ator {
 	 */
 	protected void atacar(int x, int y) {
 		if (podeAtacar()) {
-			IAtor[] atores = cave.getAtores(x, y);
+			AtaquePadrao objAtaque = new AtaquePadrao();
 			
-			if (atores != null && podeAtacar()) {
-					for (IAtor ator : atores) {
-						ator.receberAtaque(tipo, ataque);
-					}
-				
-			}
+			objAtaque.setAutor(tipo);
+			objAtaque.setDuracao(8);
+			objAtaque.setDano(this.ataque);
 			
+			objAtaque.setX(x);
+			objAtaque.setY(y);
+			
+			objAtaque.connect(cave);
 			// renicia o contador
 			countAtacar = rodadasAtacar;
 		}
-	}
+			
+			
+		}
+
 	
 	
 	public void receberAtaque(String nomeAtacante, int dano) {
@@ -196,12 +201,12 @@ public abstract class AtorVivo extends Ator {
 	
 	
 	protected boolean podeAtacar() {
-		return (countAtacar == 0);
+		return (countAtacar == 0 && countImobilizado == 0);
 	}
 	
 	
 	protected boolean podeMover() {
-		return (countMover == 0);
+		return (countMover == 0 && countImobilizado == 0);
 		
 	}
 	
@@ -211,6 +216,8 @@ public abstract class AtorVivo extends Ator {
 			countMover--;
 		if (countAtacar > 0)
 			countAtacar--;
+		if (countImobilizado > 0)
+			countImobilizado--;
 	}
 	
 	/**
