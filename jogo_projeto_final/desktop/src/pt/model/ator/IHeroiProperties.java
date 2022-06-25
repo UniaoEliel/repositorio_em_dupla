@@ -24,6 +24,8 @@ public interface IHeroiProperties {
 
 	public int getAtaque();
 	
+	public void setpossuiEspada(boolean x);
+	
 	public void setAtaque(int novoAtaque);
 
 	public void receberItem(IItem item);
