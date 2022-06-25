@@ -3,16 +3,18 @@ SIZE;1000;1000
 MOLDE; x;y;nomeAtor;direcao;
 
 4;4;heroi;s
+10;10;saida;s
+9;10;parede;s
+11;10;parede;s
+1;1;lava;-
+1;2;lava;-
+1;2;pedra;-
 3;3;bau;-
 4;3;bau;-
 5;3;bau;-
 6;3;bau;-
 7;3;bau;-
-1;1;aranha;s
-2;2;goblin;s
-3;3;parede;s
-3;4;parede;s
-3;5;parede;s
+1;1;morcego;s
 0;0;parede;s
 1;0;parede;s
 2;0;parede;s

@@ -25,6 +25,7 @@ public abstract class Ator implements IAtor {
 	
 	public Ator() {
 		velocidade = 0;
+		tipo = "esqueceutipo";
 	}
 	
 	
@@ -103,6 +104,10 @@ public abstract class Ator implements IAtor {
 	
 	
 	public void passarRodada() {
+	}
+	
+	
+	public void imobilizar(int duracao) {
 	}
 	
 	

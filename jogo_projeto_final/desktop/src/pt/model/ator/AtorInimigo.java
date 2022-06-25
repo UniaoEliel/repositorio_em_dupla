@@ -21,6 +21,9 @@ public abstract class AtorInimigo extends AtorVivo {
 		// so vai atras do heroi se tiver luz
 		if (cave.getIluminacao(x, y) > 0 ) {
 			distanciaAoHeroi = cave.distanciaQuadrado(x, y, xHeroi, yHeroi);
+			if (!podeMover() && !podeAtacar()) {
+				virarNaDirecao(xHeroi, yHeroi);
+			}
 			
 			if (distanciaAoHeroi <= raioAtaque * raioAtaque + 1)
 				atacar(xHeroi, yHeroi);
@@ -34,9 +37,10 @@ public abstract class AtorInimigo extends AtorVivo {
 			else if (podeMover() && aleatorio.nextInt(100) <= 20)
 					movimentoAleatorio();
 			}
+	
 		}
 	
-	protected AlertaAtaque gerarAlertaAtaque(AtorAtaque ataque, int dano, int duracao, int x, int y) {
+	protected AlertaAtaque gerarAlertaAtaque(AtorAtaque ataque, int duracao, int x, int y) {
 		AlertaAtaque alerta = new AlertaAtaque();
 
 		alerta.setX(x);

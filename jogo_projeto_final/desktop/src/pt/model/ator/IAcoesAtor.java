@@ -21,4 +21,7 @@ public interface IAcoesAtor {
 	
 	
 	public void interagir(IHeroi heroi);
+	
+	
+	public void imobilizar(int rodadas);
 }

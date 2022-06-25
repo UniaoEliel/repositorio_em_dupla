@@ -125,6 +125,10 @@ public class Montador implements IMontador {
 			ator = new ObjetoEstatico();
 			ator.setTipo("parede");
 		}
+		else if (tipoAtor.equals("pedra")) {
+			ator = new ObjetoEstatico();
+			ator.setTipo("pedra");
+		}
 		
 		else if (tipoAtor.equals("heroi")) {
 			// guarda o heroi
@@ -146,7 +150,14 @@ public class Montador implements IMontador {
 		
 		else if (tipoAtor.equals("goblin")) {
 			ator = new Goblin();
-		} else
+		}
+		else if (tipoAtor.equals("lava")) {
+			ator = new Lava();
+		}
+		else if (tipoAtor.equals("saida")) {
+			ator = new Saida();
+		}
+		else
 			throw new ArquivoMalFormatado();
 		
 		return ator;

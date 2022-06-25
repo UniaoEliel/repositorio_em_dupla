@@ -1,5 +1,6 @@
 package pt.model.ator;
 
+import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 import pt.model.inventario.IInventario;
 import pt.model.inventario.IInventarioProperties;
@@ -15,7 +16,11 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private char comandoAtual;
 	private boolean ganhou;
 	private int numItem;
+<<<<<<< HEAD
 	private boolean possuiEspada;
+=======
+	private int countDanoEscuro;
+>>>>>>> 57d3324578add2300b0cc001baa0477964486979
 	
 
 
@@ -119,6 +124,15 @@ public class Heroi extends AtorVivo implements IHeroi {
 		if (itemSelecionado != null)
 			itemSelecionado.passarRodada();
 		comandoAtual = '*';
+		
+		if (countDanoEscuro > 0)
+			countDanoEscuro--;
+		
+		if (cave.getIluminacao(x, y) == 0 && countDanoEscuro == 0) {
+			vidaAtual -= 3;
+			cave.inserirNoLog("A escuridao causou 3 de dano no heroi");
+			countDanoEscuro = 10;
+		}
 	}
 	
 	public void mover(char direcao) {
@@ -241,6 +255,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		inventario.inserirItem(item);
 	}
 	
+<<<<<<< HEAD
 	public void setpossuiEspada(boolean x) {
 		this.possuiEspada = x;
 	}
@@ -255,6 +270,11 @@ public class Heroi extends AtorVivo implements IHeroi {
 			representacao += "_" + orientacao;
 	
 		return representacao;
+=======
+	
+	public void ganhar() {
+		this.ganhou = true;
+>>>>>>> 57d3324578add2300b0cc001baa0477964486979
 	}
 }
 

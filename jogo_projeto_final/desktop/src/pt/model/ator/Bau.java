@@ -13,6 +13,7 @@ public class Bau extends AtorObjeto {
 		super();
 		aberto = false;
 		item = gerarItemAleatorio();
+		tipo = "bau";
 		orientacao = '-';
 		solido = true;
 	}
