@@ -10,13 +10,7 @@ public class AtaquePadrao extends AtorAtaque {
 	
 	
 	public void entrouCelula() {
-		IAtor[] atores = cave.getAtores(x, y);
-		
-		if (atores != null) {
-			for (IAtor ator : atores) {
-				ator.receberAtaque(autor, dano);
-			}
-		}
+		atacar(dano);
 	}
 
 

@@ -1,7 +1,7 @@
 package pt.model.ator;
 
 public abstract class AtorAtaque extends Ator {
-	private int duracao;
+	protected int duracao;
 	protected String autor;
 	
 	public AtorAtaque() {
@@ -29,5 +29,28 @@ public abstract class AtorAtaque extends Ator {
 	@Override
 	public void receberAtaque(String nomeAtacante, int dano) {
 	}
-
+	
+	
+	public void atacar(int dano) {
+		IAtor[] atores = cave.getAtores(x, y);
+		
+		if (atores != null) {
+			for (IAtor ator : atores) {
+				ator.receberAtaque(autor, dano);
+			}
+		}
+	}
+	
+	
+	public void atacar(String autor, int dano) {
+		IAtor[] atores = cave.getAtores(x, y);
+		
+		if (atores != null) {
+			for (IAtor ator : atores) {
+				ator.receberAtaque(autor, dano);
+			}
+		}
+	}
 }
+
+

@@ -27,12 +27,12 @@ public class Goblin extends AtorInimigo {
 				if (!(i == x && j == y)) {
 					AtaquePadrao giro = new AtaquePadrao();
 					giro.setDano(ataque * 2);
-					AlertaAtaque alerta = gerarAlertaAtaque(giro, 2 * ataque, 20, i, j);
+					AlertaAtaque alerta = gerarAlertaAtaque(giro, 20, i, j);
 					alerta.connect(cave);
 				}
 			}
 		countGiro = 50;
-		countImobilizado = 25;
+		imobilizar(25);
 
 		countAtacar = rodadasAtacar;
 	}
@@ -44,7 +44,7 @@ public class Goblin extends AtorInimigo {
 				for (int i = y; i >= y - 2; i--) {
 					AtaquePadrao giro = new AtaquePadrao();
 					giro.setDano(ataque * 2);
-					AlertaAtaque alerta = gerarAlertaAtaque(giro, 2 * ataque, 10, this.x, i);
+					AlertaAtaque alerta = gerarAlertaAtaque(giro, 10, this.x, i);
 					
 					alerta.connect(cave);
 				}
@@ -52,14 +52,14 @@ public class Goblin extends AtorInimigo {
 				for (int i = y; i <= y + 2; i++) {
 					AtaquePadrao giro = new AtaquePadrao();
 					giro.setDano(ataque * 2);
-					AlertaAtaque alerta = gerarAlertaAtaque(giro, 2 * ataque, 10, this.x, i);
+					AlertaAtaque alerta = gerarAlertaAtaque(giro, 10, this.x, i);
 					
 					alerta.connect(cave);
 				}
 			}
 			countInvestida = 60;
 			countAtacar = rodadasAtacar;
-			countImobilizado = 15;
+			imobilizar(15);
 				
 		}
 		
@@ -68,7 +68,7 @@ public class Goblin extends AtorInimigo {
 				for (int i = x; i >= x - 2; i--) {
 					AtaquePadrao giro = new AtaquePadrao();
 					giro.setDano(ataque * 2);
-					AlertaAtaque alerta = gerarAlertaAtaque(giro, 2 * ataque, 10, i, y);
+					AlertaAtaque alerta = gerarAlertaAtaque(giro, 10, i, y);
 					
 					alerta.connect(cave);
 				}
@@ -77,7 +77,7 @@ public class Goblin extends AtorInimigo {
 				for (int i = x; i <= x + 2; i++) {
 					AtaquePadrao giro = new AtaquePadrao();
 					giro.setDano(ataque * 2);
-					AlertaAtaque alerta = gerarAlertaAtaque(giro, 2 * ataque, 10, i, y);
+					AlertaAtaque alerta = gerarAlertaAtaque(giro, 10, i, y);
 					
 					alerta.connect(cave);
 				}
@@ -93,9 +93,9 @@ public class Goblin extends AtorInimigo {
 	protected void atacar(int x, int y) {
 		if (podeAtacar()) {
 			int ale = aleatorio.nextInt(100);
-			if (ale <= 20 && countGiro == 0) {
+			if (countGiro == 0 && ale <= 20) {
 				giro();
-			} else if (ale <= 1000 && countInvestida == 0) {
+			} else if (countInvestida == 0 && ale <= 50) {
 				investida(x, y);
 			}
 			else

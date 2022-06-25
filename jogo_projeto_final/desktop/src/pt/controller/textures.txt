@@ -34,4 +34,14 @@ goblin;a;goblin_r.png;0;96;10
 bau;-;chest2.png;0;0;100
 bauaberto;-;chest2.png;32;0;100
 ataquepadrao;-;ataques.png;0;0;1000
-alertaataque;-;ataques.png;32;0;10
+alertaataque;-;ataques.png;32;0;5
+ataqueveneno;-;ataques.png;64;0;5
+ataqueteia;-;ataques.png;96;0;5
+lava;-;tex_caverna.png;128;0;10
+lava;w;tex_caverna.png;160;0;10
+lava;a;tex_caverna.png;192;0;10
+lava;d;tex_caverna.png;224;0;10
+lava;s;tex_caverna.png;256;0;10
+pedra;-;pedras.png;96;120;10
+saida;s;tex_caverna.png;288;0;100
+esqueceutipo;-;ataques.png;96;96;0

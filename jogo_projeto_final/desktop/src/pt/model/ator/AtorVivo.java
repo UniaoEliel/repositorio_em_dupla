@@ -114,6 +114,13 @@ public abstract class AtorVivo extends Ator {
 	}
 	
 	
+	public void mover(int nX, int nY) {
+		cave.moverAtor(this, nX, nY);
+		
+		countMover = rodadasMover;
+	}
+	
+	
 	public int getVidaTotal() {
 		return vidaTotal;
 	}
@@ -124,6 +131,14 @@ public abstract class AtorVivo extends Ator {
 	}
 	
 	
+	/**
+	 * deixa o ator sem poder mover nem atacar
+	 * @param rodadas
+	 */
+	public void imobilizar(int rodadas) {
+		countMover += rodadas;
+		countAtacar += rodadas;
+	}
 	/**
 	 * Ataca os atores de uma célula se puder
 	 * se não nao faz nada
@@ -233,5 +248,17 @@ public abstract class AtorVivo extends Ator {
 			atacar(x-1, y);
 		else
 			atacar(x+1, y);
+	}
+	
+	
+	protected void virarNaDirecao(int x, int y) {
+		if (x < this.x)
+			orientacao = 'a';
+		else if (x > this.x)
+			orientacao = 'd';
+		else if (y < this.y)
+			orientacao = 's';
+		else if (y > this.y)
+			orientacao = 'w';
 	}
 }

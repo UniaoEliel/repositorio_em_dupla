@@ -1,5 +1,6 @@
 package pt.model.ator;
 
+import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
 import pt.model.inventario.IInventario;
 import pt.model.inventario.IInventarioProperties;
@@ -15,6 +16,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private char comandoAtual;
 	private boolean ganhou;
 	private int numItem;
+	private int countDanoEscuro;
 	
 
 
@@ -117,6 +119,15 @@ public class Heroi extends AtorVivo implements IHeroi {
 		if (itemSelecionado != null)
 			itemSelecionado.passarRodada();
 		comandoAtual = '*';
+		
+		if (countDanoEscuro > 0)
+			countDanoEscuro--;
+		
+		if (cave.getIluminacao(x, y) == 0 && countDanoEscuro == 0) {
+			vidaAtual -= 3;
+			cave.inserirNoLog("A escuridao causou 3 de dano no heroi");
+			countDanoEscuro = 10;
+		}
 	}
 	
 	public void mover(char direcao) {
@@ -237,6 +248,11 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	public void receberItem(IItem item) {
 		inventario.inserirItem(item);
+	}
+	
+	
+	public void ganhar() {
+		this.ganhou = true;
 	}
 }
 

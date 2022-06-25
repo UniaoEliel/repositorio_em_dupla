@@ -6,4 +6,6 @@ public interface IHeroi extends IAtor, IHeroiCoord, IHeroiProperties, IRInventar
 	 * @param comando char que representa o comando
 	 */
 	public void realizarComando(char comando);
+	
+	public void ganhar();
 }
