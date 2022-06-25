@@ -16,11 +16,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 	private char comandoAtual;
 	private boolean ganhou;
 	private int numItem;
-<<<<<<< HEAD
+
 	private boolean possuiEspada;
-=======
 	private int countDanoEscuro;
->>>>>>> 57d3324578add2300b0cc001baa0477964486979
+	
 	
 
 
@@ -255,7 +254,6 @@ public class Heroi extends AtorVivo implements IHeroi {
 		inventario.inserirItem(item);
 	}
 	
-<<<<<<< HEAD
 	public void setpossuiEspada(boolean x) {
 		this.possuiEspada = x;
 	}
@@ -270,12 +268,13 @@ public class Heroi extends AtorVivo implements IHeroi {
 			representacao += "_" + orientacao;
 	
 		return representacao;
-=======
+	}
+
 	
 	public void ganhar() {
 		this.ganhou = true;
->>>>>>> 57d3324578add2300b0cc001baa0477964486979
 	}
+
 }
 
 
