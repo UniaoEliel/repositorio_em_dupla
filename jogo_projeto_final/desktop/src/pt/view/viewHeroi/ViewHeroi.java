@@ -41,7 +41,7 @@ public class ViewHeroi implements IViewHeroi {
 		font.draw(batch, vida, pixelsX / 10, pixelsY / 10);
 		
 		
-		viewInventario.plotarInventario(batch, font);
+		viewInventario.plotarInventario(batch, font, textures);
 	}
 
 

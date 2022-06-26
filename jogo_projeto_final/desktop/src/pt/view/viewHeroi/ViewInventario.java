@@ -1,5 +1,7 @@
 package pt.view.viewHeroi;
 
+import java.util.Map;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -40,7 +42,18 @@ public class ViewInventario {
 		batch.draw(bordaSelecionada, inicioX + 36 * (heroi.getNumItem() - 1), 30);
 	}
 	
-	protected void plotarInventario(SpriteBatch batch, BitmapFont font) {
+	private void plotarItens(SpriteBatch batch, BitmapFont font, Map<String, TextureRegion> textures) {
+		int inicioX = 400 - ((40 + 36 * inventario.getTamanho()) / 2) + 4;
+		String item;
+		for (int i = 1; i <= inventario.getTamanho(); i++) {
+			item = inventario.getNomeItem(i);
+			if (item != "nada") 
+				batch.draw(textures.get(item), inicioX + 36 * (i - 1), 34);
+		}
+	}
+	
+	protected void plotarInventario(SpriteBatch batch, BitmapFont font, Map<String, TextureRegion> textures) {
+		plotarItens(batch, font, textures);
 		plotarBordas(batch, font);
 		
 		if (!heroi.getNomeItemSelecionado().equals("nada")) {

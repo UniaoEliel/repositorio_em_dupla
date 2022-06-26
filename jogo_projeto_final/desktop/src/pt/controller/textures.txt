@@ -44,4 +44,8 @@ lava;d;tex_caverna.png;224;0;10
 lava;s;tex_caverna.png;256;0;10
 pedra;-;pedras.png;96;120;10
 saida;s;tex_caverna.png;288;0;100
+tocha;-;itens.png;0;0;10
+pocaovida;-;itens.png;32;0;10
+espada;-;itens.png;64;0;10
+fora;-;tex_caverna.png;0;288;1000
 esqueceutipo;-;ataques.png;96;96;0

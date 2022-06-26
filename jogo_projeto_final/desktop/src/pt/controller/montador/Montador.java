@@ -129,6 +129,10 @@ public class Montador implements IMontador {
 			ator = new ObjetoEstatico();
 			ator.setTipo("pedra");
 		}
+		else if (tipoAtor.equals("fora")) {
+			ator = new ObjetoEstatico();
+			ator.setTipo("fora");
+		}
 		
 		else if (tipoAtor.equals("heroi")) {
 			// guarda o heroi
