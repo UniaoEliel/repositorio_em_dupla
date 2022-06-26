@@ -1,6 +1,7 @@
 package pt.model.ator;
 
 import pt.model.inventario.Espada;
+import pt.model.inventario.Graveto;
 import pt.model.inventario.IItem;
 import pt.model.inventario.PocaoVida;
 import pt.model.inventario.Tocha;
@@ -26,7 +27,7 @@ public class Bau extends AtorObjeto {
 		if (possib <= 50) 
 			item = new PocaoVida();
 		else if (possib <= 90)
-			item = new Tocha();
+			item = new Graveto();
 		else
 			item = new Espada();
 		

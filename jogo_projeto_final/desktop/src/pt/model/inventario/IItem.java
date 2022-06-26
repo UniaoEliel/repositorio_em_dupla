@@ -5,7 +5,13 @@ public interface IItem extends IRHeroi, IRCaverna {
 	
 	public void passarRodada();
 	
+	public void passarRodada(int x, int y);
+	
 	public void entrouCelula();
+	
+	public void entrouCelula(int x, int y);
+	
+	public void saiuCelula(int x, int y);
 	
 	public void saiuCelula();
 	

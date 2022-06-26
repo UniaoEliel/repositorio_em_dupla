@@ -1,5 +1,10 @@
 package pt.model.ator;
 
+import pt.model.inventario.Espada;
+import pt.model.inventario.Graveto;
+import pt.model.inventario.IItem;
+import pt.model.inventario.PocaoVida;
+
 public class Goblin extends AtorInimigo {
 	private int countGiro, countInvestida;
 
@@ -109,5 +114,18 @@ public class Goblin extends AtorInimigo {
 			countGiro--;
 		if (countInvestida > 0)
 			countInvestida--;
+	}
+	
+	
+	protected void droparItem() {
+		IItem item = null;
+		
+		int ale = aleatorio.nextInt(100);
+		
+		if (ale <= 50)
+			item = new Espada();
+		
+		if (item != null)
+			colocarItemChao(item, this.x, this.y);
 	}
 }

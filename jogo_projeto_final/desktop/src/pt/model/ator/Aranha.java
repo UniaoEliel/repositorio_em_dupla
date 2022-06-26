@@ -1,5 +1,9 @@
 package pt.model.ator;
 
+import pt.model.inventario.Graveto;
+import pt.model.inventario.IItem;
+import pt.model.inventario.PocaoVida;
+
 public class Aranha extends AtorInimigo {
 	private int countPocaVenenosa, countTeia;
 	
@@ -91,5 +95,21 @@ public class Aranha extends AtorInimigo {
 			countPocaVenenosa--;
 		if (countTeia > 0)
 			countTeia--;
+	}
+
+
+	@Override
+	protected void droparItem() {
+		IItem item = null;
+		
+		int ale = aleatorio.nextInt(100);
+		
+		if (ale <= 50)
+			item = new Graveto();
+		else if (ale <= 70)
+			item = new PocaoVida();
+		
+		if (item != null)
+			colocarItemChao(item, this.x, this.y);
 	}
 }

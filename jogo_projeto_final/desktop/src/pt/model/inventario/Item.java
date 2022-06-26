@@ -22,6 +22,15 @@ public abstract class Item implements IItem {
 	public void passarRodada() {
 	}
 	
+	public void passarRodada(int x, int y) {
+	}
+	
+	public void entrouCelula(int x, int y) {
+	}
+	
+	public void saiuCelula(int x, int y) {
+	}
+	
 	public void entrouCelula() {
 	}
 	
@@ -42,5 +51,9 @@ public abstract class Item implements IItem {
 	
 	public void setInventario(Inventario inventario) {
 		this.inventario = inventario;
+	}
+	
+	public String getNome() {
+		return this.nome;
 	}
 }

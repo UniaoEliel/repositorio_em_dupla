@@ -38,7 +38,16 @@ public abstract class AtorInimigo extends AtorVivo {
 					movimentoAleatorio();
 			}
 	
-		}
+	}
+	
+	
+	protected abstract void droparItem();
+	
+	@Override
+	public void morrer() {
+		super.morrer();
+		droparItem();
+	}
 	
 	protected AlertaAtaque gerarAlertaAtaque(AtorAtaque ataque, int duracao, int x, int y) {
 		AlertaAtaque alerta = new AlertaAtaque();

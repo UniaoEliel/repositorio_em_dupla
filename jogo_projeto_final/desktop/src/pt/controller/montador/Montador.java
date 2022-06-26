@@ -11,6 +11,7 @@ import pt.controller.leitor.Leitor;
 import pt.model.ator.*;
 import pt.model.caverna.Caverna;
 import pt.model.caverna.ICaverna;
+import pt.model.inventario.Graveto;
 
 /**
  * Singleton, responsavel por montar a caverna com base no arquivo cave.txt
@@ -139,6 +140,13 @@ public class Montador implements IMontador {
 			heroi = new Heroi();
 			heroi.setTipo("heroi");
 			ator = heroi;
+		}
+		
+		else if (tipoAtor.equals("graveto")) {
+			ItemChao item = new ItemChao();
+			item.setItem(new Graveto());
+			
+			ator = item;
 		}
 		
 		else if (tipoAtor.equals("morcego")) {

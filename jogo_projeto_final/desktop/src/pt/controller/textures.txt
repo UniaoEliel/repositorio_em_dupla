@@ -52,4 +52,5 @@ tocha;-;itens.png;0;0;10
 pocaovida;-;itens.png;32;0;10
 espada;-;itens.png;64;0;10
 fora;-;tex_caverna.png;0;288;1000
+graveto;-;itens.png;96;0;10
 esqueceutipo;-;ataques.png;96;96;0

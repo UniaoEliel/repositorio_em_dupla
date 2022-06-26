@@ -1,5 +1,9 @@
 package pt.model.ator;
 
+import pt.model.inventario.Graveto;
+import pt.model.inventario.IItem;
+import pt.model.inventario.PocaoVida;
+
 public class Morcego extends AtorInimigo {
 	
 	public Morcego() {
@@ -55,6 +59,21 @@ public class Morcego extends AtorInimigo {
 			else
 				super.atacar(x, y);
 		}
+	}
+	
+	
+	protected void droparItem() {
+		IItem item = null;
+		
+		int ale = aleatorio.nextInt(100);
+		
+		if (ale <= 30)
+			item = new Graveto();
+		else if (ale <= 40)
+			item = new PocaoVida();
+		
+		if (item != null)
+			colocarItemChao(item, this.x, this.y);
 	}
 
 }

@@ -19,10 +19,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 
 	private boolean possuiEspada;
 	private int countDanoEscuro;
-	
-	
 
-
+	
 	public Heroi() {
 		super();
 		tipo = "heroi";
@@ -60,6 +58,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 			interagirFrente();
 		else if (comando == 'l')
 			usarItem();
+		else if (comando == 'u')
+			colocarItemChao();
 		else if ((comando == 'w' ||
 				comando == 's' ||
 				comando == 'a' ||
@@ -112,6 +112,24 @@ public class Heroi extends AtorVivo implements IHeroi {
 		if (itemSelecionado != null) {
 			itemSelecionado.usar();
 			setNumItem(this.numItem);
+		}
+	}
+	
+	
+	private void colocarItemChao() {
+		if (itemSelecionado != null) {
+			ItemChao itemChao = new ItemChao();
+			
+			itemChao.setItem(itemSelecionado);
+			itemChao.setX(x);
+			itemChao.setY(y);
+			
+			inventario.removerItem(itemSelecionado);
+			
+			itemSelecionado.saiuCelula();
+			itemSelecionado = null;
+			
+			itemChao.connect(cave);
 		}
 	}
 	
@@ -252,6 +270,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	public void receberItem(IItem item) {
 		inventario.inserirItem(item);
+		setNumItem(numItem);
 	}
 	
 	public void setpossuiEspada(boolean x) {

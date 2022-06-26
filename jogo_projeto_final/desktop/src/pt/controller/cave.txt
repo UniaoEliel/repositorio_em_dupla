@@ -2,6 +2,7 @@ SIZE;30;80
 
 MOLDE; x;y;nomeAtor;direcao;
 
+1;1;graveto;-
 0;0;parede;d
 0;1;parede;d
 0;2;parede;d

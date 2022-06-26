@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import pt.model.caverna.IAcessoCelulas;
+import pt.model.inventario.IItem;
 
 /**
  * Define um ator que pode se mover e atacar na caverna
@@ -120,6 +121,15 @@ public abstract class AtorVivo extends Ator {
 		countMover = rodadasMover;
 	}
 	
+	protected void colocarItemChao(IItem item, int x, int y) {
+		ItemChao itemChao = new ItemChao();
+		
+		itemChao.setItem(item);
+		itemChao.setX(x);
+		itemChao.setY(y);
+		
+		itemChao.connect(cave);
+	}
 	
 	public int getVidaTotal() {
 		return vidaTotal;
