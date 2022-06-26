@@ -1,16 +1,9 @@
 package pt.model.caverna;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.PriorityQueue;
-
-import pt.model.ator.Ator;
 import pt.model.ator.IAtor;
-import pt.model.ator.IAtorObjeto;
-import pt.model.ator.IAtorVivo;
 import pt.model.ator.IHeroiCoord;
-import pt.view.viewCaverna.IViewCaverna;
 
 public class Caverna implements ICaverna {
 	private int tamX, tamY;

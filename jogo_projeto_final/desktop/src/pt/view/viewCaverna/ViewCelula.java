@@ -14,7 +14,6 @@ import pt.controller.exceptions.ArquivoAusente;
 import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.leitor.ILeitor;
 import pt.controller.leitor.Leitor;
-import pt.model.ator.IAtorObjeto;
 import pt.model.caverna.ICelula;
 
 public class ViewCelula {

@@ -28,6 +28,44 @@ def posicaoAleatoria(cave):
     return x, y
 
 
+def posicaoValida(cave, x, y):
+    return (0 <= x < len(cave)) and (0 <= y < len(cave[0]))
+
+
+def colocarQuadrado(cave, tipo, x, y, tamX, tamY):
+    for i in range(x, x + tamX, 1):
+        if posicaoValida(cave, i, y):
+            if (cave[i][y] == 0):
+                cave[i][y] = Ator(tipo, 's')
+            else:
+                cave[i][y] = Ator(tipo, '-')
+
+        if posicaoValida(cave, i, y + tamY - 1):
+            if (cave[i][y + tamY - 1]  == 0):
+                cave[i][y + tamY - 1] = Ator(tipo, 'w')
+            else:
+                cave[i][y + tamY - 1] = Ator(tipo, '-')
+
+    for j in range(y + 1, y + tamY - 1, 1):
+        if posicaoValida(cave, x, j):
+            if (cave[x][j] == 0):
+                cave[x][j] = Ator(tipo, 'a')
+            else:
+                cave[x][j] = Ator(tipo, '-')
+
+        if posicaoValida(cave, x + tamX - 1, j):
+            if (cave[x + tamX - 1][j] == 0):
+                cave[x + tamX - 1][j] = Ator(tipo, 'd')
+            else:
+                cave[x + tamX - 1][j] = Ator(tipo, '-')
+    
+    for i in range(x + 1, x + tamX - 1, 1):
+        for j in range(y + 1, y + tamY - 1, 1):
+            if posicaoValida(cave, i, j):
+                cave[i][j] = Ator(tipo, '-')
+    
+
+
 def colocarInimigos(cave, qtdInimigos):
     inimigos = ["aranha", "goblin", "morcego"]
     direcoes = ["w", "a", "s", "d"]
@@ -60,22 +98,54 @@ def colocarParedes(cave):
         cave[len(cave) - 1][j] = Ator("parede", "a")
     
 
-    xp = random.randint(0, len(cave[i]) - 1)
+def colocarQuadradosParedes(cave, qtdQuadrados):
+    for i in range(qtdQuadrados):
+        colocarQuadrado(cave, "parede", 
+            random.randint(0, len(cave)), random.randint(0, len(cave[0]) - 1), 
+            random.randint(3, 7), random.randint(3, 7))
 
-    cave[xp][len(cave) - 1] = Ator("saida", "s")
+
+def colocarQuadradosLava(cave, qtdQuadrados):
+    for i in range(qtdQuadrados):
+        colocarQuadrado(cave, "lava", 
+            random.randint(0, len(cave)), random.randint(0, len(cave[0]) - 1), 
+            random.randint(3, 5), random.randint(3, 5))
+
+
+def colocarGravetos(cave, qtdGravetos):
+     for i in range(qtdGravetos):
+        x, y = posicaoAleatoria(cave)
+        if cave[x][y] == 0:
+            cave[x][y] = Ator("graveto", '-')
+        else:
+            i -= 1
+
+def colocarPedras(cave, qtdPedras):
+    for i in range(qtdPedras):
+        x, y = posicaoAleatoria(cave)
+        if cave[x][y] == 0:
+            cave[x][y] = Ator("pedra", '-')
+        else:
+            i -= 1
 
 def main():
-    tamX = 80
-    tamY = 30
-    cave = [[0 for x in range(tamX)] for y in range(tamY)]
+    tamX = 50
+    tamY = 50
+    cave = [[0 for x in range(tamY)] for y in range(tamX)]
 
-    cave[2][2] = Ator("heroi", "w")
+    cave[1][1] = Ator("heroi", "w")
+    cave[tamX - 1][int(tamY/2)] = Ator("saida", "s")
 
     colocarParedes(cave)
 
-    colocarInimigos(cave, 50)
-    colocarBaus(cave, 100)
+    colocarQuadradosLava(cave, 7)
 
+    colocarQuadradosParedes(cave, 30)
+
+    colocarInimigos(cave, 50)
+    colocarBaus(cave, 50)
+    colocarGravetos(cave, 50)
+    colocarPedras(cave, 50)
     imprimeCaverna(cave)
 
     

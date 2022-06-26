@@ -6,19 +6,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import pt.model.ator.IAtorVivo;
-import pt.model.ator.IHeroi;
-import pt.controller.comando.IComando;
 import pt.controller.controle.ControleJogo;
 import pt.controller.controle.IControleJogo;
 import pt.controller.exceptions.ArquivoAusente;
 import pt.controller.exceptions.ArquivoMalFormatado;
-import pt.model.ator.Heroi;
-import pt.model.caverna.Caverna;
-import pt.model.caverna.ICaverna;
-import pt.view.viewCaverna.IViewCaverna;
-import pt.view.viewCaverna.ViewCaverna;
 /**
  * Define a tela principal do jogo, onde está a caverna
  * @author elias

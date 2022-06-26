@@ -1,13 +1,8 @@
 package pt.model.caverna;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
-
 import pt.model.ator.*;
-import pt.view.viewCaverna.IViewCelula;
 
 public class Celula implements ICelula {
 	private static Random aleatorio = new Random();

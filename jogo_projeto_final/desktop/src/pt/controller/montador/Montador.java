@@ -63,18 +63,6 @@ public class Montador implements IMontador {
 		
 		return cave;
 	}
-	
-	
-	private void colocarAtor(ICaverna cave, int x, int y, String nomeAtor, char orientacao) {
-		IAtor ator = criarAtor(nomeAtor);
-		
-		// seta as coordenadas
-		ator.setOrientacao(orientacao);
-		ator.setX(x);
-		ator.setY(y);
-		
-		ator.connect(cave);
-	}
 
 	
 	private void checarValidade(String[][] atoresCaverna) throws ArquivoMalFormatado {
@@ -173,17 +161,6 @@ public class Montador implements IMontador {
 			throw new ArquivoMalFormatado();
 		
 		return ator;
-	}
-	
-	
-	private void gerarMonstrosAleatorios(ICaverna cave, int numMonstros) {
-		int x, y;
-		for (int i = 0; i < numMonstros; i++) {
-			x = aleatorio.nextInt(16);
-			y = aleatorio.nextInt(16);
-			
-			colocarAtor(cave, x, y, "morcego", 'w');
-		}
 	}
 
 
