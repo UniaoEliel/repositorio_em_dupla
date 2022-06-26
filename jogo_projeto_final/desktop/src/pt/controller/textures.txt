@@ -11,6 +11,10 @@ heroi;s;HeroiTochaBaixa.png;32;32;100
 heroi;w;HeroiTochaBaixa.png;0;64;100
 heroi;a;HeroiTochaBaixa.png;0;32;100
 heroi;d;HeroiTochaBaixa.png;0;0;100
+heroi_espada;w;HeroiTochaBaixaEspada.png;32;32;100
+heroi_espada;a;HeroiTochaBaixaEspada.png;32;0;100
+heroi_espada;s;HeroiTochaBaixaEspada.png;0;32;100
+heroi_espada;d;HeroiTochaBaixaEspada.png;0;0;100
 parede;s;tex_caverna.png;96;0;100
 parede;w;tex_caverna.png;64;32;10
 parede;a;tex_caverna.png;0;32;10

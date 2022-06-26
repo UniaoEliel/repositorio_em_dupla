@@ -15,12 +15,15 @@ public class Espada extends Item {
 	@Override
 	public void equipar() {
 		heroi.setAtaque(heroi.getAtaque() + this.ataqueEspada);
+		heroi.setpossuiEspada(true);
 		
 	}
 
 	@Override
 	public void desequipar() {
 		heroi.setAtaque(heroi.getAtaque() - this.ataqueEspada);
+		heroi.setpossuiEspada(false);
 	}
+	
 	
 }
