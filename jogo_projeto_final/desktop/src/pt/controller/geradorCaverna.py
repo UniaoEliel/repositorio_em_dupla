@@ -134,7 +134,7 @@ def main():
     cave = [[0 for x in range(tamY)] for y in range(tamX)]
 
     cave[1][1] = Ator("heroi", "w")
-    cave[tamX - 1][int(tamY/2)] = Ator("saida", "s")
+    
 
     colocarParedes(cave)
 
@@ -146,6 +146,11 @@ def main():
     colocarBaus(cave, 50)
     colocarGravetos(cave, 50)
     colocarPedras(cave, 50)
+
+    cave[tamX - 1][int(tamY/2)] = Ator("saida", "s")
+
+    for i in range(tamX - 2, int(tamX/2), -1):
+        cave[i][int(tamY/2)] = 0
     imprimeCaverna(cave)
 
     
