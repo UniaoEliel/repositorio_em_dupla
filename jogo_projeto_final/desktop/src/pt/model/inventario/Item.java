@@ -1,17 +1,17 @@
 package pt.model.inventario;
 
 import pt.model.ator.IHeroi;
-import pt.model.caverna.ICaverna;
+import pt.model.caverna.IAcessoCelulas;
 
 public abstract class Item implements IItem {
 	protected IHeroi heroi;
-	protected ICaverna cave;
+	protected IAcessoCelulas cave;
 	protected Inventario inventario;
 	protected int durabilidadeTotal, durabilidadeAtual;
 	protected String nome;
 
 	
-	public void connect(ICaverna caverna) {
+	public void connect(IAcessoCelulas caverna) {
 		this.cave = caverna;	
 	}
 	

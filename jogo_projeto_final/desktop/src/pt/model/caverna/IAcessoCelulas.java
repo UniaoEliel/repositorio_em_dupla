@@ -48,7 +48,7 @@ public interface IAcessoCelulas {
 	 * @param y y da celula
 	 * @return a lista com os atores na celula
 	 */
-	public IAtor[] getAtores(int x, int y);
+	public IAcoesAtor[] getAtores(int x, int y);
 
 	
 	/**
@@ -68,4 +68,10 @@ public interface IAcessoCelulas {
 	
 	
 	public boolean entravel(int x, int y);
+	
+	public int getXHeroi();
+
+	public int getYHeroi();
+	
+	public int distanciaQuadrado(int x1, int y1, int x2, int y2);;
 }

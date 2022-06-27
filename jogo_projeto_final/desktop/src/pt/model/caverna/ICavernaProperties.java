@@ -15,4 +15,10 @@ public interface ICavernaProperties {
 	public int distanciaQuadrado(int x1, int y1, int x2, int y2);
 	
 	public String[] getLogRodada();
+	
+	
+	/**
+	 * Inicia a caverna, criando suas celulas
+	 */
+	public void start();
 }

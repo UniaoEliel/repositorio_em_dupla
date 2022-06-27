@@ -32,10 +32,10 @@ public abstract class AtorAtaque extends Ator {
 	
 	
 	public void atacar(int dano) {
-		IAtor[] atores = cave.getAtores(x, y);
+		IAcoesAtor[] atores = cave.getAtores(x, y);
 		
 		if (atores != null) {
-			for (IAtor ator : atores) {
+			for (IAcoesAtor ator : atores) {
 				ator.receberAtaque(autor, dano);
 			}
 		}
@@ -43,10 +43,10 @@ public abstract class AtorAtaque extends Ator {
 	
 	
 	public void atacar(String autor, int dano) {
-		IAtor[] atores = cave.getAtores(x, y);
+		IAcoesAtor[] atores = cave.getAtores(x, y);
 		
 		if (atores != null) {
-			for (IAtor ator : atores) {
+			for (IAcoesAtor ator : atores) {
 				ator.receberAtaque(autor, dano);
 			}
 		}

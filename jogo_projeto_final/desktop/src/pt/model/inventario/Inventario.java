@@ -3,13 +3,14 @@ package pt.model.inventario;
 import java.util.*;
 
 import pt.model.ator.IHeroi;
+import pt.model.caverna.IAcessoCelulas;
 import pt.model.caverna.ICaverna;
 
 public class Inventario implements IInventario {
 	private int tamanho;
 	private IItem[] itens;
 	private IHeroi heroi;
-	private ICaverna caverna;
+	private IAcessoCelulas caverna;
 	
 	public Inventario() {
 	}
@@ -83,7 +84,7 @@ public class Inventario implements IInventario {
 	}
 
 
-	public void connect(ICaverna caverna) {
+	public void connect(IAcessoCelulas caverna) {
 		this.caverna = caverna;
 		for (IItem item : itens) {
 			if (item != null)

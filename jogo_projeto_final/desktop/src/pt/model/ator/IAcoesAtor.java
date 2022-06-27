@@ -24,4 +24,6 @@ public interface IAcoesAtor {
 	
 	
 	public void imobilizar(int rodadas);
+	
+	public String getTipo();
 }

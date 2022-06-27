@@ -1,6 +1,7 @@
 package pt.model.ator;
 
 import pt.model.caverna.Caverna;
+import pt.model.caverna.IAcessoCelulas;
 import pt.model.caverna.ICaverna;
 import pt.model.inventario.IInventario;
 import pt.model.inventario.IInventarioProperties;
@@ -49,7 +50,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 
 
-	public void realizarComando(char comando) {
+	private void realizarComando(char comando) {
 		if (comando == '*')
 			comando = '*';
 		else if (comando == 'j' && podeAtacar())
@@ -97,10 +98,10 @@ public class Heroi extends AtorVivo implements IHeroi {
 	
 	
 	private void interagir(int x, int y) {
-		IAtor[] atores = cave.getAtores(x, y);
+		IAcoesAtor[] atores = cave.getAtores(x, y);
 		
 		if (atores != null) {
-				for (IAtor ator : atores) {
+				for (IAcoesAtor ator : atores) {
 					ator.interagir(this);
 				}
 			
@@ -180,7 +181,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 	}
 	
 	
-	public void connect(ICaverna caverna) {
+	public void connect(IAcessoCelulas caverna) {
 		this.cave = caverna;
 		inventario.connect(cave);
 		cave.inserirAtor(this, x, y);

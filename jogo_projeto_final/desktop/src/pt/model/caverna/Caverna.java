@@ -2,6 +2,8 @@ package pt.model.caverna;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+
+import pt.model.ator.IAcoesAtor;
 import pt.model.ator.IAtor;
 import pt.model.ator.IHeroiCoord;
 
@@ -191,9 +193,9 @@ public class Caverna implements ICaverna {
 	}
 	
 	
-	public IAtor[] getAtores(int x, int y) {
+	public IAcoesAtor[] getAtores(int x, int y) {
 		ArrayList<IAtor> atores = null;
-		IAtor[] atoresV = null;
+		IAcoesAtor[] atoresV = null;
 
 		if (verificaValidade(x, y)) {
 			

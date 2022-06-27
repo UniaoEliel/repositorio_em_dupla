@@ -1,6 +1,6 @@
 package pt.model.inventario;
 
-public interface IItem extends IRHeroi, IRCaverna {
+public interface IItem extends IRHeroi, IRAcessoCelulas {
 	public String getNome();
 	
 	public void passarRodada();

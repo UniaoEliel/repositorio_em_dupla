@@ -19,7 +19,7 @@ public abstract class Ator implements IAtor {
 	protected boolean solido;
 	
 	protected char orientacao;
-	protected ICaverna cave;
+	protected IAcessoCelulas cave;
 	
 	protected int velocidade;
 	
@@ -39,7 +39,7 @@ public abstract class Ator implements IAtor {
 	}
 	
 	
-	public void connect(ICaverna cave) {
+	public void connect(IAcessoCelulas cave) {
 		this.cave = cave;
 		cave.inserirAtor(this, x, y);
 	}

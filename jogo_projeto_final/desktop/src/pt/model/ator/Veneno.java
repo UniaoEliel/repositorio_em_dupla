@@ -13,10 +13,10 @@ public class Veneno extends AtorAtaque {
 	
 	
 	public void atacar() {
-		IAtor[] atores = cave.getAtores(x, y);
+		IAcoesAtor[] atores = cave.getAtores(x, y);
 		
 		if (atores != null) {
-			for (IAtor ator : atores) {
+			for (IAcoesAtor ator : atores) {
 				if (!ator.getTipo().equals("aranha"))
 					ator.receberAtaque("veneno", dano);
 			}

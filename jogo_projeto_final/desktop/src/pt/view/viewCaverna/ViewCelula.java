@@ -15,6 +15,7 @@ import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.controller.leitor.ILeitor;
 import pt.controller.leitor.Leitor;
 import pt.model.caverna.ICelula;
+import pt.model.caverna.ICelulaProperties;
 
 public class ViewCelula {
 	// guarda as texturas de cada componente
@@ -23,7 +24,7 @@ public class ViewCelula {
 	
 	private static Prioridades prio;
 	
-	private ICelula celula;
+	private ICelulaProperties celula;
 	
 	protected static Map<String, TextureRegion> getTexturas() {
 		return textures;
@@ -143,7 +144,7 @@ public class ViewCelula {
 	}
 	
 	
-	public void connect(ICelula celula) {
+	public void connect(ICelulaProperties celula) {
 		this.celula = celula;
 	}
 }

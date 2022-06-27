@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import pt.controller.exceptions.ArquivoAusente;
 import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.model.caverna.ICaverna;
+import pt.model.caverna.IAcessoCelulas;
 import pt.model.caverna.ICavernaProperties;
 
 public class ViewCaverna implements IViewCaverna {
@@ -18,7 +19,7 @@ public class ViewCaverna implements IViewCaverna {
 	
 	private ViewCelula[][] viewCelulas;
 	
-	private ICaverna caverna;
+	private ICavernaProperties caverna;
 	
 	
 	private ArrayList<MensagemLog> logCave;
@@ -35,7 +36,7 @@ public class ViewCaverna implements IViewCaverna {
 	}
 	
 	
-	public void connect(ICaverna caverna) throws ArquivoAusente, ArquivoMalFormatado {
+	public void connect(ICavernaProperties caverna) throws ArquivoAusente, ArquivoMalFormatado {
 		this.caverna = caverna;
 		
 		tamX = caverna.getTamX();
