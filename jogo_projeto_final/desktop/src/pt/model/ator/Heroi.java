@@ -148,6 +148,8 @@ public class Heroi extends AtorVivo implements IHeroi {
 		
 		if (cave.getIluminacao(x, y) == 0 && countDanoEscuro == 0) {
 			vidaAtual -= 3;
+			if (vidaAtual <= 0)
+				morrer();
 			cave.inserirNoLog("A escuridao causou 3 de dano no heroi");
 			countDanoEscuro = 10;
 		}

@@ -3,7 +3,7 @@ package pt.model.ator;
 import pt.model.inventario.IInventarioProperties;
 import pt.model.inventario.IItem;
 
-public interface IHeroiProperties {
+public interface IHeroiProperties extends IAtorProperties {
 	public int getVidaTotal();
 	public int getVidaAtual();
 	public void setVidaAtual(int NovaVida);

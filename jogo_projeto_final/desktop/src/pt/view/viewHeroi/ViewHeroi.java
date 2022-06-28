@@ -2,6 +2,7 @@ package pt.view.viewHeroi;
 
 import java.util.Map;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -40,7 +41,8 @@ public class ViewHeroi implements IViewHeroi {
 		
 		font.draw(batch, vida, pixelsX / 10, pixelsY / 10);
 		
-		
+		font.setColor(Color.WHITE);
+		font.draw(batch, "X:" + heroi.getX() + " Y:" + heroi.getY(), 30, pixelsY - 30);
 		viewInventario.plotarInventario(batch, font, textures);
 	}
 
