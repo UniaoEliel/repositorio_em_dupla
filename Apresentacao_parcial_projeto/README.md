@@ -18,7 +18,7 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 [Slides](https://drive.google.com/file/d/14FVyU6uTYqqIJiO0VbpYSVwQkQQt--oc/view?usp=sharing)
 
 ## Slides da Apresentação Final
-> Coloque um link para os slides da apresentação final do projeto.
+[Slides](https://docs.google.com/presentation/d/1APJYX9cu8l4tpm9bBZRFFNDrj554BkNwClB65h1eNm4/edit?usp=sharing)
 
 # Diagramas
 
