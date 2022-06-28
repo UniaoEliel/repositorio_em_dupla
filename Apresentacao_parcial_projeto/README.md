@@ -24,4 +24,4 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 
 ## Diagrama Geral da Arquitetura do Jogo
 
-> Apresente um diagrama geral da arquitetura do jogo. O formato é livre. A escolha de um ou mais estilos arquiteturais será considerado um diferencial.
+![alt tag](https://imgur.com/HpDbqfX)
