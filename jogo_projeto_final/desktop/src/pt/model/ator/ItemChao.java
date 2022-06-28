@@ -10,6 +10,7 @@ public class ItemChao extends AtorObjeto {
 		this.solido = false;
 		this.velocidade = 0;
 		this.orientacao = '-';
+		this.tipo = "itemchao";
 	}
 	
 	

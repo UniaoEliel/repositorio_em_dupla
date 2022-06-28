@@ -22,6 +22,7 @@ public class PocaoVida extends Item {
 		heroi.setVidaAtual(heroi.getVidaAtual() + 10);
 		this.desequipar();
 		inventario.removerItem(this);
+		cave.inserirNoLog("Heroi usou pocao e recuperou 10 de vida");
 	}
 
 

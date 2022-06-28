@@ -35,8 +35,8 @@ public abstract class AtorVivo extends Ator {
 	 * @return vetor com os movimentos em ordem caso existir caminho,
 	 * null caso nao existir
 	 */
-	public char[] buscarCaminho(int xAtual, int yAtual, int xDest, int yDest, int maxProfundidade) {
-		char[] caminhoResposta = null;
+	public char buscarCaminho(int xAtual, int yAtual, int xDest, int yDest, int maxProfundidade, int distancia) {
+		char caminhoResposta = '-';
 		Caminho caminho, cloneCaminho;
 		int xCam, yCam;
 		Queue<Caminho> caminhos = new LinkedList<Caminho>();
@@ -48,8 +48,8 @@ public abstract class AtorVivo extends Ator {
 			xCam = caminho.getX();
 			yCam = caminho.getY();
 			
-			if (cave.distanciaQuadrado(xCam, yCam, xDest, yDest) < 4) {
-				caminhoResposta = caminho.getCaminho();
+			if (cave.distanciaQuadrado(xCam, yCam, xDest, yDest) < distancia * distancia) {
+				caminhoResposta = caminho.getPrimeiroMove();
 				break;
 			}
 			else if (caminho.getTamanho() < maxProfundidade) {
@@ -215,13 +215,18 @@ public abstract class AtorVivo extends Ator {
 	 * @param x x da celula
 	 * @param y y da celula
 	 */
-	protected void seMoverEmDirecaoA(int xDest, int yDest) {
-		char[] caminho = buscarCaminho(x, y, xDest, yDest, 50);
+	protected void seMoverEmDirecaoA(int xDest, int yDest, int distancia) {
+		char caminho = buscarCaminho(x, y, xDest, yDest, 10, distancia);
 		
-		if (caminho != null && caminho.length > 0)
-			mover(caminho[0]);
+		if (caminho != '-')
+			mover(caminho);
 		else
 			movimentoAleatorio();
+	}
+	
+	
+	protected void seMoverEmDirecaoA(int xDest, int yDest) {
+		seMoverEmDirecaoA(xDest, yDest, 2);
 	}
 	
 	
@@ -241,8 +246,6 @@ public abstract class AtorVivo extends Ator {
 			countMover--;
 		if (countAtacar > 0)
 			countAtacar--;
-		if (countImobilizado > 0)
-			countImobilizado--;
 	}
 	
 	/**

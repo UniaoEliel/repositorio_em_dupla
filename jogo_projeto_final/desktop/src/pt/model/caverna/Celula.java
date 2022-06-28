@@ -63,6 +63,16 @@ public class Celula implements ICelula {
 		atores.remove(a);
 		a.saiuCelula();
 	}
+	
+	
+	protected void removerAtor(String tipo) {
+		for (IAtor ator : atores) {
+			if (ator.getTipo().equals(tipo)) {
+				atores.remove(ator);
+				break;
+			}
+		}
+	}
 
 	public boolean isSolida() {
 		boolean solida = false;
@@ -95,7 +105,7 @@ public class Celula implements ICelula {
 	protected boolean podeEntrar(IAtor a) {
 		boolean pode = true;
 		
-		if (isSolida() || contemTipo(a.getTipo()))
+		if ((a.isSolido() && isSolida()) || contemTipo(a.getTipo()))
 			pode = false;
 		
 		return pode;

@@ -22,8 +22,11 @@ public class Tocha extends Item {
 	public void passarRodada(int x, int y) {
 		saiuCelula(x, y);
 		luz--;
-		if (luz == 0)
-			inventario.removerItem(this);
+		if (luz == 0) {
+			cave.desiluminarCelulas(x, y, 1);
+			cave.removerAtor("itemchao", x, y);
+		}
+			
 		entrouCelula(x, y);
 	}
 	

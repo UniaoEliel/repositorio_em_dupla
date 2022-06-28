@@ -54,4 +54,8 @@ espada;-;itens.png;64;0;10
 fora;-;tex_caverna.png;0;288;1000
 parede;-;tex_caverna.png;0;288;1000
 graveto;-;itens.png;96;0;10
+velho;s;velho.png;0;0;100
+velho;a;velho.png;32;0;100
+velho;d;velho.png;64;0;100
+velho;w;velho.png;96;0;100
 esqueceutipo;-;ataques.png;96;96;0

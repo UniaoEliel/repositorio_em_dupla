@@ -35,7 +35,7 @@ public class Heroi extends AtorVivo implements IHeroi {
 		rodadasAtacar = 15;
 		
 		vidaTotal = 50;
-		vidaAtual = 50;
+		vidaAtual = 50000;
 		
 		comandoAtual = '*';
 		

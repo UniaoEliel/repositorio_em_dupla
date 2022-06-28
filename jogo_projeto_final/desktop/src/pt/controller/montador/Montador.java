@@ -157,6 +157,9 @@ public class Montador implements IMontador {
 		else if (tipoAtor.equals("saida")) {
 			ator = new Saida();
 		}
+		else if (tipoAtor.equals("velho")) {
+			ator = new Velho();
+		}
 		else
 			throw new ArquivoMalFormatado();
 		

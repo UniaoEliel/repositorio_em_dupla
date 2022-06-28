@@ -3,23 +3,24 @@ package pt.model.ator;
 import java.util.ArrayList;
 
 public class Caminho {
-	ArrayList<Character> movimentos;
+	char movimentoInicio;
+	int tamanho;
 	int xAtual, yAtual;
 	
 	protected Caminho(int xOrigem, int yOrigem) {
-		movimentos = new ArrayList<Character>();
+		movimentoInicio = '-';
 		xAtual = xOrigem;
 		yAtual = yOrigem;
+		tamanho = 0;
 		
 	}
 	
 	protected int getTamanho() {
-		return movimentos.size();
+		return tamanho;
 	}
 	
 	
 	protected void inserirMovimento(char movimento) {
-		movimentos.add(movimento);
 		
 		switch (movimento) {
 		case 'w':
@@ -35,16 +36,15 @@ public class Caminho {
 			xAtual -= 1;
 			break;
 		}
+		if (movimentoInicio == '-')
+			movimentoInicio = movimento;
+		
+		tamanho++;
 	}
 	
 	
-	protected char[] getCaminho() {
-		char[] caminho = new char[movimentos.size()];
-		
-		for (int i = 0; i < movimentos.size(); i++)
-			caminho[i] = movimentos.get(i);
-
-		return caminho;
+	protected char getPrimeiroMove() {
+		return movimentoInicio;
 	}
 	
 	
@@ -60,9 +60,8 @@ public class Caminho {
 	
 	protected Caminho clone() {
 		Caminho clone = new Caminho(xAtual, yAtual);
-		for (Character move : movimentos) {
-			clone.movimentos.add(move);
-		}
+		clone.movimentoInicio = movimentoInicio;
+		clone.tamanho = tamanho;
 		return clone;
 	}
 }

@@ -155,6 +155,13 @@ public class Caverna implements ICaverna {
 	}
 	
 	
+	public void removerAtor(String tipo, int x, int y) {
+		if  (verificaValidade(x,y)) {
+			celulas[x][y].removerAtor(tipo);
+		}
+	}
+	
+	
 	public void moverAtor(IAtor a, int novox, int novoy) {
 		if  (verificaValidade(novox,novoy) && celulas[novox][novoy].podeEntrar(a)) {
 			removerAtor(a, a.getX(), a.getY());

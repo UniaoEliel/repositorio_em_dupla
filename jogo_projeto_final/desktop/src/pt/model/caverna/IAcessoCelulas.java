@@ -10,6 +10,8 @@ public interface IAcessoCelulas {
 	
 	public void removerAtor(IAtor a, int x, int y);
 	
+	public void removerAtor(String tipo, int x, int y);
+	
 	public void moverAtor(IAtor a, int novox, int novoy);
 	
 	public void somaIluminacao(int iluminacao, int x, int y);
