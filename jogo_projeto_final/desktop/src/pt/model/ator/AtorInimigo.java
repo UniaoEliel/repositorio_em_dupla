@@ -10,6 +10,7 @@ public abstract class AtorInimigo extends AtorVivo {
 	protected AtorInimigo() {
 		super();
 		raioAlcance = 6;
+		velocidade = 10;
 	}
 
 	public void passarRodada() {

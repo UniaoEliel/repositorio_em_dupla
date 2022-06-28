@@ -10,6 +10,7 @@ public class Morcego extends AtorInimigo {
 		super();
 		this.tipo = "morcego";
 		this.ataque = 4;
+		this.defesa = 0;
 		this.velocidade = 20;
 		this.vidaTotal = 20;
 		this.vidaAtual = vidaTotal;

@@ -11,6 +11,7 @@ public class Goblin extends AtorInimigo {
 	public Goblin() {
 		super();
 		this.ataque = 5;
+		this.defesa = 2;
 		this.vidaTotal = 18;
 		this.vidaAtual = vidaTotal;
 		

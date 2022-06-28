@@ -5,6 +5,9 @@ import java.util.*;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+
 import pt.controller.exceptions.ArquivoAusente;
 import pt.controller.exceptions.ArquivoMalFormatado;
 import pt.model.caverna.Caverna;
@@ -19,12 +22,10 @@ public class Leitor implements ILeitor {
 	
 	public int[] getTamanhoCaverna() throws ArquivoAusente, ArquivoMalFormatado {
 		 try{
-			  FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/cave.txt");
-			  
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			 FileHandle arquivo = Gdx.files.internal("cave.txt");
+			 
+			  BufferedReader br = (BufferedReader) arquivo.reader(100);
 			  String linhaTamanho;
-			  
 			  //Le a primeira linha do arquivo cave.txt
 			  linhaTamanho = br.readLine();
 			 
@@ -56,10 +57,9 @@ public class Leitor implements ILeitor {
 	public String[][] getAtoresCaverna() throws ArquivoAusente, ArquivoMalFormatado {
 		int linha = 5;
 		try{
-			  FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/cave.txt");
-			  
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			 FileHandle arquivo = Gdx.files.internal("cave.txt");
+			 
+			  BufferedReader br = (BufferedReader) arquivo.reader(100);
 			  String linhaAtor;
 	        //fazer arraylist
 	
@@ -106,10 +106,9 @@ public class Leitor implements ILeitor {
 	public String[][] getTexturas() throws ArquivoAusente, ArquivoMalFormatado {
 		int linha = 1;
 		try{
-			  FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/textures.txt");
-			  
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			FileHandle arquivo = Gdx.files.internal("textures.txt");
+			 
+			  BufferedReader br = (BufferedReader) arquivo.reader(100);
 			  String linhaTexturas;
 	        //fazer arraylist
 			//MOLDE: nomeator; direcao; arquivo da textura; x textura; y textura; layer
@@ -150,10 +149,9 @@ public class Leitor implements ILeitor {
 	public String[][] getLayers() throws ArquivoAusente, ArquivoMalFormatado {
 		int linha = 1;
 		try{
-			  FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/textures.txt");
-			  
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			FileHandle arquivo = Gdx.files.internal("textures.txt");
+			 
+			  BufferedReader br = (BufferedReader) arquivo.reader(100);
 			  String linhaLayers;
 	        //fazer arraylist
 			//MOLDE: nomeator; direcao; arquivo da textura; x textura; y textura; layer
@@ -199,10 +197,9 @@ public class Leitor implements ILeitor {
 	public String[] getNomeArquivosTexturas() throws ArquivoAusente, ArquivoMalFormatado {
 		int linha = 1;
 		try{
-			FileInputStream fstream = new FileInputStream(System.getProperty("user.dir") + "/src/pt/controller/textures.txt");
-			  
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			FileHandle arquivo = Gdx.files.internal("textures.txt");
+			 
+			  BufferedReader br = (BufferedReader) arquivo.reader(100);
 			String linhaTexturas;
 		Set<String> nomeTexturas = new HashSet<String>();
 		

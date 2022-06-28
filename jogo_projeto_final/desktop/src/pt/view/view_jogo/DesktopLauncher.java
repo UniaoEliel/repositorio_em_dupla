@@ -1,7 +1,9 @@
-package pt.view.viewJogo;
+package pt.view.view_jogo;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+
+import pt.view.viewJogo.ViewJogo2;
 import pt.view.view_jogo.ViewJogo;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument

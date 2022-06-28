@@ -240,7 +240,6 @@ public class Caverna implements ICaverna {
 	
 	public void inserirNoLog(String acontecimento) {
 		logRodada.add(acontecimento);
-		System.out.println(acontecimento);
 	}
 	
 	
