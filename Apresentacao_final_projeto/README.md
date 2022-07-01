@@ -112,16 +112,83 @@ Este é outro diagrama de um projeto de vendas:
 
 Para cada componente será apresentado um documento conforme o modelo a seguir:
 
-## Componente `<Nome do Componente>`
+## Componente `Comando`
 
-> Resumo do papel do componente e serviços que ele oferece.
+Responsável por ler a entrasa do jogador e a passar para o herói. Oferece o serviço de ler uma tecla do teclado e a passar ao componente herói, e de consultar se o herói ganhou ou perdeu o jogo.
 
-![Componente](diagrama-componente.png)
+![Componente](diagramas/componentes/comando.jpg)
 
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
-Classe | `<caminho completo da classe com pacotes>` <br> Exemplo: `pt.c08componentes.s20catalog.s10ds.DataSetComponent`
+Classe | `src.pt.controller.comando` <br> 
+Autores | `Elias Santos Martins`
+Interfaces | `IComando, IRHeroiComando`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](diagrama-interfaces.png)
+
+Interface agregadora do componente em Java:
+
+~~~java
+public interface IComando extends IRHeroiComando {
+	public void lerComando();
+	public boolean ganhou();
+	public boolean perdeu();
+}
+~~~
+
+## Detalhamento das Interfaces
+
+### Interface `IComando`
+
+Interface provida por componentes que fornecam a leitura de comandos e consulta se o herói ganhou ou perdeu.
+
+~~~java
+public interface IComando extends IRHeroiComando {
+	public void lerComando();
+	public boolean ganhou();
+	public boolean perdeu();
+}
+~~~
+
+Método | Objetivo
+-------| --------
+lerComando| Faz a leitura de um comando da entrada e o passa ao componente herói
+`ganhou`| Retorna se o herói ganhou o jogo
+`perdeu`| Retorna se o herói perdeu o jogo
+
+
+### Interface `IRHeroiComando`
+
+Interface requerida de um componente que possa receber os comandos de entrada através da interface `IHeroiComando`.
+
+~~~java
+public interface IRHeroiComando {
+	public void connect(IHeroiComando jogador);
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`connect`| Conecta o componente a outro que possa receber os comandos, informado através do parâmetro `jogador`.
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `<caminho completo da classe com pacotes>` <br> Exemplo: `pt.c08componentes.s20catalog.s10# Exemplo:
+
+
+
+
+## Componente `<Nome do Componente>`
+
+> Resumo do papel do componente e serviços que ele oferece.
+
+![Componente](diagrama-componentds.DataSetComponent`
 Autores | `<nome dos membros que criaram o componente>`
 Interfaces | `<listagem das interfaces do componente>`
 
@@ -189,16 +256,11 @@ Método | Objetivo
 # Plano de Exceções
 
 ## Diagrama da hierarquia de exceções
-> Elabore um diagrama com a hierarquia de exceções como detalhado a seguir.
-
-![Hierarquia Exceções](exception-hierarchy.png)
+![Hierarquia Exceções](diagramas/exceptions.png)
 
 ## Descrição das classes de exceção
 
-> Monte uma tabela descritiva seguindo o exemplo:
-
 Classe | Descrição
 ----- | -----
-DivisaoInvalida | Engloba todas as exceções de divisões não aceitas.
-DivisaoInutil | Indica que a divisão por 1 é inútil.
-DivisaoNaoInteira | Indica uma divisão não inteira.
+ArquivoAusente | Indica que um dos arquivos de texto ou texturas do jogo não foi localizada
+ArquivoMalFormatado | Indica que um dos arquivos de texto do jogo está fora do formato padrão ou com dados faltando, o que não permite seu uso
