@@ -10,7 +10,7 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 
 # Arquivo Executável do Jogo
 
-> Coloque aqui um link para download do arquivo `jar` ou equivalente para execução do seu jogo.
+[Arquivo JAR](https://drive.google.com/file/d/1S9cACZ-sS0ul9WTPu7YXQKtS0VLTWt6X/view?usp=sharing)
 
 # Slides do Projeto
 
@@ -18,10 +18,12 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 [Slides](https://drive.google.com/file/d/14FVyU6uTYqqIJiO0VbpYSVwQkQQt--oc/view?usp=sharing)
 
 ## Slides da Apresentação Final
-> Coloque um link para os slides da apresentação final do projeto.
+[Slides](https://docs.google.com/presentation/d/1APJYX9cu8l4tpm9bBZRFFNDrj554BkNwClB65h1eNm4/edit?usp=sharing)
 
 # Diagramas
 
 ## Diagrama Geral da Arquitetura do Jogo
-
-> Apresente um diagrama geral da arquitetura do jogo. O formato é livre. A escolha de um ou mais estilos arquiteturais será considerado um diferencial.
+Arquitetura dos componentes quando o jogo inicia
+![alt tag](https://i.imgur.com/eE0ZNH3.png)
+Arquitetura dos componentes quando o jogo está rodando
+![alt tag](https://i.imgur.com/HpDbqfX.png)
