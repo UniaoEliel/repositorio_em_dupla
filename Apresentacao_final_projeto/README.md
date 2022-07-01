@@ -116,7 +116,7 @@ Para cada componente será apresentado um documento conforme o modelo a seguir:
 
 Responsável por ler a entrasa do jogador e a passar para o herói. Oferece o serviço de ler uma tecla do teclado e a passar ao componente herói, e de consultar se o herói ganhou ou perdeu o jogo.
 
-![Componente](diagramas/componentes/comando.jpg)
+![Componente](diagramas/componentes/comando.png)
 
 **Ficha Técnica**
 item | detalhamento
