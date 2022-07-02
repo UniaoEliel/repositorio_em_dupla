@@ -157,7 +157,7 @@ public interface IComando extends IRHeroiComando {
 
 Método | Objetivo
 -------| --------
-lerComando| Faz a leitura de um comando da entrada e o passa ao componente herói
+`lerComando`| Faz a leitura de um comando da entrada e o passa ao componente herói
 `ganhou`| Retorna se o herói ganhou o jogo
 `perdeu`| Retorna se o herói perdeu o jogo
 
@@ -176,10 +176,6 @@ Método | Objetivo
 -------| --------
 `connect`| Conecta o componente a outro que possa receber os comandos, informado através do parâmetro `jogador`.
 
-**Ficha Técnica**
-item | detalhamento
------ | -----
-Classe | `<caminho completo da classe com pacotes>` <br> Exemplo: `pt.c08componentes.s20catalog.s10# Exemplo:
 
 
 
