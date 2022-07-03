@@ -1,6 +1,6 @@
-## Componente `Comando`
+## Componente `viewCaverna`
 
-Responsável por ler a entrasa do jogador e a passar para o herói. Oferece o serviço de ler uma tecla do teclado e a passar ao componente herói, e de consultar se o herói ganhou ou perdeu o jogo.
+Responsável por mostrar na tela o estado atual da caverna e seus atores.
 
 ![Componente](diagramas/componentes/comando.png)
 
@@ -8,7 +8,7 @@ Responsável por ler a entrasa do jogador e a passar para o herói. Oferece o se
 item | detalhamento
 ----- | -----
 Classe | `src.pt.view.viewCaverna` <br> 
-Autores | `Elias Santos Martins`
+Autores | `Elias Santos Martins e Gabriel Sanders Pereira Sobral`
 Interfaces | `IViewCaverna, IViewCavernaProperties, IPlotarCaverna, IRCavernaProperties`
 
 ### Interfaces
@@ -65,3 +65,36 @@ Método | Objetivo
 `setTamX`| Configura a quantidade de células na direção x representadas no modelo, informado por `tamX`
 `setTamY`| Configura a quantidade de células na direção y representadas no modelo, informado por `tamY`
 `getTexturas`| Se chamado após o método `create`, retorna o Map de texturas utilizadas pelo jogo
+
+
+
+### Interface `IPlotarCaverna`
+
+Interface de componentes que fornecem o serviço de mostrar na tela o estado atual da caverna e seus atores.
+
+~~~java
+public interface IPlotarCaverna {
+	public void plotarCaverna(SpriteBatch batch, BitmapFont font);
+	public void dispose();
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`plotarCaverna`| Utilizando os objetos do libGDX para impressão na tela `batch` e `font`, imprime na tela o estado atual da caverna e de seus componentes, com o herói centralizado
+`dispose`| Desaloca a memória utilizada por objetos do libGDX
+
+
+### Interface `IRCavernaProperties`
+
+Interface requerida de um componente que forneca as propriedades de uma caverna
+
+~~~java
+public interface IRCavernaProperties {
+	public void connect(ICavernaProperties caverna) throws ArquivoAusente, ArquivoMalFormatado ;
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`connect`| conecta aos componente que fornece as propriedades, informado através do parâmetro `caverna`. As exceptions `ArquivoAusente` e `ArquivoMalFormatado` podem ocorrer pois na hora que o viewCaverna é conectado ele lê as texturas dos arquivos de texturas. Ao ocorrer a conexão, é criado uma matriz de viewCelulas e cada viewCelula é conectado a sua célula correspondente no componente `caverna`
