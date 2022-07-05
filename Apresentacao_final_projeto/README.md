@@ -196,6 +196,10 @@ public class Tocha extends Item {
 	}
 }
 ~~~
+
+## Destaque 3 - Ataque como ator
+A realização de ataque entre atores no jogo é feita criando um objeto AtorAtaque e o colocando na caverna. Esse objeto, quando entra em uma célula, aplica seu efeito a todos os outros atores presentes na célula. Isso faz com que seja fácil programar diferentes tipos de ataque, e facilita a integração com a interface gráfica
+
 # Destaques de Pattern
 
 ## Destaque 1 - facade
@@ -236,8 +240,26 @@ public class ControleJogo implements IControleJogo {
 	}
 }
 ~~~
-
 O pattern faz isso reunindo vários componentes atrás de si e escondendo sua complexidade, de modo que todas as chamadas necessárias para controlar o estado do jogo são feitas por meio dele. As vantagens disso são que é fácil controlar o fluxo de acontecimentos do jogo e a adaptabilidade, ja que por trás do facade pode se ter qualquer jogo baseado em turnos em uma caverna, onde o jogador pode ganhar e perder, ou seja, o código que chama o pattern não precisa saber detalhes sobre qual é o jogo.
+
+## Destaque 2 - Singleton
+Usamos o pattern singleton para evitar duplicidades em componentes que precisam somente de uma instância, como ControleJogo e Montador
+### Código do pattern
+~~~java
+public class Montador implements IMontador {
+	private static final Montador instance = new Montador();
+	
+	private Montador() {
+		...
+	}
+	
+	
+	public static Montador getInstance() {
+		return instance;
+	}
+}
+~~~
+O componente deixa seu construtor privado, de modo que ninguém possa instanciá-lo, e oferece sua instância através de getInstance.
 
 # Conclusões e Trabalhos Futuros
 
