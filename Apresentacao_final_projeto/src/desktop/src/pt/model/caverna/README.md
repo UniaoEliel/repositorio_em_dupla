@@ -133,3 +133,50 @@ Método | Objetivo
 -------| --------
 `getNomeRepresentacoes`| Retorna um vetor de strings contendo o nome da representação atual de cada componente Ator presente na célula
 `getIluminacao`| Retorna a iluminação atual da célula
+
+
+
+## Componente `Celula`
+
+Responsável por representar uma célula, armazenar os atores e controlar a entrada e saída dos atores, verificando se são válidas
+
+![Componente](diagramas/componentes/comando.png)
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `src.pt.model.caverna` <br> 
+Autores | `Elias Santos Martins`
+Interfaces | `ICelula, ICelulaProperties`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](diagrama-interfaces.png)
+
+Interface agregadora do componente em Java:
+
+~~~java
+public interface ICelula extends ICelulaProperties{
+
+}
+~~~
+
+## Detalhamento das Interfaces
+
+### Interface `ICelulaProperties`
+
+Interface das propriedades do componente celula.
+
+~~~java
+public interface ICelulaProperties {
+	public String[] getNomeRepresentacoes();
+	public int getIluminacao();
+
+~~~
+
+Método | Objetivo
+-------| --------
+`getNomeRepresentacoes`| Retorna o nome das texturas de todos os atores presentes na celula, e o nome da textura do chão da célula
+`getIluminacao`| Retorna a iluminação atual da célula

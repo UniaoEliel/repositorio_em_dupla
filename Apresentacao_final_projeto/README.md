@@ -26,48 +26,218 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 > Relatório de evolução, descrevendo as evoluções do design do projeto, dificuldades enfrentadas, mudanças de rumo, melhorias e lições aprendidas. Referências aos diagramas e recortes de mudanças são bem-vindos.
 
 # Destaques de Código
-
-> Escolha trechos relevantes e/ou de destaque do seu código. Apresente um recorte (você pode usar reticências para remover partes menos importantes). Veja como foi usado o highlight de Java para o código.
-
+## Destaque 1 - Administração de rodadas da caverna
+Por eficiência, a caverna só avisa que uma rodada passou para atores em um raio de 16 do herói, e faz isso considerando as velocidades de cada um, do maior pro menor.
 ~~~java
-// Recorte do seu código
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
+public class Caverna implements ICaverna {
+	private PriorityQueue<IAtor> pq;
+	private int raioRodada;
+
+   public void passarRodada() {
+		int x = heroi.getX(), y = heroi.getY();
+		
+		for (int i = x - raioRodada; i <= x + raioRodada; i++) {
+			for (int j = y - raioRodada; j <= y + raioRodada; j++) {
+				if (verificaValidade(i ,j)) {
+					atores = celulas[i][j].getAtores();
+					for (IAtor ator : atores) {
+						pq.add(ator);
+		...
+      while (!pq.isEmpty())
+            pq.poll().passarRodada();
+   }
 }
 ~~~
 
 # Destaques de Orientação a Objetos
-> Destaque partes do código em que a orientação a objetos foi aplicada para aprimorar seu código. Por exemplo, o uso de polimorfismo para ajustar ações conforme o contexto. Sugestão de estrutura:
 
-## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
+## Destaque 1 - Hierarquia do componente ator
+Destacamos a hierarquia de classes abstratas componente ator, que faz grande uso do polimorfismo e herança para administrar os comportamentos de cada ator diferente na caverna. A classe Ator define o comportamento comum de todos os atores e de suas interações com a caverna. A classe AtorAtaque define o comportamento dos ataques e alertas gerados pelos atores, controlando a duração, a aplicação do dano. A classe AtorObjeto define o comportamento dos objetos como parede, lava, pedra, que não interagem. A classe AtorVivo define o comportamento de atores vivos, administrando vida, ataque, defesa, quantidade de rodadas pra se mover e atacar, oferece métodos de movimento e busca de caminhos. Por fim, a classe AtorInimigo define o comportamento dos inimigos, sobreescrevendo passarRodada() para eles perseguirem o herói e controlando o sistema de dropar itens quando morrem. Isso tudo permite a fácil inserção de novos atores, basta fazê-los herdeiros da classe abstrata correta e definir neles somente comportamentos específicos, usando sobrecarga de métodos presentes nas classes abstratas.
 
-## Código do Destaque OO
+### Diagrama de Classes usada no destaque OO:
+![Diagrama das classes abstraras](diagramas/atorabstrato.png)
+
+### Código do Destaque OO
+Para exemplificar a utilidade da hierarquia, vamos tomar o código do inimigo aranha. Ele precisa apenas definir valores para os atributos e escrever seus comportamentos específicos, que são a forma de ataque (sobrecarga método atacar()) e a forma de dropar itens (sobrecarga método droparItem())
 ~~~java
-// Recorte do código do pattern seguindo as mesmas diretrizes de outros destaques
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
+public class Aranha extends AtorInimigo {
+	private int countPocaVenenosa, countTeia;
+	
+	public Aranha() {
+		super();
+		this.ataque = 12;
+		this.vidaTotal = 25;
+		this.defesa = 4;
+		this.vidaAtual = this.vidaTotal;
+		...
+	}
+	
+	
+	private void pocaVenenosa(int x, int y) {
+		Veneno veneno = new Veneno();
+		veneno.setDuracao(50);
+		AlertaAtaque alerta = gerarAlertaAtaque(veneno, 5, x, y);
+		alerta.connect(cave);
+		...
+	}
+	
+	
+	private void lancarTeia(int x, int y) {
+		...
+	}
+
+	@Override
+	public void atacar(int x, int y) {
+		...
+      int ale = aleatorio.nextInt(100);
+      if (countPocaVenenosa == 0 && ale <= 30) 
+         pocaVenenosa(x, y);
+      else if (countTeia == 0 && ale >= 30 && ale <= 50) 
+         lancarTeia(x, y);
+      else if (cave.distanciaQuadrado(x, y, this.x, this.y) < 4)
+         super.atacar(x, y);
+      else if (podeMover()) {
+         seMoverEmDirecaoA(x, y);
+		...
+	}
+	
+	
+	@Override
+	public void passarRodada() {
+		super.passarRodada();
+		if (countPocaVenenosa > 0)
+			countPocaVenenosa--;
+		...
+	}
+
+
+	@Override
+	protected void droparItem() {
+		...
+		if (ale <= 50)
+			item = new Graveto();
+		else if (ale <= 70)
+			item = new PocaoVida();
+		
+		if (item != null)
+			colocarItemChao(item, this.x, this.y);
+	}
 }
 ~~~
 
+Tomando como segundo exemplo a saída da caverna, ela precisa apenas definir sua interação com o herói e iluminar células
+~~~java
+public class Saida extends AtorObjeto {
+	public Saida() {
+		this.solido = true;
+		this.orientacao = 's';
+		this.tipo = "saida";
+	}
+	
+	
+	@Override
+	public void entrouCelula() {
+		cave.iluminarCelulas(x, y, 3);
+	}
+	
+	@Override
+	public void interagir(IHeroi heroi) {
+		heroi.ganhar();
+	}
+}
+~~~
+Entre outros. Toda a dinâmica do jogo é definida por esse método
+
+## Destaque 2 - método passarRodada
+O comportamento de cada ator ou item é definido no que ele faz ao passar uma rodada. Todos os atores, itens e a prórpia caverna tem esse método, o que simplifica a chamada e explora o polimorfismo. Cada objeto define dentro de si seu comportamento. A caverna avisa os atores que a rodada passou, os inimigos vão tentar perseguir e atacar o herói, o herói vai realizar o comando do jogador e avisar seus itens que a rodada passou, a tocha vai se apagar um pouco, pedras e paredes não irão fazer nada, etc.
+
+### Diagrama do destaque OO
+![Diagrama da chamada](diagramas/rodada.png)
+### Código do destaque OO
+Exemplo na classe atorInimigo, os inimigos tem o comportamento de perseguir o herói
+~~~java
+public abstract class AtorInimigo extends AtorVivo {
+   public void passarRodada() {
+		int xHeroi = cave.getXHeroi(), yHeroi = cave.getYHeroi();
+		...
+			if (distanciaAoHeroi <= raioAtaque * raioAtaque + 1)
+				atacar(xHeroi, yHeroi);
+			
+			else if (podeMover() && distanciaAoHeroi >= raioAtaque * raioAtaque &&
+					distanciaAoHeroi <= raioAlcance * raioAlcance)
+				seMoverEmDirecaoA(xHeroi, yHeroi);
+			
+			else if (podeMover() && aleatorio.nextInt(100) <= 20)
+					movimentoAleatorio();
+			}
+      ...
+}
+~~~
+No herói, ele tenta realizar seu comando e avisa seu item
+~~~java
+public class Heroi extends AtorVivo implements IHeroi {
+   public void passarRodada() {
+		super.passarRodada();
+		realizarComando(comandoAtual);
+      if (itemSelecionado != null)
+			itemSelecionado.passarRodada();
+		...
+	}
+}
+~~~
+A tocha é apagada um pouco, e se sua luz apagar ela some
+~~~java
+public class Tocha extends Item {
+   public void passarRodada() {
+		luz--;
+		if (luz == 0)
+			inventario.removerItem(this);
+		...
+	}
+}
+~~~
 # Destaques de Pattern
-> Destaque de patterns adotados pela equipe. Sugestão de estrutura:
 
-## Diagrama do Pattern
-> Diagrama do pattern dentro do contexto da aplicação.
+## Destaque 1 - facade
+O componente ControleJogo implementa o pattern facade, ao ter métodos simples como iniciarJogo, passarRodada, heroiGanhou, heroiPerdeu, através da interface IControleJogo. 
 
-## Código do Pattern
+### Diagrama do Pattern
+![Diagrama das classes abstraras](diagramas/controlejogo.png)
+
+### Código do Pattern
+Interface com comandos gerais
 ~~~java
-// Recorte do código do pattern seguindo as mesmas diretrizes de outros destaques
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
+public interface IControleJogo {
+	public void iniciarJogo() throws ArquivoAusente, ArquivoMalFormatado;
+	public void passarRodada();
+	public void plotarJogo(SpriteBatch batch, BitmapFont font);
+	public boolean perdeu();
+	public boolean ganhou();
+	public void dispose();
+}
+~~~
+Os métodos usam vários componentes para realizar a tarefa
+~~~java
+public class ControleJogo implements IControleJogo {
+   private IComando leitorComandos;
+	private IViewCaverna viewCave;
+   private IViewHeroi viewHeroi;
+   private ICaverna cave;
+   ...
+   
+	public void passarRodada() {
+		leitorComandos.lerComando();
+		cave.passarRodada();
+	}
+
+	public void plotarJogo(SpriteBatch batch, BitmapFont font) {
+		viewCave.plotarCaverna(batch, font);
+		viewHeroi.plotarHeroi(batch, font);
+	}
 }
 ~~~
 
-> Explicação de como o pattern foi adotado e quais suas vantagens, referenciando o diagrama.
+O pattern faz isso reunindo vários componentes atrás de si e escondendo sua complexidade, de modo que todas as chamadas necessárias para controlar o estado do jogo são feitas por meio dele. As vantagens disso são que é fácil controlar o fluxo de acontecimentos do jogo e a adaptabilidade, ja que por trás do facade pode se ter qualquer jogo baseado em turnos em uma caverna, onde o jogador pode ganhar e perder, ou seja, o código que chama o pattern não precisa saber detalhes sobre qual é o jogo.
 
 # Conclusões e Trabalhos Futuros
 
@@ -92,162 +262,6 @@ Arquitetura dos componentes quando o jogo está rodando
 
 > Se você adotou componentes de software, apresente a documentação de componentes conforme o modelo.
 
-### Exemplo 1
-
-Este é o diagrama compondo componentes para análise:
-
-![Diagrama Analise](diagrama-componentes-analise.png)
-
-### Exemplo 2
-
-Este é um diagrama inicial do projeto de jogos:
-
-![Diagrama Jogos](diagrama-componentes-jogos.png)
-
-### Exemplo 3
-
-Este é outro diagrama de um projeto de vendas:
-
-![Diagrama Vendas](diagrama-componentes-vendas.png)
-
-Para cada componente será apresentado um documento conforme o modelo a seguir:
-
-## Componente `Comando`
-
-Responsável por ler a entrasa do jogador e a passar para o herói. Oferece o serviço de ler uma tecla do teclado e a passar ao componente herói, e de consultar se o herói ganhou ou perdeu o jogo.
-
-![Componente](diagramas/componentes/comando.png)
-
-**Ficha Técnica**
-item | detalhamento
------ | -----
-Classe | `src.pt.controller.comando` <br> 
-Autores | `Elias Santos Martins`
-Interfaces | `IComando, IRHeroiComando`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](diagrama-interfaces.png)
-
-Interface agregadora do componente em Java:
-
-~~~java
-public interface IComando extends IRHeroiComando {
-	public void lerComando();
-	public boolean ganhou();
-	public boolean perdeu();
-}
-~~~
-
-## Detalhamento das Interfaces
-
-### Interface `IComando`
-
-Interface provida por componentes que fornecam a leitura de comandos e consulta se o herói ganhou ou perdeu.
-
-~~~java
-public interface IComando extends IRHeroiComando {
-	public void lerComando();
-	public boolean ganhou();
-	public boolean perdeu();
-}
-~~~
-
-Método | Objetivo
--------| --------
-`lerComando`| Faz a leitura de um comando da entrada e o passa ao componente herói
-`ganhou`| Retorna se o herói ganhou o jogo
-`perdeu`| Retorna se o herói perdeu o jogo
-
-
-### Interface `IRHeroiComando`
-
-Interface requerida de um componente que possa receber os comandos de entrada através da interface `IHeroiComando`.
-
-~~~java
-public interface IRHeroiComando {
-	public void connect(IHeroiComando jogador);
-}
-~~~
-
-Método | Objetivo
--------| --------
-`connect`| Conecta o componente a outro que possa receber os comandos, informado através do parâmetro `jogador`.
-
-
-
-
-
-## Componente `<Nome do Componente>`
-
-> Resumo do papel do componente e serviços que ele oferece.
-
-![Componente](diagrama-componentds.DataSetComponent`
-Autores | `<nome dos membros que criaram o componente>`
-Interfaces | `<listagem das interfaces do componente>`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](diagrama-interfaces.png)
-
-Interface agregadora do componente em Java:
-
-~~~java
-public interface IDataSet extends ITableProducer, IDataSetProperties {
-}
-~~~
-
-## Detalhamento das Interfaces
-
-### Interface `<nome da interface>`
-
-`<Resumo do papel da interface.>`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-## Exemplo:
-
-### Interface `ITableProducer`
-
-Interface provida por qualquer fonte de dados que os forneça na forma de uma tabela.
-
-~~~java
-public interface ITableProducer {
-  String[] requestAttributes();
-  String[][] requestInstances();
-}
-~~~
-
-Método | Objetivo
--------| --------
-`requestAttributes` | Retorna um vetor com o nome de todos os atributos (colunas) da tabela.
-`requestInstances` | Retorna uma matriz em que cada linha representa uma instância e cada coluna o valor do respectivo atributo (a ordem dos atributos é a mesma daquela fornecida por `requestAttributes`.
-
-### Interface `IDataSetProperties`
-
-Define o recurso (usualmente o caminho para um arquivo em disco) que é a fonte de dados.
-
-~~~java
-public interface IDataSetProperties {
-  public String getDataSource();
-  public void setDataSource(String dataSource);
-}
-~~~
-
-Método | Objetivo
--------| --------
-`getDataSource` | Retorna o caminho da fonte de dados.
-`setDataSource` | Define o caminho da fonte de dados, informado através do parâmetro `dataSource`.
 
 # Plano de Exceções
 
