@@ -22,8 +22,26 @@ O projeto é um jogo onde o jogador se encontra em uma caverna escura com apenas
 
 
 ## Relatório de Evolução
-
-> Relatório de evolução, descrevendo as evoluções do design do projeto, dificuldades enfrentadas, mudanças de rumo, melhorias e lições aprendidas. Referências aos diagramas e recortes de mudanças são bem-vindos.
+Começamos o projeto definindo os componentes principais e a ordem dos serviços. Tivemos dificuldade em decidir uma ordem para começar a implementação, e acreditamos que isso se deve a falta de um planejamento maior de como funcionaria a comunicação entre componentes. Para a implementação, começamos implementando a interface gráfica com algumas texturas simples, e fizemos apenas o necessário do model para o gráfico funcionar. Essa decisão foi tomada pois facilita a vizualização do estado atual do projeto, inclusão de novos componentes e mecânicas, aumento da complexidade e revisões na arquitetura, pois o projeto é colocado para executar desde o princípio. Após isso nos concentramos em ler a entrada do jogador e construir os componentes Caverna, Célula e Ator (somente a classe abstrata) e realizar suas conexões. Nisto podemos realizar mudanças que seriam muito difíceis se fossem deixadas para mais tarde. 
+Por exemplo, tivemos a ideia inicial de a célula representar seus atores fazendo separação entre atores vivos e atores objeto, como abaixo:
+~~~java
+public class Celula implements ICelula {
+	private Map<String, IAtorVivo> atoresVivos;
+	private Map<String, IAtorObjeto> atoresObjeto;
+	...
+}
+~~~
+Isso dificultaria o código, pois toda vez que fosse solicitado uma operação sobre os atores deveria ser informado se era um ator vivo ou ator objeto. O uso de um Map também era desnecessário, ja que a célula dificilmente terá mais de 2 ou 3 atores dentro de si. Com isso, mantemos a ideia de atores vivos e atores objeto como algo interno do componente Ator, e deixamos as interações com a caverna na interface IAtor
+~~~java
+public class Celula implements ICelula {
+	private ArrayList<IAtor> atores;
+	...
+}
+~~~
+Outra mudança importante foi mudar a forma de comunicação entre o caverna e o viewCaverna. Antes, cada célula era conectada com um viewCélula, e quando a célula sofria uma mudança, avisava o viewCélula da mudança, que então solicitava os atributos da célula. Isso gerava uma conexão dupla que consideramos desnecessária, e alteramos para que o viewCélula que seja conectado a Celula, e solicite seu estado somente na hora de imprimir na tela
+![Diagrama da mudanca de conexao](diagramas/mudancaview.png)
+Com isso pronto, decidimos nos focar no controle do jogo. Devido as facilidades oferecidas pelo libGDX de ter o método render() que é chamado periodicamente, mudamos o plano do jogo só agir quando uma ação é feita pelo jogador para um jogo que age por tempo, o que melhora a jogabilidade. Após isso focamos na implementação da luminosidade diferente em cada célula, com áreas escuras e claras, o que foi a parte mais difícil de implementar. Por fim, construímos a hierarquia complexa da classe Ator e o componente Inventario, e, com tudo funcionando, pudemos implementar os outros atores, inimigos, itens e o fim do jogo. Por último, implementamos o sistema de exceções.
+As lições aprendidas foram: não subestimar a arquitetura, pois muito tempo foi perdido refazendo código devido a mudanças que não seriam necessárias caso tivéssemos planejado melhor; ter uma visão clara de qual o objetivo que queremos e a dificuldade dele, pois durante o desenvolvimento não havia um alvo claro de como seria o jogo finalizado; realizar a implementação das exceções mais cedo, pois como tardamos muito nisso a dificuldade foi grande, devido a ter de investigar milhares de linhas de código pronto para verificar onde poderiam surgir erros; e melhorar a comunicação e o trabalho em equipe.
 
 # Destaques de Código
 ## Destaque 1 - Administração de rodadas da caverna
@@ -49,6 +67,78 @@ public class Caverna implements ICaverna {
 }
 ~~~
 
+## Destaque 2 - Câmera seguindo o jogador
+O componente viewCaverna possui uma matriz de células onde cada célula está conectada a célula correspondente na caverna. Para manter o jogador sempre centralizado, é armazenado as coordenadas de qual deve ser a célula na esquerda inferior da tela em coordXPlot e coordYPlot. A cada vez que a tela é impressa, essa posição é atualizada pelo método atualizarCelulaImpressao, caso o herói esteja muito perto ou muito longe na direção x ou y, e com isso, o método plotarCelulas utiliza essa célula como referência, e a impressão é de a câmera seguir o jogador.
+
+~~~java
+public class ViewCaverna implements IViewCaverna {
+	private int coordXPlot, coordYPlot;
+
+	private void atualizarCelulaImpressao() {
+			...
+			if (xHeroi - coordXPlot < celulasX / 3)
+				coordXPlot = xHeroi - celulasX / 3;
+			else if (xHeroi - coordXPlot > 2 * celulasX / 3)
+				coordXPlot = xHeroi - 2 * celulasX / 3;
+			
+			if (yHeroi - coordYPlot < celulasY / 3)
+				coordYPlot = yHeroi - celulasY / 3;
+			
+			else if (yHeroi - coordYPlot > 2 * celulasY / 3)
+				coordYPlot = yHeroi - 2 * celulasY / 3;
+		}
+
+	private void plotarCelulas(SpriteBatch batch) {
+			atualizarCelulaImpressao();
+			
+			for (int i = coordXPlot; i < coordXPlot + celulasX; i++)
+				for (int j = coordYPlot; j < coordYPlot + celulasY; j++)
+					...
+						viewCelulas[i][j].plotar(...);
+	}
+}
+~~~
+
+
+## Destaque 3 - Busca em largura
+Como temos atores sólidos que bloqueiam a passagem em suas células, a classe AtorVivo fornece um método de busca do menor caminho em uma caverna, onde
+é informado a distância máxima desejada do destino (xDest, yDest) e a profundidade máxima da busca. Esse método retornará o primeiro movimento que deve ser feito. Não é necessário o caminho inteiro já que, devido aos atores vivos, esse caminho pode mudar a cada rodada. O algoritmo usado é uma busca em largura (BFS), e também é usado uma classe auxiliar Caminho, que ajuda no código.
+~~~java
+public class Caminho {
+	char movimentoInicio;
+	int tamanho;
+	int xAtual, yAtual;
+	...
+}
+
+public char buscarCaminho(int xAtual, int yAtual, int xDest, int yDest, int maxProfundidade, int distancia) {
+		...
+		Queue<Caminho> caminhos = new LinkedList<Caminho>();
+		
+		caminhos.add(new Caminho(xAtual, yAtual));
+		
+		while (!caminhos.isEmpty()) {
+			caminho = caminhos.poll();
+			xCam = caminho.getX();
+			yCam = caminho.getY();
+			
+			if (cave.distanciaQuadrado(xCam, yCam, xDest, yDest) < distancia * distancia) {
+				caminhoResposta = caminho.getPrimeiroMove();
+				break;
+			}
+			else if (caminho.getTamanho() < maxProfundidade) {
+				if (cave.entravel(xCam, yCam + 1)) {
+					cloneCaminho = caminho.clone();
+					cloneCaminho.inserirMovimento('w');
+					caminhos.add(cloneCaminho);
+				}
+				... // adiciona os proximos caminhos possiveis na fila
+		}
+		
+		return caminhoResposta;
+	}
+~~~
+
 # Destaques de Orientação a Objetos
 
 ## Destaque 1 - Hierarquia do componente ator
@@ -66,10 +156,7 @@ public class Aranha extends AtorInimigo {
 	public Aranha() {
 		super();
 		this.ataque = 12;
-		this.vidaTotal = 25;
-		this.defesa = 4;
-		this.vidaAtual = this.vidaTotal;
-		...
+		... // define os atributos
 	}
 	
 	
@@ -113,11 +200,7 @@ public class Aranha extends AtorInimigo {
 
 	@Override
 	protected void droparItem() {
-		...
-		if (ale <= 50)
-			item = new Graveto();
-		else if (ale <= 70)
-			item = new PocaoVida();
+		... // define um item aleatório
 		
 		if (item != null)
 			colocarItemChao(item, this.x, this.y);
@@ -196,9 +279,53 @@ public class Tocha extends Item {
 	}
 }
 ~~~
+Por fim, cada ator define seu comportamento através desse método
 
 ## Destaque 3 - Ataque como ator
 A realização de ataque entre atores no jogo é feita criando um objeto AtorAtaque e o colocando na caverna. Esse objeto, quando entra em uma célula, aplica seu efeito a todos os outros atores presentes na célula. Isso faz com que seja fácil programar diferentes tipos de ataque, e facilita a integração com a interface gráfica
+
+### Código do destaque OO
+O ataque é dado colocando um objeto ataque na célula alvo, esse objeto quando entra na célula causa dano a todos seus atores
+~~~java
+public abstract class AtorVivo extends Ator {
+	protected void atacar(int x, int y) {
+			if (podeAtacar()) {
+				AtaquePadrao objAtaque = new AtaquePadrao();
+				...
+				objAtaque.connect(cave);
+				...
+			}
+	}
+}
+
+public class AtaquePadrao extends AtorAtaque {
+	public void entrouCelula() {
+		atacar(dano);
+	}
+}
+
+
+public abstract class AtorAtaque extends Ator {
+	public void atacar(int dano) {
+		IAcoesAtor[] atores = cave.getAtores(x, y);
+		
+		if (atores != null) {
+			for (IAcoesAtor ator : atores) {
+				ator.receberAtaque(autor, dano);
+	...
+}
+~~~
+Isso também é usado no alerta de ataque que aparece em vermelho no chão, que é um objeto que leva outro objeto AtorAtaque dentro de si. Quando o tempo do alerta termina, ele sai da célula e coloca o ataque que está levando dentro de si.
+~~~java
+public class AlertaAtaque extends AtorAtaque {
+	private AtorAtaque ataque;
+	
+	public void saiuCelula() {
+		...
+		ataque.connect(cave);
+	}
+}
+~~~
 
 # Destaques de Pattern
 
