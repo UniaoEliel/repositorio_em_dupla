@@ -1,4 +1,4 @@
-## Componente `Comando`
+## Componente `Leitor`
 
 Responsável por ler dados de arquivos de texto.
 
