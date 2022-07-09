@@ -594,7 +594,7 @@ public interface IHeroi extends IAtor, IHeroiCoord, IHeroiProperties, IRInventar
 
 Responsável por controlar e coordenar as células, oferecer acesso as células e aos atores presentes nela, administrar a validade dos movimentos e localizar o herói nas células.
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/CavernaComponentes.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -607,7 +607,7 @@ Interfaces | `ICaverna ICavernaProperties, IAcessoCelulas,IRHeroiCoord`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesCaverna.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -621,8 +621,6 @@ public interface ICaverna extends ICavernaProperties, IAcessoCelulas, IRHeroiCoo
 
 Responsável por representar uma célula, armazenar os atores e controlar a entrada e saída dos atores, verificando se são válidas
 
-![Componente](diagramas/componentes/comando.png)
-
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
@@ -632,9 +630,6 @@ Interfaces | `ICelula, ICelulaProperties`
 
 ### Interfaces
 
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](diagrama-interfaces.png)
 
 Interface agregadora do componente em Java:
 
@@ -648,7 +643,7 @@ public interface ICelula extends ICelulaProperties{
 
 Responsável por administrar um inventario de componentes Item e suas interações com o herói e o sitema de células
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponentesInventario.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -661,7 +656,7 @@ Interfaces | `IInventario, IInventarioProperties, IAcessoItens, IRHeroi, IRAcess
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesInventario.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -675,8 +670,6 @@ public interface IInventario extends IInventarioProperties, IAcessoItens, IRHero
 
 Responsável por representar um item do jogo
 
-![Componente](diagramas/componentes/comando.png)
-
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
@@ -688,7 +681,7 @@ Interfaces | `IItem, IRHeroi, IRAcessoCelulas`
 
 Responsável por mostrar na tela o estado atual da caverna e seus atores.
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponentesViewCaverna.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -701,7 +694,7 @@ Interfaces | `IViewCaverna, IViewCavernaProperties, IPlotarCaverna, IRCavernaPro
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesViewCaverna.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -716,7 +709,7 @@ public interface IViewCaverna extends IViewCavernaProperties, IPlotarCaverna, IR
 
 Responsável por mostrar na tela o estado atual do herói, de sua vida e seu inventário
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponentesViewHeroi.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -729,7 +722,7 @@ Interfaces | `IViewHeroi, IViewHeroiProperties, IPlotarHeroi, IRHeroiProperties`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesViewHeroi.drawio.png)
 
 Interface agregadora do componente em Java:
 
