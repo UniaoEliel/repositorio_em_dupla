@@ -422,8 +422,8 @@ Este é o diagrama de execução do jogo. O ViewJogo avisará ao ControleJogo qu
 
 ## Diagrama Geral de Componentes
 
-> Se você adotou componentes de software, apresente a documentação de componentes conforme o modelo.
-
+![Diagrama Interfaces](diagramas/diagrama_de_componentes.png)
+* Algumas linhas saem do ControleJogo sem interfaces pois ele é quem instancia o componente.
 ## Componente `Comando`
 
 Responsável por ler a entrada do jogador e a passar para o herói. Oferece o serviço de ler uma tecla do teclado e a passar ao componente herói, e de consultar se o herói ganhou ou perdeu o jogo.
@@ -441,7 +441,7 @@ Interfaces | `IComando, IRHeroiComando`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesComando.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -458,7 +458,7 @@ public interface IComando extends IRHeroiComando {
 
 Responsável por iniciar e controlar o jogo, funciona como um facade e um builder
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponentesControle.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -471,7 +471,7 @@ Interfaces | `IControleJogo`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfaceControle.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -490,7 +490,7 @@ public interface IControleJogo {
 
 Responsável por ler dados de arquivos de texto.
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponenteLeitor.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -503,7 +503,7 @@ Interfaces | `ILeitor, ILeitura`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfaceLeitor.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -517,7 +517,7 @@ public interface ILeitor extends ILeitura {
 
 Responsável por criar a caverna, instanciar os componentes ator presentes nela e os conectá-los a caverna, e armazenar o herói durante essa criação
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponenteMontador.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -530,7 +530,7 @@ Interfaces | `IMontador, IRLeitura`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesMontador.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -545,7 +545,7 @@ public interface IMontador extends IRLeitura {
 
 Responsável por representar um ator do jogo e administrar suas interações com outros atores e com as células
 
-![Componente](diagramas/componentes/comando.png)
+![Componente](diagramas/componentes/ComponentesAtorCOMPLETO.drawio.png)
 
 **Ficha Técnica**
 item | detalhamento
@@ -558,7 +558,7 @@ Interfaces | `IAtor, IAtorProperties, IRAcessoCelulas ,IAcoesAtor`
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](diagramas/interfaces/InterfacesAtor.drawio.png)
 
 Interface agregadora do componente em Java:
 
@@ -573,8 +573,6 @@ public interface IAtor extends IAtorProperties, IRAcessoCelulas
 
 Responsável por representar o herói do jogo, administrar os itens e receber comandos
 
-![Componente](diagramas/componentes/comando.png)
-
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
@@ -583,10 +581,6 @@ Autores | `Elias Santos Martins`
 Interfaces | `IHeroi, IAtor, IHeroiCoord, IHeroiProperties, IRInventario, IHeroiComando`
 
 ### Interfaces
-
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](diagrama-interfaces.png)
 
 Interface agregadora do componente em Java:
 
