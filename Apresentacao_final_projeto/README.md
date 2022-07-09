@@ -6,7 +6,7 @@ O projeto é um jogo celular onde o jogador se encontra em uma caverna escura co
 
 # Equipe
 * Elias Santos Martins - 247057
-* Gabriel Sanders Pereira Sobral - RA
+* Gabriel Sanders Pereira Sobral - 247118
 
 # Arquivo Executável do Jogo
 
