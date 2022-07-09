@@ -736,8 +736,6 @@ public interface IViewHeroi extends IViewHeroiProperties, IPlotarHeroi, IRHeroiP
 
 Responsável pela vizualização, por iniciar e por terminar o jogo. A função main chama primeiro esse componente
 
-![Componente](diagramas/componentes/comando.png)
-
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
